@@ -2,14 +2,20 @@
 
     <main class="front-page">
 
-        test!
+        <toolbar-main/>
 
     </main>
 
 </template>
 
 <script>
-export default {}
+export default {
+    computed: {
+        cmpPartitions() {
+            return this.$store.getters.board.partitions
+        }
+    }
+}
 </script>
 
 <style lang="scss">

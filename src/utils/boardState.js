@@ -6,5 +6,6 @@ const { Partition } = board
 export default {
     state: {
         partitions: [new Partition()]
-    }
+    },
+    mutations: {}
 }

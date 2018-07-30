@@ -4,8 +4,21 @@ import Vue from 'vue'
 import App from './App'
 import router from '@/utils/router'
 import store from '@/utils/store'
+import Case from 'case'
 
 Vue.config.productionTip = false
+
+// Register components in src/
+// ===============================
+const components = require.context('./components', true)
+components.keys().map(component => {
+    // turn './ComponentName.vue' into 'component-name'
+    const componentName = Case.kebab(
+        component.replace(/^\.\//, '').replace(/\.vue$/, '')
+    )
+    // register new component globally
+    Vue.component(componentName, components(component).default)
+})
 
 /* eslint-disable no-new */
 new Vue({
