@@ -10,13 +10,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'src/styles/vars';
+
 #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: $font-family;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
 }
 </style>

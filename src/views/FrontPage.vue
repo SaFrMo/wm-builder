@@ -2,6 +2,8 @@
 
     <main class="front-page">
 
+        <board-view/>
+
         <toolbar-main/>
 
     </main>
@@ -22,5 +24,6 @@ export default {
 @import 'src/styles/vars';
 
 .front-page {
+    font-family: $font-family;
 }
 </style>
