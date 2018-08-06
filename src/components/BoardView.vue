@@ -2,10 +2,13 @@
 
     <section class="board-view" :style="cmpStyle">
 
-        <div class="cell-wrap" v-for="i in width * height" :key="i">
-            <button>
-                {{ i }}
-            </button>
+        <div class="row" v-for="y in height" :key="y">
+            <div class="cell" v-for="x in width" :key="x">
+                <button>
+                    x: {{ x - 1 + $store.state.bottomLeft.x }}
+                    y: {{ height - y + $store.state.bottomLeft.y }}
+                </button>
+            </div>
         </div>
 
     </section>
@@ -14,19 +17,17 @@
 
 <script>
 export default {
-    data() {
-        return {
-            width: 10,
-            height: 10
-        }
-    },
     computed: {
         cmpStyle() {
             return {
-                'grid-template': `repeat(${this.height}, 1fr) / repeat(${
-                    this.width
-                }, 1fr)`
+                'grid-template-rows': `repeat(${this.width}, 1fr)`
             }
+        },
+        width() {
+            return this.$store.state.topRight.x - this.$store.state.bottomLeft.x
+        },
+        height() {
+            return this.$store.state.topRight.y - this.$store.state.bottomLeft.y
         }
     }
 }
@@ -38,8 +39,15 @@ export default {
 .board-view {
     display: grid;
     grid-gap: 10px;
+    grid-auto-flow: row;
+    width: 450px;
+    margin: auto;
 
-    .cell-wrap {
+    .row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .cell {
         width: 100%;
         height: 0;
         padding-bottom: 100%;

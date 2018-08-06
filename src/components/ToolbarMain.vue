@@ -2,7 +2,23 @@
 
     <section class="toolbar-main">
 
-        Toolbar test
+        <button
+            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [-1, 0])">
+            Move left
+        </button>
+        <button
+            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [1, 0])">
+            Move right
+        </button>
+        <button
+            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, 1])">
+            Move up
+        </button>
+        <button
+            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, -1])">
+            Move down
+        </button>
+        
 
     </section>
 
