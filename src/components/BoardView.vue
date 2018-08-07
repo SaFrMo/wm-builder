@@ -59,16 +59,5 @@ export default {
         padding-bottom: 100%;
         position: relative;
     }
-    button {
-        background-color: $gray;
-        font-family: $font-family;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        font-size: 16px;
-        border: none;
-        margin: auto;
-        @include fill;
-    }
 }
 </style>

@@ -12,7 +12,9 @@ export default new Vuex.Store({
         // board builder meta
         bottomLeft: { x: -2, y: -2 },
         topRight: { x: 3, y: 3 },
-        selectedPartitionIndex: -1
+        selectedPartitionIndex: -1,
+        xLines: 5,
+        yLines: 5
     },
     mutations: {
         CHANGE_BOTTOM_LEFT_BY: (state, payload) => {

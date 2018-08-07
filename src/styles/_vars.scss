@@ -4,6 +4,9 @@ $black: #000;
 $white: #fafafa;
 $gray: #ccc;
 
+$cell: #ddd;
+$dark-cell: tomato;
+
 @mixin fill {
     position: absolute;
     top: 0;
