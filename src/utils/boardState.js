@@ -7,5 +7,17 @@ export default {
     state: {
         partitions: [new Partition()]
     },
-    mutations: {}
+    mutations: {},
+    getters: {
+        getOccupants: state => coords => {
+            const output = []
+
+            // loop through partitions
+            state.partitions.forEach(partition => {
+                // TODO: Search partitions for cells
+            })
+
+            return output
+        }
+    }
 }

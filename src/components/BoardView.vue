@@ -30,11 +30,6 @@ export default {
         height() {
             return this.$store.state.topRight.y - this.$store.state.bottomLeft.y
         }
-    },
-    methods: {
-        handleClick(coordinates) {
-            console.log(coordinates)
-        }
     }
 }
 </script>

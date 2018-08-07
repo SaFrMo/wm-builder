@@ -9,7 +9,6 @@
         </span>
     </button>
 
-
 </template>
 
 <script>
@@ -33,7 +32,17 @@ export default {
         }
     },
     methods: {
-        handleClick() {}
+        handleClick() {
+            const occupants = this.$store.getters.getOccupants({
+                x: this.x,
+                y: this.y
+            })
+            // if there isn't anything here yet...
+            if (!occupants.length) {
+                // ...and if we're not currently in a partition...
+                // TODO: start here
+            }
+        }
     }
 }
 </script>
@@ -52,14 +61,26 @@ export default {
     margin: auto;
     @include fill;
     background-color: $cell;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background-color: darken($cell, 20%);
+    }
 
     &.separator {
         background-color: $dark-cell;
+
+        &:hover,
+        &:focus {
+            background-color: darken($dark-cell, 20%);
+        }
     }
     &.center {
         background-color: $black;
     }
 
+    // inside the cell
     .coordinates {
         position: absolute;
         right: 0;
