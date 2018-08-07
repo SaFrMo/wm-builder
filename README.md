@@ -2,9 +2,13 @@
 
 > Level builder for The White Mask
 
+## Goals
+
+-   Partition Add: Click-drag on an empty space to add a partition
+
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 

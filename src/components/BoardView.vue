@@ -1,13 +1,14 @@
 <template>
 
-    <section class="board-view" :style="cmpStyle">
+    <section class="board-view" >
 
-        <div class="row" v-for="y in height" :key="y">
+        <div class="row" v-for="y in height" :key="y" :style="cmpStyle">
             <div class="cell" v-for="x in width" :key="x">
-                <button>
-                    x: {{ x - 1 + $store.state.bottomLeft.x }}
-                    y: {{ height - y + $store.state.bottomLeft.y }}
-                </button>
+
+                <board-cell
+                    :x="x - 1 + $store.state.bottomLeft.x"
+                    :y="height - y + $store.state.bottomLeft.y"/>
+
             </div>
         </div>
 
@@ -20,7 +21,7 @@ export default {
     computed: {
         cmpStyle() {
             return {
-                'grid-template-rows': `repeat(${this.width}, 1fr)`
+                'grid-template-columns': `repeat(${this.width}, 1fr)`
             }
         },
         width() {
@@ -28,6 +29,11 @@ export default {
         },
         height() {
             return this.$store.state.topRight.y - this.$store.state.bottomLeft.y
+        }
+    },
+    methods: {
+        handleClick(coordinates) {
+            console.log(coordinates)
         }
     }
 }
@@ -45,7 +51,7 @@ export default {
 
     .row {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 10px;
     }
     .cell {
         width: 100%;
