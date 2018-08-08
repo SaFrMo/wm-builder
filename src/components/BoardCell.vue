@@ -40,7 +40,13 @@ export default {
             // if there isn't anything here yet...
             if (!occupants.length) {
                 // ...and if we're not currently in a partition...
-                // TODO: start here
+                if (this.$store.state.selectedPartitionIndex == -1) {
+                    // create a new partition!
+                    this.$store.dispatch('CREATE_PARTITION', {
+                        x: this.x,
+                        y: this.y
+                    })
+                }
             }
         }
     }

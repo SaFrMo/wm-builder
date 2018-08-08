@@ -22,6 +22,9 @@ export default new Vuex.Store({
             state.bottomLeft.y += payload[1]
             state.topRight.x += payload[0]
             state.topRight.y += payload[1]
+        },
+        SELECT_PARTITION: (state, payload) => {
+            state.selectedPartitionIndex = payload
         }
     },
     getters: {

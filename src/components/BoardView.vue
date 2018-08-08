@@ -12,6 +12,11 @@
             </div>
         </div>
 
+        <board-partition
+            v-for="(partition, i) in $store.state.boardState.partitions"
+            :key="i"
+            :partition="partition"/>
+
     </section>
 
 </template>
