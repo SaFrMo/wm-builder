@@ -65,7 +65,6 @@ export default {
     font-size: 16px;
     border: none;
     margin: auto;
-    @include fill;
     background-color: $cell;
     cursor: pointer;
 

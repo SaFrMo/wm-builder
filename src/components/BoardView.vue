@@ -2,14 +2,15 @@
 
     <section class="board-view" >
 
-        <div class="row" v-for="y in height" :key="y" :style="cmpStyle">
-            <div class="cell" v-for="x in width" :key="x">
+        <div class="grid" :style="cmpStyle">
 
-                <board-cell
-                    :x="x - 1 + $store.state.bottomLeft.x"
-                    :y="height - y + $store.state.bottomLeft.y"/>
+            <board-cell
+                v-for="i in cmpTotalCells"
+                :key="i"
+                :data-index="i"
+                :x="getX(i)"
+                :y="getY(i)"/>
 
-            </div>
         </div>
 
         <board-partition
@@ -26,7 +27,7 @@ export default {
     computed: {
         cmpStyle() {
             return {
-                'grid-template-columns': `repeat(${this.width}, 1fr)`
+                'grid-template': `repeat(${this.width}, 1fr) / repeat(${this.height}, 1fr)`
             }
         },
         width() {
@@ -34,6 +35,20 @@ export default {
         },
         height() {
             return this.$store.state.topRight.y - this.$store.state.bottomLeft.y
+        },
+        cmpTotalCells(){
+            return this.width * this.height
+        }
+    },
+    methods: {
+        getX(i){
+            const boardIndex = (i - 1) % this.width
+            return this.$store.state.bottomLeft.x + boardIndex
+        },
+        getY(i){
+            i = this.cmpTotalCells - i
+            const boardIndex =  Math.floor(i / this.height)
+            return this.$store.state.bottomLeft.y + boardIndex
         }
     }
 }
@@ -43,15 +58,15 @@ export default {
 @import 'src/styles/vars';
 
 .board-view {
-    display: grid;
-    grid-gap: 10px;
-    grid-auto-flow: row;
-    width: 450px;
     margin: auto;
 
-    .row {
+    .grid {
         display: grid;
         grid-gap: 10px;
+        position: relative;
+        width: 450px;
+        height: 450px;
+        margin: auto;
     }
     .cell {
         width: 100%;
