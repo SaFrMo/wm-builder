@@ -11,12 +11,12 @@
                 :x="getX(i)"
                 :y="getY(i)"/>
 
-        </div>
+            <board-partition
+                v-for="(partition, i) in $store.state.boardState.partitions"
+                :key="i"
+                :partition="partition"/>
 
-        <board-partition
-            v-for="(partition, i) in $store.state.boardState.partitions"
-            :key="i"
-            :partition="partition"/>
+        </div>
 
     </section>
 
