@@ -28,6 +28,12 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        board: state => state.boardState
+        board: state => state.boardState,
+        width: state => {
+            return state.topRight.x - state.bottomLeft.x
+        },
+        height: state => {
+            return state.topRight.y - state.bottomLeft.y
+        }
     }
 })

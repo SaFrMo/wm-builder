@@ -5,13 +5,13 @@ export default class {
             return opts.hasOwnProperty(name) ? opts[name] : defaultVal
         }
 
-        this.width = pick('width', 2)
-        this.height = pick('height', 2)
+        this.width = pick('width', 3)
+        this.height = pick('height', 3)
 
         // pivot Cell in x,y coordinates
-        this.pivot = pick('pivot', [0, 0])
+        this.pivot = pick('pivot', { x: 0, y: 0 })
 
         // position on game board in x,y coordinates
-        this.position = pick('position', [0, 0])
+        this.position = pick('position', { x: 0, y: 0 })
     }
 }

@@ -1,6 +1,8 @@
 <template>
 
-    <section class="board-partition" :style="cmpStyle">
+    <section
+        class="board-partition"
+        :style="cmpStyle">
 
         <button
             v-for="(direction, i) in directions"
@@ -14,8 +16,10 @@
 </template>
 
 <script>
+import { clamp } from '@/utils/shared'
+
 export default {
-    data(){
+    data() {
         return {
             directions: ['up', 'right', 'down', 'left']
         }
@@ -27,14 +31,18 @@ export default {
         }
     },
     computed: {
-        cmpStyle(){
+        cmpStyle() {
             // find the position on the visible grid
-            const relativeX = 1 + Math.abs(this.$store.state.bottomLeft.x)
-            const relativeY = 1 + Math.abs(this.$store.state.bottomLeft.y)
+            const bottomLeftX = Math.abs(this.$store.state.bottomLeft.x)
+            const relativeX = this.partition.position.x + bottomLeftX + 1
+
+            const bottomLeftY = Math.abs(this.$store.state.bottomLeft.y)
+            let relativeY = this.partition.position.y - bottomLeftY - 1
+            relativeY -= this.partition.height
 
             return {
-                'grid-column': `${relativeX} / span ${ this.partition.width }`,
-                'grid-row': `${relativeY} / span ${ this.partition.height }`
+                'grid-column': `${relativeX} / span ${this.partition.width}`,
+                'grid-row': `${relativeY} / span ${this.partition.height}`
             }
         }
     }
