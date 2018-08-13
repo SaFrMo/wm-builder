@@ -2,6 +2,7 @@
 
     <section
         class="board-partition"
+        :key="cmpStyle['grid-area']"
         :style="cmpStyle"
         v-show="visible">
 
@@ -35,8 +36,8 @@ export default {
     computed: {
         cmpStyle() {
             // find the position on the visible grid
-            const bottomLeftX = Math.abs(this.$store.state.bottomLeft.x)
-            let gridX = this.partition.position.x + bottomLeftX + 1
+            const bottomLeftX = this.$store.state.bottomLeft.x
+            let gridX = this.partition.position.x - bottomLeftX + 1
             gridX -= this.partition.pivot.x
 
             const bottomLeftY = this.$store.state.bottomLeft.y
@@ -45,8 +46,24 @@ export default {
             gridY -= this.partition.height - 1
             gridY += this.partition.pivot.y
 
+            // final clamping
+            let width = this.partition.width
+
+            if (gridX - 1 < 0) {
+                width += gridX - 1
+            }
+            if (gridX < 1) {
+                gridX = 1
+            }
+
+            const gridArea = `${gridY} / ${gridX} / span ${
+                this.partition.height
+            } / span ${width}`
+
             // if gridX is more than the size of the grid, don't show
             if (gridX > this.$store.getters.width) {
+                this.visible = false
+            } else if (width <= 0) {
                 this.visible = false
             } else if (gridY > this.$store.getters.height) {
                 this.visible = false
@@ -55,8 +72,9 @@ export default {
             }
 
             return {
-                'grid-column': `${gridX} / span ${this.partition.width}`,
-                'grid-row': `${gridY} / span ${this.partition.height}`
+                'grid-area': gridArea
+                // 'grid-column': `${gridX} / span ${width}`,
+                // 'grid-row': ` / span ${this.partition.height}`
             }
         }
     }
