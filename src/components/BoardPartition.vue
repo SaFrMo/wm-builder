@@ -34,11 +34,14 @@ export default {
         cmpStyle() {
             // find the position on the visible grid
             const bottomLeftX = Math.abs(this.$store.state.bottomLeft.x)
-            const relativeX = this.partition.position.x + bottomLeftX + 1
+            let relativeX = this.partition.position.x + bottomLeftX + 1
+            relativeX -= this.partition.pivot.x
 
-            const bottomLeftY = Math.abs(this.$store.state.bottomLeft.y)
-            let relativeY = this.partition.position.y - bottomLeftY - 1
-            relativeY -= this.partition.height
+            const bottomLeftY = this.$store.state.bottomLeft.y
+            let relativeY =
+                -this.partition.position.y + this.$store.state.topRight.y
+            relativeY -= this.partition.height - 1
+            relativeY += this.partition.pivot.y
 
             return {
                 'grid-column': `${relativeX} / span ${this.partition.width}`,
