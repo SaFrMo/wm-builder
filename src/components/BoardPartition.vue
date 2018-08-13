@@ -48,7 +48,17 @@ export default {
 
             // final clamping
             let width = this.partition.width
+            let height = this.partition.height
 
+            // adjust final height and row placement
+            if (gridY - 1 < 0) {
+                height += gridY - 1
+            }
+            if (gridY < 1) {
+                gridY = 1
+            }
+
+            // adjust final width and column placement
             if (gridX - 1 < 0) {
                 width += gridX - 1
             }
@@ -56,16 +66,16 @@ export default {
                 gridX = 1
             }
 
-            const gridArea = `${gridY} / ${gridX} / span ${
-                this.partition.height
-            } / span ${width}`
+            // get final styling
+            const gridArea = `${gridY} / ${gridX} / span ${height} / span ${width}`
 
-            // if gridX is more than the size of the grid, don't show
-            if (gridX > this.$store.getters.width) {
-                this.visible = false
-            } else if (width <= 0) {
-                this.visible = false
-            } else if (gridY > this.$store.getters.height) {
+            // determine whether or not this partition is visible
+            if (
+                gridX > this.$store.getters.width ||
+                gridY > this.$store.getters.height ||
+                width <= 0 ||
+                height <= 0
+            ) {
                 this.visible = false
             } else {
                 this.visible = true
@@ -73,8 +83,6 @@ export default {
 
             return {
                 'grid-area': gridArea
-                // 'grid-column': `${gridX} / span ${width}`,
-                // 'grid-row': ` / span ${this.partition.height}`
             }
         }
     }

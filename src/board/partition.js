@@ -12,6 +12,6 @@ export default class {
         this.pivot = pick('pivot', { x: 0, y: 0 })
 
         // position on game board in x,y coordinates
-        this.position = pick('position', { x: 0, y: 0 })
+        this.position = pick('position', { x: 1, y: -1 })
     }
 }
