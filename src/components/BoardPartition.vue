@@ -2,7 +2,8 @@
 
     <section
         class="board-partition"
-        :style="cmpStyle">
+        :style="cmpStyle"
+        v-show="visible">
 
         <button
             v-for="(direction, i) in directions"
@@ -21,7 +22,8 @@ import { clamp } from '@/utils/shared'
 export default {
     data() {
         return {
-            directions: ['up', 'right', 'down', 'left']
+            directions: ['up', 'right', 'down', 'left'],
+            visible: true
         }
     },
     props: {
@@ -34,18 +36,27 @@ export default {
         cmpStyle() {
             // find the position on the visible grid
             const bottomLeftX = Math.abs(this.$store.state.bottomLeft.x)
-            let relativeX = this.partition.position.x + bottomLeftX + 1
-            relativeX -= this.partition.pivot.x
+            let gridX = this.partition.position.x + bottomLeftX + 1
+            gridX -= this.partition.pivot.x
 
             const bottomLeftY = this.$store.state.bottomLeft.y
-            let relativeY =
+            let gridY =
                 -this.partition.position.y + this.$store.state.topRight.y
-            relativeY -= this.partition.height - 1
-            relativeY += this.partition.pivot.y
+            gridY -= this.partition.height - 1
+            gridY += this.partition.pivot.y
+
+            // if gridX is more than the size of the grid, don't show
+            if (gridX > this.$store.getters.width) {
+                this.visible = false
+            } else if (gridY > this.$store.getters.height) {
+                this.visible = false
+            } else {
+                this.visible = true
+            }
 
             return {
-                'grid-column': `${relativeX} / span ${this.partition.width}`,
-                'grid-row': `${relativeY} / span ${this.partition.height}`
+                'grid-column': `${gridX} / span ${this.partition.width}`,
+                'grid-row': `${gridY} / span ${this.partition.height}`
             }
         }
     }
