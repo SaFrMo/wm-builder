@@ -7,6 +7,12 @@ export default {
     state: {
         partitions: [new Partition()]
     },
+    mutations: {
+        SET_PARTITION_NAME(state, { guid, value }) {
+            const targetPartition = state.partitions.find(p => p.guid == guid)
+            targetPartition.name = value
+        }
+    },
     actions: {
         CREATE_PARTITION({ state, commit, rootState }, payload) {
             // add a new partition

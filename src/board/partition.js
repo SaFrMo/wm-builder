@@ -12,6 +12,12 @@ export default class {
         this.pivot = pick('pivot', { x: 0, y: 0 })
 
         // position on game board in x,y coordinates
-        this.position = pick('position', { x: 1, y: -1 })
+        this.position = pick('position', { x: 0, y: 0 })
+
+        // human-readable name
+        this.name = pick('name', 'Partition')
+
+        // GUID
+        this.guid = pick('guid', Date.now())
     }
 }

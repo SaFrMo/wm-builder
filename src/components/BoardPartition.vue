@@ -13,6 +13,8 @@
             {{ direction }}
         </button>
 
+        <input v-model="displayName"/>
+
     </section>
 
 </template>
@@ -24,7 +26,8 @@ export default {
     data() {
         return {
             directions: ['up', 'right', 'down', 'left'],
-            visible: true
+            visible: true,
+            displayName: ''
         }
     },
     props: {
@@ -32,6 +35,9 @@ export default {
             type: Object,
             required: true
         }
+    },
+    mounted() {
+        this.displayName = this.partition.name
     },
     computed: {
         cmpStyle() {
@@ -84,6 +90,14 @@ export default {
             return {
                 'grid-area': gridArea
             }
+        }
+    },
+    watch: {
+        displayName(newVal) {
+            this.$store.commit('SET_PARTITION_NAME', {
+                guid: this.partition.guid,
+                value: newVal
+            })
         }
     }
 }
