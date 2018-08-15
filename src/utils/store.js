@@ -39,6 +39,10 @@ export default new Vuex.Store({
             //     state.bottomLeft.y = state.topRight.y
             // }
         },
+        RECENTER_GRID: state => {
+            state.bottomLeft = { x: -2, y: -2 }
+            state.topRight = { x: 3, y: 3 }
+        },
         SELECT_PARTITION: (state, payload) => {
             state.selectedPartitionIndex = payload
         }

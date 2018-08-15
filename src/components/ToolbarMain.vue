@@ -32,6 +32,14 @@
             Zoom out
         </button>
 
+        <hr>
+
+        <!-- Recenter -->
+        <button
+            @click="$store.commit('RECENTER_GRID')">
+            Recenter
+        </button>
+
     </section>
 
 </template>
