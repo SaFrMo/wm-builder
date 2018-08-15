@@ -27,7 +27,9 @@ export default {
     computed: {
         cmpStyle() {
             return {
-                'grid-template': `repeat(${this.width}, 1fr) / repeat(${this.height}, 1fr)`
+                'grid-template': `repeat(${this.width}, 1fr) / repeat(${
+                    this.height
+                }, 1fr)`
             }
         },
         width() {
@@ -36,18 +38,18 @@ export default {
         height() {
             return this.$store.state.topRight.y - this.$store.state.bottomLeft.y
         },
-        cmpTotalCells(){
+        cmpTotalCells() {
             return this.width * this.height
         }
     },
     methods: {
-        getX(i){
+        getX(i) {
             const boardIndex = (i - 1) % this.width
             return this.$store.state.bottomLeft.x + boardIndex
         },
-        getY(i){
+        getY(i) {
             i = this.cmpTotalCells - i
-            const boardIndex =  Math.floor(i / this.height)
+            const boardIndex = Math.floor(i / this.height)
             return this.$store.state.bottomLeft.y + boardIndex
         }
     }
@@ -64,8 +66,8 @@ export default {
         display: grid;
         grid-gap: 10px;
         position: relative;
-        width: 450px;
-        height: 450px;
+        width: 750px;
+        height: 750px;
         margin: auto;
     }
     .cell {

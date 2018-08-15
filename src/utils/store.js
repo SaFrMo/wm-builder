@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import boardState from './boardState'
+import { clamp } from '@/utils/shared'
 
 Vue.use(Vuex)
 
@@ -22,6 +23,21 @@ export default new Vuex.Store({
             state.bottomLeft.y += payload[1]
             state.topRight.x += payload[0]
             state.topRight.y += payload[1]
+        },
+        CHANGE_GRID_SIZE_BY: (state, payload) => {
+            state.bottomLeft.x -= payload
+            state.bottomLeft.y -= payload
+            state.topRight.x += payload
+            state.topRight.y += payload
+
+            // TODO: prevent zooming in past max
+            // if (
+            //     state.bottomLeft.x >= state.topRight.x ||
+            //     state.bottomLeft.y >= state.topRight.y
+            // ) {
+            //     state.bottomLeft.x = state.topRight.x
+            //     state.bottomLeft.y = state.topRight.y
+            // }
         },
         SELECT_PARTITION: (state, payload) => {
             state.selectedPartitionIndex = payload
