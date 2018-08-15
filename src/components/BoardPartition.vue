@@ -10,10 +10,9 @@
             v-for="(direction, i) in directions"
             :key="i"
             :class="['direction', direction]">
-            {{ direction }}
         </button>
 
-        <input v-model="displayName"/>
+        <input class="name" v-model="displayName"/>
 
     </section>
 
@@ -115,6 +114,8 @@ $alt: darken($partition, 20%);
     overflow-y: auto;
     width: 100%;
     height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 
     .direction {
         background-color: $alt;
@@ -123,6 +124,52 @@ $alt: darken($partition, 20%);
         font-family: $font-family;
         padding: 0;
         position: absolute;
+        margin: auto;
+
+        &.up {
+            top: 0;
+            right: 0;
+            left: 0;
+            width: calc(100% - 45px);
+            height: 15px;
+        }
+        &.down {
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: calc(100% - 45px);
+            height: 15px;
+        }
+        &.right {
+            top: 0;
+            right: 0;
+
+            bottom: 0;
+            height: calc(100% - 45px);
+            width: 15px;
+        }
+        &.left {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            height: calc(100% - 45px);
+            width: 15px;
+        }
+    }
+    .name {
+        color: $white;
+        font-size: 24px;
+        background-color: transparent;
+        border: none;
+        width: 100%;
+
+        &:hover {
+            background-color: rgba($black, 0.2);
+        }
+        &:focus {
+            background-color: $white;
+            color: $black;
+        }
     }
 }
 </style>
