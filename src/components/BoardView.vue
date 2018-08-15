@@ -1,6 +1,11 @@
 <template>
 
-    <section class="board-view" >
+    <section
+        class="board-view"
+        v-keydown.right="() => $store.commit('CHANGE_BOTTOM_LEFT_BY', [1, 0])"
+        v-keydown.left="() => $store.commit('CHANGE_BOTTOM_LEFT_BY', [-1, 0])"
+        v-keydown.up="() => $store.commit('CHANGE_BOTTOM_LEFT_BY', [0, 1])"
+        v-keydown.down="() => $store.commit('CHANGE_BOTTOM_LEFT_BY', [0, -1])">
 
         <div class="grid" :style="cmpStyle">
 
@@ -68,6 +73,7 @@ export default {
         position: relative;
         width: 750px;
         height: 750px;
+        left: 150px;
         margin: auto;
     }
     .cell {

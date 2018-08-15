@@ -8,6 +8,9 @@ import Case from 'case'
 
 Vue.config.productionTip = false
 
+// Register directives
+Vue.directive('keydown', require('fh-components/v-keydown'))
+
 // Register components in src/
 // ===============================
 const components = require.context('./components', true)
