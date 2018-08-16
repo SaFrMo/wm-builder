@@ -17,7 +17,7 @@
         </section>
 
 
-        <input class="name" v-model="displayName"/>
+        <input class="name" v-model="displayName" @keydown.enter="blurName"/>
 
     </section>
 
@@ -47,6 +47,9 @@ export default {
                 direction,
                 delta
             })
+        },
+        blurName(evt) {
+            evt.target.blur()
         }
     },
     mounted() {
