@@ -6,11 +6,16 @@
         :style="cmpStyle"
         v-show="visible">
 
-        <button
+        <section
             v-for="(direction, i) in directions"
             :key="i"
             :class="['direction', direction]">
-        </button>
+
+            <button @click="changeSize(direction, 1)">+</button>
+            <button @click="changeSize(direction, -1)">-</button>
+
+        </section>
+
 
         <input class="name" v-model="displayName"/>
 
@@ -33,6 +38,15 @@ export default {
         partition: {
             type: Object,
             required: true
+        }
+    },
+    methods: {
+        changeSize(direction, delta) {
+            this.$store.commit('CHANGE_PARTITION_SIZE', {
+                guid: this.partition.guid,
+                direction,
+                delta
+            })
         }
     },
     mounted() {
@@ -106,6 +120,7 @@ export default {
 @import 'src/styles/vars';
 
 $alt: darken($partition, 20%);
+$dark-alt: darken($alt, 20%);
 
 .board-partition {
     position: absolute;
@@ -118,42 +133,62 @@ $alt: darken($partition, 20%);
     box-sizing: border-box;
 
     .direction {
-        background-color: $alt;
-        border: none;
-        color: $white;
-        font-family: $font-family;
-        padding: 0;
         position: absolute;
         margin: auto;
+        display: flex;
+        justify-content: space-between;
 
+        button {
+            background-color: $alt;
+            border: none;
+            color: $white;
+            font-family: $font-family;
+            padding: 0;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                background-color: $dark-alt;
+            }
+        }
+
+        // top/bottom
+        &.up,
+        &.down {
+            width: calc(100% - 45px);
+            height: 15px;
+            right: 0;
+            left: 0;
+
+            button {
+                width: 50%;
+            }
+        }
         &.up {
             top: 0;
-            right: 0;
-            left: 0;
-            width: calc(100% - 45px);
-            height: 15px;
         }
         &.down {
-            right: 0;
             bottom: 0;
-            left: 0;
-            width: calc(100% - 45px);
-            height: 15px;
         }
-        &.right {
-            top: 0;
-            right: 0;
 
-            bottom: 0;
-            height: calc(100% - 45px);
-            width: 15px;
-        }
+        // right/left
+        &.right,
         &.left {
             top: 0;
             bottom: 0;
-            left: 0;
             height: calc(100% - 45px);
             width: 15px;
+            flex-direction: column;
+
+            button {
+                height: 50%;
+            }
+        }
+        &.right {
+            right: 0;
+        }
+        &.left {
+            left: 0;
         }
     }
     .name {

@@ -16,6 +16,8 @@ export default new Vuex.Store({
         selectedPartitionIndex: -1,
         xLines: 5,
         yLines: 5
+
+        // partition placement & sizing
     },
     mutations: {
         CHANGE_BOTTOM_LEFT_BY: (state, payload) => {
