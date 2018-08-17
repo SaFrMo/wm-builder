@@ -2,9 +2,10 @@
 
     <section class="partition-cells" :style="cmpStyle">
 
-        <div
+        <button
             v-for="(cell, i) in cmpTotalCells"
             :key="i"
+            @click="addPoi(i + 1)"
             class="single-cell">
 
             <!-- <span class="coordinates">
@@ -15,8 +16,8 @@
                 {{ getPoi(i + 1).map(poi => poi.type).join(',') }}
             </span>
 
-            <button @click="addPoi(i + 1)" class="add-poi">+</button>
-        </div>
+            <span  class="add-poi">+</span>
+        </button>
 
     </section>
 
