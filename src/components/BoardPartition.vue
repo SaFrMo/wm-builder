@@ -6,7 +6,7 @@
         :style="cmpStyle"
         v-show="visible">
 
-        <partition-directions guid="partition.guid"/>
+        <partition-directions :guid="partition.guid"/>
 
         <!-- Toggle meta -->
         <button class="toggle-meta" @click="metaVisible = !metaVisible">
