@@ -6,7 +6,7 @@ const { Partition } = board
 
 export default {
     state: {
-        partitions: [new Partition()]
+        partitions: [new Partition({ height: 4, width: 4 })]
     },
     mutations: {
         SET_PARTITION_NAME(state, { guid, value }) {

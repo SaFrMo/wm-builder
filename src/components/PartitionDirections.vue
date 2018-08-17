@@ -21,8 +21,8 @@
 export default {
     props: {
         guid: {
-            type: String,
-            default: ''
+            type: Number,
+            default: 0
         }
     },
     data() {

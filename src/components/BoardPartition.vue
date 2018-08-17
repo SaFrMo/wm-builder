@@ -46,7 +46,7 @@ export default {
             displayName: '',
 
             // Meta
-            metaVisible: true,
+            metaVisible: false,
 
             // Deletion
             showDelete: false

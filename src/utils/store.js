@@ -12,7 +12,7 @@ export default new Vuex.Store({
     state: {
         // board builder meta
         bottomLeft: { x: -2, y: -2 },
-        topRight: { x: 3, y: 3 },
+        topRight: { x: 5, y: 5 },
         selectedPartitionIndex: -1,
         xLines: 5,
         yLines: 5
