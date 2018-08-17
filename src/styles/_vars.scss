@@ -9,6 +9,9 @@ $dark-cell: tomato;
 
 $partition: skyblue;
 
+$danger: tomato;
+$dark-danger: darken($danger, 20%);
+
 @mixin fill {
     position: absolute;
     top: 0;

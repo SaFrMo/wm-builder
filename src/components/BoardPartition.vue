@@ -6,6 +6,7 @@
         :style="cmpStyle"
         v-show="visible">
 
+        <!-- Change size arrows -->
         <section
             v-for="(direction, i) in directions"
             :key="i"
@@ -16,8 +17,19 @@
 
         </section>
 
-
+        <!-- Name -->
         <input class="name" v-model="displayName" @keydown.enter="blurName"/>
+
+        <!-- Delete section -->
+        <section class="delete-controls">
+            <button class="main" @click="showDelete = true">Delete</button>
+
+            <span class="confirmation" v-if="showDelete">
+                <span>Delete {{ partition.name }}?</span>
+                <button @click="showDelete = false">No</button>
+                <button @click="$store.commit('DELETE_PARTITION', partition)">Yes</button>
+            </span>
+        </section>
 
     </section>
 
@@ -31,7 +43,10 @@ export default {
         return {
             directions: ['up', 'right', 'down', 'left'],
             visible: true,
-            displayName: ''
+            displayName: '',
+
+            // Deletion
+            showDelete: false
         }
     },
     props: {
@@ -143,11 +158,8 @@ $dark-alt: darken($alt, 20%);
 
         button {
             background-color: $alt;
-            border: none;
             color: $white;
-            font-family: $font-family;
-            padding: 0;
-            cursor: pointer;
+            font-size: 10px;
 
             &:hover,
             &:focus {
@@ -198,6 +210,8 @@ $dark-alt: darken($alt, 20%);
             left: 0;
         }
     }
+
+    // Name
     .name {
         color: $white;
         font-size: 24px;
@@ -211,6 +225,32 @@ $dark-alt: darken($alt, 20%);
         &:focus {
             background-color: $white;
             color: $black;
+        }
+    }
+
+    // Delete
+    .delete-controls {
+        background-color: $danger;
+        display: inline-block;
+        color: $white;
+        font-size: 12px;
+
+        .main {
+            display: block;
+        }
+        span {
+            padding: 5px;
+        }
+
+        button {
+            color: $white;
+            padding: 10px;
+            font-size: 12px;
+
+            &:hover,
+            &:focus {
+                background-color: $dark-danger;
+            }
         }
     }
 }

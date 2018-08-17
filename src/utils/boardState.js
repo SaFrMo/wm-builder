@@ -41,15 +41,18 @@ export default {
                 const finalDelta = startingHeight - partition.height
                 partition.pivot.y -= finalDelta
             }
-        }
-    },
-    actions: {
-        CREATE_PARTITION({ state, commit, rootState }, payload) {
+        },
+        CREATE_PARTITION: (state, payload) => {
             // add a new partition
             state.partitions.push(
                 new Partition({
                     position: payload
                 })
+            )
+        },
+        DELETE_PARTITION: (state, payload) => {
+            state.partitions = state.partitions.filter(
+                x => x.guid !== payload.guid
             )
         }
     },

@@ -18,4 +18,13 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+button {
+    background-color: transparent;
+    font-family: $font-family;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
 </style>

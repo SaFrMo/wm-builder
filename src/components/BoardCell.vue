@@ -42,7 +42,7 @@ export default {
                 // ...and if we're not currently in a partition...
                 if (this.$store.state.selectedPartitionIndex == -1) {
                     // create a new partition!
-                    this.$store.dispatch('CREATE_PARTITION', {
+                    this.$store.commit('CREATE_PARTITION', {
                         x: this.x,
                         y: this.y
                     })
