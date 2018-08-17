@@ -7,10 +7,15 @@
             :key="i"
             class="single-cell">
 
-            <h1 v-if="getPoi(i + 1).length">{{ getPoi(i + 1) }}</h1>
-            {{ getX(i + 1) }}, {{ getY(i + 1) }}
+            <!-- <span class="coordinates">
+                ({{ getX(i + 1) }}, {{ getY(i + 1) }})
+            </span>-->
 
-            <button @click="addPoi(i + 1)">Add POI</button>
+            <span v-if="getPoi(i + 1).length">
+                {{ getPoi(i + 1).map(poi => poi.type).join(',') }}
+            </span>
+
+            <button @click="addPoi(i + 1)" class="add-poi">+</button>
         </div>
 
     </section>
@@ -59,7 +64,7 @@ export default {
                     x: this.getX(i),
                     y: this.getY(i)
                 },
-                type: 'test'
+                type: 'test POI'
             })
         }
     }
@@ -82,8 +87,37 @@ export default {
         height: calc(100% - 10px);
         margin: auto;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+
+        .add-poi {
+            background-color: rgba($black, 0.2);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.2s;
+
+            &:hover,
+            &:focus {
+                background-color: rgba($black, 0.4);
+            }
+        }
+
+        // Hover state for single cell
+        &:hover,
+        &:focus-within {
+            .add-poi {
+                transform: none;
+                transition: none;
+            }
+        }
     }
 }
 </style>
