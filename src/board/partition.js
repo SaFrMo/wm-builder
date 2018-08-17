@@ -19,5 +19,12 @@ export default class {
 
         // GUID
         this.guid = pick('guid', Date.now())
+
+        // points of interest
+        this.pois = []
+    }
+
+    addPoi(payload) {
+        this.pois.push(payload)
     }
 }

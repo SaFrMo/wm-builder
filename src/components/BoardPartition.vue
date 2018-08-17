@@ -8,6 +8,8 @@
 
         <partition-directions :guid="partition.guid"/>
 
+        <partition-cells :partition="partition"/>
+
         <!-- Toggle meta -->
         <button class="toggle-meta" @click="metaVisible = !metaVisible">
             {{ metaVisible ? 'Edit Cells' : 'Edit Info' }}

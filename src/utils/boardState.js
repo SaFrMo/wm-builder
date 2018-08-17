@@ -54,6 +54,11 @@ export default {
             state.partitions = state.partitions.filter(
                 x => x.guid !== payload.guid
             )
+        },
+        ADD_POI: (state, { guid, coordinates, type }) => {
+            const partition = state.partitions.find(x => x.guid === guid)
+
+            partition.addPoi({ coordinates, type })
         }
     },
     getters: {
