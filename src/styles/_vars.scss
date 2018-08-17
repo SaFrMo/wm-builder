@@ -8,6 +8,9 @@ $cell: #ddd;
 $dark-cell: tomato;
 
 $partition: skyblue;
+$dark-partition: darken($partition, 20%);
+$alt: darken($partition, 20%);
+$dark-alt: darken($alt, 20%);
 
 $danger: tomato;
 $dark-danger: darken($danger, 20%);

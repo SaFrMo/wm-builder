@@ -6,29 +6,30 @@
         :style="cmpStyle"
         v-show="visible">
 
-        <!-- Change size arrows -->
-        <section
-            v-for="(direction, i) in directions"
-            :key="i"
-            :class="['direction', direction]">
+        <partition-directions guid="partition.guid"/>
 
-            <button class="add" @click="changeSize(direction, 1)">+</button>
-            <button class="subtract" @click="changeSize(direction, -1)">-</button>
+        <!-- Toggle meta -->
+        <button class="toggle-meta" @click="metaVisible = !metaVisible">
+            {{ metaVisible ? 'Edit Cells' : 'Edit Info' }}
+        </button>
 
-        </section>
+        <!-- Meta wrap -->
+        <section class="meta" v-if="metaVisible">
 
-        <!-- Name -->
-        <input class="name" v-model="displayName" @keydown.enter="blurName"/>
+            <!-- Name -->
+            <input class="name" v-model="displayName" @keydown.enter="blurName"/>
 
-        <!-- Delete section -->
-        <section class="delete-controls">
-            <button class="main" @click="showDelete = true">Delete</button>
+            <!-- Delete section -->
+            <section class="delete-controls">
+                <button class="main" @click="showDelete = true">Delete</button>
 
-            <span class="confirmation" v-if="showDelete">
-                <span>Delete {{ partition.name }}?</span>
-                <button @click="showDelete = false">No</button>
-                <button @click="$store.commit('DELETE_PARTITION', partition)">Yes</button>
-            </span>
+                <span class="confirmation" v-if="showDelete">
+                    <span>Delete {{ partition.name }}?</span>
+                    <button @click="showDelete = false">No</button>
+                    <button @click="$store.commit('DELETE_PARTITION', partition)">Yes</button>
+                </span>
+            </section>
+
         </section>
 
     </section>
@@ -41,9 +42,11 @@ import { clamp } from '@/utils/shared'
 export default {
     data() {
         return {
-            directions: ['up', 'right', 'down', 'left'],
             visible: true,
             displayName: '',
+
+            // Meta
+            metaVisible: true,
 
             // Deletion
             showDelete: false
@@ -56,13 +59,6 @@ export default {
         }
     },
     methods: {
-        changeSize(direction, delta) {
-            this.$store.commit('CHANGE_PARTITION_SIZE', {
-                guid: this.partition.guid,
-                direction,
-                delta
-            })
-        },
         blurName(evt) {
             evt.target.blur()
         }
@@ -137,93 +133,59 @@ export default {
 <style lang="scss">
 @import 'src/styles/vars';
 
-$alt: darken($partition, 20%);
-$dark-alt: darken($alt, 20%);
-
 .board-partition {
     position: absolute;
     background-color: rgba($partition, 0.9);
     z-index: 5;
-    overflow-y: auto;
+    overflow-y: visible;
     width: 100%;
     height: 100%;
     padding: 20px;
     box-sizing: border-box;
 
-    .direction {
+    .toggle-meta {
+        color: $white;
+        background-color: darken($dark-partition, 20%);
+        padding: 10px;
         position: absolute;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
 
-        button {
-            background-color: $alt;
-            color: $white;
-            font-size: 10px;
+        &:hover,
+        &:focus {
+            background-color: $dark-partition;
+        }
+    }
 
-            &:hover,
-            &:focus {
-                background-color: $dark-alt;
-            }
-        }
-
-        // top/bottom
-        &.up,
-        &.down {
-            width: calc(100% - 45px);
-            height: 15px;
-            right: 0;
-            left: 0;
-
-            button {
-                width: 50%;
-
-                &.add {
-                    order: 1;
-                }
-            }
-        }
-        &.up {
-            top: 0;
-        }
-        &.down {
-            bottom: 0;
-        }
-
-        // right/left
-        &.right,
-        &.left {
-            top: 0;
-            bottom: 0;
-            height: calc(100% - 45px);
-            width: 15px;
-            flex-direction: column;
-
-            button {
-                height: 50%;
-            }
-        }
-        &.right {
-            right: 0;
-        }
-        &.left {
-            left: 0;
-        }
+    // Meta
+    .meta {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        background-color: $white;
+        display: block;
+        border-radius: 5px;
+        padding: 10px;
+        color: $black;
     }
 
     // Name
     .name {
-        color: $white;
+        // color: $white;
         font-size: 24px;
         background-color: transparent;
         border: none;
         width: 100%;
+        text-align: center;
 
         &:hover {
-            background-color: rgba($black, 0.2);
+            background-color: $partition;
         }
         &:focus {
-            background-color: $white;
+            background-color: $partition;
             color: $black;
         }
     }
@@ -231,26 +193,46 @@ $dark-alt: darken($alt, 20%);
     // Delete
     .delete-controls {
         background-color: $danger;
-        display: inline-block;
         color: $white;
         font-size: 12px;
+        text-align: center;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
 
         .main {
             display: block;
+            width: 100%;
         }
-        span {
-            padding: 5px;
+        .confirmation {
+            display: flex;
+
+            span {
+                flex: 1;
+                text-align: left;
+                padding: 10px;
+            }
         }
 
         button {
             color: $white;
             padding: 10px;
             font-size: 12px;
+            margin: auto;
 
             &:hover,
             &:focus {
                 background-color: $dark-danger;
             }
+        }
+    }
+
+    // Partition hover state
+    &:hover,
+    &:focus-within {
+        .partition-directions .direction {
+            transform: none;
+            transition: none;
         }
     }
 }
