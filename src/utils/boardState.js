@@ -46,9 +46,11 @@ export default {
     actions: {
         CREATE_PARTITION({ state, commit, rootState }, payload) {
             // add a new partition
-            state.partitions.push(new Partition())
-            // tell the root state we're selecting the new partition
-            commit('SELECT_PARTITION', state.partitions.length - 1)
+            state.partitions.push(
+                new Partition({
+                    position: payload
+                })
+            )
         }
     },
     getters: {

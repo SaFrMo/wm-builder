@@ -11,8 +11,8 @@
             :key="i"
             :class="['direction', direction]">
 
-            <button @click="changeSize(direction, 1)">+</button>
-            <button @click="changeSize(direction, -1)">-</button>
+            <button class="add" @click="changeSize(direction, 1)">+</button>
+            <button class="subtract" @click="changeSize(direction, -1)">-</button>
 
         </section>
 
@@ -165,6 +165,10 @@ $dark-alt: darken($alt, 20%);
 
             button {
                 width: 50%;
+
+                &.add {
+                    order: 1;
+                }
             }
         }
         &.up {

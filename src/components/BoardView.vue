@@ -17,8 +17,8 @@
                 :y="getY(i)"/>
 
             <board-partition
-                v-for="(partition, i) in $store.state.boardState.partitions"
-                :key="i"
+                v-for="partition in $store.state.boardState.partitions"
+                :key="partition.guid"
                 :partition="partition"/>
 
         </div>
