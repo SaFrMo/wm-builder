@@ -5,7 +5,7 @@
         <button
             v-for="(cell, i) in cmpTotalCells"
             :key="i"
-            @click="addPoi(i + 1)"
+            @click="startAdding"
             class="single-cell">
 
             <!-- <span class="coordinates">
@@ -16,8 +16,13 @@
                 {{ getPoi(i + 1).map(poi => poi.type).join(',') }}
             </span>
 
-            <span  class="add-poi">+</span>
+            <span class="add-poi">+</span>
         </button>
+
+        <poi-menu-wrap
+            v-if="adding"
+            :style="cmpPoiMenuStyle"
+            @onClose="adding = false"/>
 
     </section>
 
@@ -31,6 +36,13 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            adding: false,
+            top: 0,
+            left: 0
+        }
+    },
     computed: {
         cmpStyle() {
             return {
@@ -41,6 +53,12 @@ export default {
         },
         cmpTotalCells() {
             return this.partition.height * this.partition.width
+        },
+        cmpPoiMenuStyle() {
+            return {
+                top: this.top + 'px',
+                left: this.left + 'px'
+            }
         }
     },
     methods: {
@@ -67,6 +85,11 @@ export default {
                 },
                 type: 'test POI'
             })
+        },
+        startAdding(evt) {
+            this.adding = true
+            this.left = evt.clientX
+            this.top = evt.clientY
         }
     }
 }
@@ -119,6 +142,10 @@ export default {
                 transition: none;
             }
         }
+    }
+
+    .poi-menu-wrap {
+        position: fixed;
     }
 }
 </style>

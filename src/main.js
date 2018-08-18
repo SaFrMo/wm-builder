@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 
 // Register directives
 Vue.directive('keydown', require('fh-components/v-keydown'))
+Vue.directive('interact', require('fh-components/v-interact'))
 
 // Register components in src/
 // ===============================
