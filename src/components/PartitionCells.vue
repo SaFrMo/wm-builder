@@ -84,7 +84,10 @@ export default {
             const x = this.getX(i)
             const y = this.getY(i)
             return this.$store.state.boardState.pois.filter(
-                poi => poi.coordinates.x === x && poi.coordinates.y === y
+                poi =>
+                    poi.guid === this.partition.guid &&
+                    poi.coordinates.x === x &&
+                    poi.coordinates.y === y
             )
         },
         addPoi(poi) {
