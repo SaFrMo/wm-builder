@@ -2,22 +2,31 @@
 
     <section class="partition-cells" :style="cmpStyle">
 
-        <button
+        <component
+            :is="getPoi(i + 1).length ? 'span': 'button'"
             v-for="(cell, i) in cmpTotalCells"
             :key="i"
-            @click="startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
+            @click="getPoi(i + 1).length ? null : startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
             class="single-cell">
 
             <!-- <span class="coordinates">
                 ({{ getX(i + 1) }}, {{ getY(i + 1) }})
             </span>-->
 
-            <span v-if="getPoi(i + 1).length">
-                {{ getPoi(i + 1).map(poi => poi.name).join(',') }}
+            <span v-if="getPoi(i + 1).length" class="poi-contents">
+                <span class="poi">
+                    {{ getPoi(i + 1).map(poi => poi.name).join(',') }}
+                </span>
+
+                <button
+                    class="remove"
+                    @click.stop="removePoi(i + 1)">
+                    Remove
+                </button>
             </span>
 
             <span v-else class="add-poi">+</span>
-        </button>
+        </component>
 
         <poi-menu-wrap
             v-if="adding"
@@ -86,6 +95,15 @@ export default {
             })
             this.adding = false
         },
+        removePoi(i) {
+            const x = this.getX(i)
+            const y = this.getY(i)
+            this.$store.commit('REMOVE_POI', {
+                guid: this.partition.guid,
+                coordinates: { x, y }
+            })
+            this.adding = false
+        },
         startAdding(evt, cellCoords) {
             this.currentCell = cellCoords
             this.adding = true
@@ -116,6 +134,33 @@ export default {
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        position: relative;
+
+        .poi-contents {
+            @include fill;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .poi {
+                flex: 1;
+                display: flex;
+                align-items: center;
+            }
+            .remove {
+                background-color: $danger;
+                color: $white;
+                width: 100%;
+                font-size: 14px;
+
+                &:hover,
+                &:focus {
+                    background-color: $dark-danger;
+                }
+            }
+        }
 
         .add-poi {
             background-color: rgba($black, 0.2);
