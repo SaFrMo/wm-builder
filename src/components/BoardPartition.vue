@@ -8,7 +8,10 @@
 
         <partition-directions :guid="partition.guid"/>
 
-        <partition-cells :partition="partition"/>
+        <partition-cells
+            :partition="partition"
+            :visible-width="cmpVisibleWidth"
+            :visible-height="cmpVisibleHeight"/>
 
         <!-- Toggle meta -->
         <button class="toggle-meta" @click="metaVisible = !metaVisible">
@@ -51,7 +54,13 @@ export default {
             metaVisible: false,
 
             // Deletion
-            showDelete: false
+            showDelete: false,
+
+            // Size info
+            fullWidth: 0,
+            fullHeight: 0,
+            startX: 0,
+            startY: 0
         }
     },
     props: {
@@ -102,6 +111,10 @@ export default {
             }
 
             // get final styling
+            this.fullWidth = width
+            this.fullHeight = height
+            this.startX = gridX - 1
+            this.startY = gridY - 1
             const gridArea = `${gridY} / ${gridX} / span ${height} / span ${width}`
 
             // determine whether or not this partition is visible
@@ -119,6 +132,16 @@ export default {
             return {
                 'grid-area': gridArea
             }
+        },
+        cmpVisibleWidth() {
+            const boardWidth = this.$store.getters.width
+            const delta = boardWidth - this.startX - this.fullWidth
+            return Math.min(this.fullWidth, this.fullWidth + delta)
+        },
+        cmpVisibleHeight() {
+            const boardHeight = this.$store.getters.height
+            const delta = boardHeight - this.startY - this.fullHeight
+            return Math.min(this.fullHeight, this.fullHeight + delta)
         }
     },
     watch: {

@@ -5,13 +5,10 @@
         <component
             :is="getPoi(i + 1).length ? 'span': 'button'"
             v-for="(cell, i) in cmpTotalCells"
+            v-if="isVisible(i + 1)"
             :key="i"
             @click="getPoi(i + 1).length ? null : startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
             class="single-cell">
-
-            <!-- <span class="coordinates">
-                ({{ getX(i + 1) }}, {{ getY(i + 1) }})
-            </span>-->
 
             <span v-if="getPoi(i + 1).length" class="poi-contents">
                 <span class="poi">
@@ -44,22 +41,32 @@ export default {
         partition: {
             type: Object,
             required: true
+        },
+        visibleWidth: {
+            type: Number,
+            required: true
+        },
+        visibleHeight: {
+            type: Number,
+            required: true
         }
     },
     data() {
         return {
             adding: false,
+            currentCell: { x: 0, y: 0 },
+
+            // POI menu location, in px
             top: 0,
-            left: 0,
-            currentCell: { x: 0, y: 0 }
+            left: 0
         }
     },
     computed: {
         cmpStyle() {
             return {
                 'grid-template': `repeat( ${
-                    this.partition.height
-                }, 1fr) / repeat(${this.partition.width}, 1fr)`
+                    this.visibleHeight
+                }, 1fr) / repeat(${this.visibleWidth}, 1fr)`
             }
         },
         cmpTotalCells() {
@@ -112,6 +119,12 @@ export default {
             this.adding = true
             this.left = evt.clientX
             this.top = evt.clientY
+        },
+        isVisible(i) {
+            const x = this.getX(i)
+            const y = this.getY(i)
+
+            return x < this.visibleWidth && y < this.visibleHeight
         }
     }
 }
