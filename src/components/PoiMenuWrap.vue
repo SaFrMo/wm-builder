@@ -10,8 +10,8 @@
                 :key="i">
                 <button
                     v-interact="() => selectedPoiIndex = i"
-                    v-interact.end="() => selectedPoiIndex = -1">
-                    <!--TODO: Add POI addition -->
+                    v-interact.end="() => selectedPoiIndex = -1"
+                    @click="$emit('addPoi', cmpSelectedPoi)">
                     {{ poi.name }}
                 </button>
             </li>

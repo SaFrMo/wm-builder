@@ -5,7 +5,7 @@
         <button
             v-for="(cell, i) in cmpTotalCells"
             :key="i"
-            @click="startAdding"
+            @click="startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
             class="single-cell">
 
             <!-- <span class="coordinates">
@@ -13,15 +13,16 @@
             </span>-->
 
             <span v-if="getPoi(i + 1).length">
-                {{ getPoi(i + 1).map(poi => poi.type).join(',') }}
+                {{ getPoi(i + 1).map(poi => poi.name).join(',') }}
             </span>
 
-            <span class="add-poi">+</span>
+            <span v-else class="add-poi">+</span>
         </button>
 
         <poi-menu-wrap
             v-if="adding"
             :style="cmpPoiMenuStyle"
+            @addPoi="addPoi"
             @onClose="adding = false"/>
 
     </section>
@@ -40,7 +41,8 @@ export default {
         return {
             adding: false,
             top: 0,
-            left: 0
+            left: 0,
+            currentCell: { x: 0, y: 0 }
         }
     },
     computed: {
@@ -72,21 +74,20 @@ export default {
         getPoi(i) {
             const x = this.getX(i)
             const y = this.getY(i)
-            return this.partition.pois.filter(
+            return this.$store.state.boardState.pois.filter(
                 poi => poi.coordinates.x === x && poi.coordinates.y === y
             )
         },
-        addPoi(i) {
+        addPoi(poi) {
             this.$store.commit('ADD_POI', {
                 guid: this.partition.guid,
-                coordinates: {
-                    x: this.getX(i),
-                    y: this.getY(i)
-                },
-                type: 'test POI'
+                coordinates: this.currentCell,
+                ...poi
             })
+            this.adding = false
         },
-        startAdding(evt) {
+        startAdding(evt, cellCoords) {
+            this.currentCell = cellCoords
             this.adding = true
             this.left = evt.clientX
             this.top = evt.clientY

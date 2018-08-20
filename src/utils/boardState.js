@@ -6,7 +6,8 @@ const { Partition } = board
 
 export default {
     state: {
-        partitions: [new Partition({ height: 4, width: 4 })]
+        partitions: [new Partition({ height: 4, width: 4 })],
+        pois: []
     },
     mutations: {
         SET_PARTITION_NAME(state, { guid, value }) {
@@ -55,10 +56,11 @@ export default {
                 x => x.guid !== payload.guid
             )
         },
-        ADD_POI: (state, { guid, coordinates, type }) => {
-            const partition = state.partitions.find(x => x.guid === guid)
-
-            partition.addPoi({ coordinates, type })
+        ADD_POI: (state, payload) => {
+            // const partition = state.partitions.find(x => x.guid === guid)
+            //
+            // partition.addPoi({ coordinates, type })
+            state.pois.push(payload)
         }
     },
     getters: {
