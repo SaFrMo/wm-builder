@@ -10,6 +10,8 @@
 
         <partition-cells
             :partition="partition"
+            :start-x="startX"
+            :start-y="startY"
             :visible-width="cmpVisibleWidth"
             :visible-height="cmpVisibleHeight"/>
 
@@ -102,6 +104,9 @@ export default {
                 gridY = 1
             }
 
+            this.startX = gridX - 1
+            this.startY = gridY - 1
+
             // adjust final width and column placement
             if (gridX - 1 < 0) {
                 width += gridX - 1
@@ -113,8 +118,6 @@ export default {
             // get final styling
             this.fullWidth = width
             this.fullHeight = height
-            this.startX = gridX - 1
-            this.startY = gridY - 1
             const gridArea = `${gridY} / ${gridX} / span ${height} / span ${width}`
 
             // determine whether or not this partition is visible

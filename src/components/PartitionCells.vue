@@ -10,6 +10,8 @@
             @click="getPoi(i + 1).length ? null : startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
             class="single-cell">
 
+            {{ getX(i + 1) + ', ' + getY(i + 1) }}
+
             <span v-if="getPoi(i + 1).length" class="poi-contents">
                 <span class="poi">
                     {{ getPoi(i + 1).map(poi => poi.name).join(',') }}
@@ -47,6 +49,14 @@ export default {
             required: true
         },
         visibleHeight: {
+            type: Number,
+            required: true
+        },
+        startX: {
+            type: Number,
+            required: true
+        },
+        startY: {
             type: Number,
             required: true
         }
@@ -122,9 +132,10 @@ export default {
         },
         isVisible(i) {
             const x = this.getX(i)
+            console.log(x)
             const y = this.getY(i)
 
-            return x < this.visibleWidth && y < this.visibleHeight
+            return x < this.visibleWidth && x >= 0
         }
     }
 }
