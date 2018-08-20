@@ -2,13 +2,6 @@
 
 > Level builder for The White Mask
 
-## Goals
-
--   Partition Add: Click-drag on an empty space to add a partition
-
-*   Scroll wheel movement
-*   WASD movement
-
 ## Build Setup
 
 ```bash

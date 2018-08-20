@@ -26,19 +26,20 @@
 </template>
 
 <script>
-import board from '@/board'
 import _get from 'lodash/get'
 
 export default {
     data() {
         return {
-            pois: board.pois,
             selectedPoiIndex: -1
         }
     },
     computed: {
         cmpSelectedPoi() {
             return _get(this.pois, `[${this.selectedPoiIndex}]`, false)
+        },
+        pois() {
+            return this.$root.pois
         }
     }
 }

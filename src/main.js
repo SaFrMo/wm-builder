@@ -30,5 +30,17 @@ new Vue({
     router,
     store,
     components: { App },
-    template: '<App/>'
+    template: '<App/>',
+    data() {
+        return {
+            pois: []
+        }
+    },
+    async mounted() {
+        // Fetch POIs and make available to builder
+        const pois = await fetch('/static/assets/pois.json').then(res =>
+            res.json()
+        )
+        this.pois = pois.data
+    }
 })
