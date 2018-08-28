@@ -2,43 +2,47 @@
 
     <section class="toolbar-main">
 
-        <!-- NSEW -->
-        <button
-            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [-1, 0])">
-            Move left
-        </button>
-        <button
-            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [1, 0])">
-            Move right
-        </button>
-        <button
-            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, 1])">
-            Move up
-        </button>
-        <button
-            @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, -1])">
-            Move down
-        </button>
+        <meta-info/>
 
-        <hr>
+        <div>
+            <!-- NSEW -->
+            <button
+                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [-1, 0])">
+                Move left
+            </button>
+            <button
+                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [1, 0])">
+                Move right
+            </button>
+            <button
+                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, 1])">
+                Move up
+            </button>
+            <button
+                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, -1])">
+                Move down
+            </button>
 
-        <!-- Zoom -->
-        <button
-            @click="$store.commit('CHANGE_GRID_SIZE_BY', -1)">
-            Zoom in
-        </button>
-        <button
-            @click="$store.commit('CHANGE_GRID_SIZE_BY', 1)">
-            Zoom out
-        </button>
+            <hr>
 
-        <hr>
+            <!-- Zoom -->
+            <button
+                @click="$store.commit('CHANGE_GRID_SIZE_BY', -1)">
+                Zoom in
+            </button>
+            <button
+                @click="$store.commit('CHANGE_GRID_SIZE_BY', 1)">
+                Zoom out
+            </button>
 
-        <!-- Recenter -->
-        <button
-            @click="$store.commit('RECENTER_GRID')">
-            Recenter
-        </button>
+            <hr>
+
+            <!-- Recenter -->
+            <button
+                @click="$store.commit('RECENTER_GRID')">
+                Recenter
+            </button>
+        </div>
 
     </section>
 
@@ -58,6 +62,7 @@ export default {}
     left: 0;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 300px;
     background-color: skyblue;
     padding: 10px;
@@ -81,6 +86,10 @@ export default {}
         &:focus {
             background-color: rgba($black, 0.8);
         }
+    }
+
+    hr {
+        opacity: 0;
     }
 }
 </style>

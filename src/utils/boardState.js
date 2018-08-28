@@ -6,10 +6,17 @@ const { Partition } = board
 
 export default {
     state: {
+        // this is the content that will be imported and exported in the level editor and in-game!
         partitions: [new Partition({ height: 4, width: 4 })],
-        pois: []
+        pois: [],
+
+        // board meta info
+        name: 'Board'
     },
     mutations: {
+        SET_BOARD_NAME(state, payload) {
+            state.name = payload
+        },
         SET_PARTITION_NAME(state, { guid, value }) {
             const targetPartition = state.partitions.find(p => p.guid == guid)
             targetPartition.name = value
