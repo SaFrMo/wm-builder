@@ -42,6 +42,21 @@
                 @click="$store.commit('RECENTER_GRID')">
                 Recenter
             </button>
+
+            <hr>
+
+            <!-- Export -->
+            <button
+                @click="startExport">
+                Export Level
+            </button>
+
+            <a
+                aria-hidden="true"
+                v-show="false"
+                ref="downloadLink"
+                :href="dataString"
+                :download="$store.state.boardState.name + '.json'"/>
         </div>
 
     </section>
@@ -49,7 +64,29 @@
 </template>
 
 <script>
-export default {}
+import Vue from 'vue'
+
+export default {
+    data() {
+        return {
+            dataString: ''
+        }
+    },
+    methods: {
+        async startExport() {
+            // Build data from board state
+            this.dataString = `data:text/json;charset=utf-8,`
+            this.dataString += encodeURIComponent(
+                JSON.stringify(this.$store.state.boardState)
+            )
+
+            // Let data string populate
+            await Vue.nextTick()
+            // Download json
+            this.$refs.downloadLink.click()
+        }
+    }
+}
 </script>
 
 <style lang="scss">
