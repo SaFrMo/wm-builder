@@ -45,12 +45,18 @@
 
             <hr>
 
-            <!-- Export -->
+            <!-- Export/Import -->
             <button
                 @click="startExport">
                 Export Level
             </button>
 
+            <button
+                @click="startImport">
+                Import Level
+            </button>
+
+            <!-- Hidden element to export board -->
             <a
                 aria-hidden="true"
                 v-show="false"
@@ -84,7 +90,8 @@ export default {
             await Vue.nextTick()
             // Download json
             this.$refs.downloadLink.click()
-        }
+        },
+        startImport() {}
     }
 }
 </script>
