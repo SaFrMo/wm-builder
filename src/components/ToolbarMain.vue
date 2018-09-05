@@ -102,14 +102,13 @@ export default {
 @import 'src/styles/vars';
 
 .toolbar-main {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 300px;
     background-color: skyblue;
     padding: 10px;
     box-sizing: border-box;

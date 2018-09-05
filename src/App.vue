@@ -13,6 +13,9 @@ export default {
 <style lang="scss">
 @import 'src/styles/vars';
 
+body {
+    margin: 0;
+}
 #app {
     font-family: $font-family;
     -webkit-font-smoothing: antialiased;

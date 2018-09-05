@@ -4,7 +4,7 @@ export default {
     data() {
         return {
             interval: null,
-            autosaveInterval: 2000
+            autosaveInterval: 1000
         }
     },
     async mounted() {

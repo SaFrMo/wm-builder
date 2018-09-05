@@ -19,7 +19,6 @@ export default {
             const parsed = JSON.parse(payload)
             Object.keys(parsed).map(key => {
                 state[key] = parsed[key]
-                console.log(parsed[key])
             })
         },
         SET_BOARD_NAME(state, payload) {
