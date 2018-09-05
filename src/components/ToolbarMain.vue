@@ -71,8 +71,10 @@
 
 <script>
 import Vue from 'vue'
+import autosave from '@/mixins/autosave'
 
 export default {
+    mixins: [autosave],
     data() {
         return {
             dataString: ''

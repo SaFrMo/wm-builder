@@ -9,13 +9,16 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
     data() {
         return {
             boardName: 'test'
         }
     },
-    mounted() {
+    async mounted() {
+        await Vue.nextTick()
         this.boardName = this.$store.state.boardState.name
     },
     watch: {

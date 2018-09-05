@@ -132,7 +132,6 @@ export default {
         },
         isVisible(i) {
             const x = this.getX(i)
-            console.log(x)
             const y = this.getY(i)
 
             return x < this.visibleWidth && x >= 0

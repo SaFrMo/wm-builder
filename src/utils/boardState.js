@@ -11,9 +11,17 @@ export default {
         pois: [],
 
         // board meta info
-        name: 'Board'
+        name: 'Board',
+        guid: Date.now()
     },
     mutations: {
+        LOAD_LEVEL(state, payload) {
+            const parsed = JSON.parse(payload)
+            Object.keys(parsed).map(key => {
+                state[key] = parsed[key]
+                console.log(parsed[key])
+            })
+        },
         SET_BOARD_NAME(state, payload) {
             state.name = payload
         },
