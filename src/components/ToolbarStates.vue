@@ -5,11 +5,14 @@
         <h2 class="title">Board States</h2>
 
         <ul class="button-wrap">
-            <button
+            <board-state-item
                 v-for="(state, i) in $store.state.boardState.states"
                 :key="i"
-                @click="selectState(i)"
-                v-html="state.name"/>
+                :board-state="state"
+                @selected="selectState(i)"
+                @deleted="deleteState(i)"
+                :show-delete="i != 0"
+                :class="{ selected: $store.state.selectedBoardStateIndex == i }"/>
             <button
                 @click="addState"
                 aria-label="Add board state">+</button>
@@ -22,8 +25,15 @@
 <script>
 export default {
     methods: {
-        selectState(i) {},
-        addState() {}
+        selectState(i) {
+            this.$store.commit('SELECT_BOARD_STATE', i)
+        },
+        addState() {
+            this.$store.commit('ADD_BOARD_STATE')
+        },
+        deleteState(i) {
+            this.$store.commit('DELETE_BOARD_STATE', i)
+        }
     }
 }
 </script>
@@ -53,22 +63,27 @@ export default {
         padding: 10px 0;
         box-sizing: border-box;
 
-        button {
+        & > * {
             width: 100px;
             height: 100px;
             background-color: rgba($black, 0.2);
             color: $white;
             border-radius: 15px;
+            box-sizing: border-box;
 
             &:hover,
             &:focus {
                 background-color: rgba($black, 0.4);
             }
-            & + button {
+            & + * {
                 margin-left: 10px;
             }
         }
-        button:last-child {
+        & > *:last-child {
+        }
+
+        .board-state-item.selected {
+            border: 5px solid $white;
         }
     }
 }

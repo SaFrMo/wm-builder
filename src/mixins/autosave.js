@@ -26,8 +26,6 @@ export default {
     },
     methods: {
         runAutosave() {
-            return
-
             localStorage.setItem(
                 `wm-board-autosave-${this.$store.state.boardState.guid}`,
                 JSON.stringify(this.$store.state.boardState)

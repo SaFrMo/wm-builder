@@ -17,15 +17,30 @@ export default {
         guid: Date.now()
     },
     mutations: {
+        // save/load
         LOAD_LEVEL(state, payload) {
             const parsed = JSON.parse(payload)
             Object.keys(parsed).map(key => {
                 state[key] = parsed[key]
             })
         },
+
+        // board meta
         SET_BOARD_NAME(state, payload) {
             state.name = payload
         },
+
+        // states
+        ADD_BOARD_STATE(state) {
+            state.states.push(
+                new BoardState({ name: `State ${state.states.length}` })
+            )
+        },
+        DELETE_BOARD_STATE(state, payload) {
+            state.states.splice(payload, 1)
+        },
+
+        // partitions
         SET_PARTITION_NAME(state, { guid, value }) {
             const targetPartition = state.partitions.find(p => p.guid == guid)
             targetPartition.name = value
@@ -72,6 +87,8 @@ export default {
                 x => x.guid !== payload.guid
             )
         },
+
+        // POIs
         ADD_POI: (state, payload) => {
             state.pois.push(payload)
         },

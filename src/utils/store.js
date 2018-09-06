@@ -13,13 +13,17 @@ export default new Vuex.Store({
         // board builder meta
         bottomLeft: { x: -2, y: -2 },
         topRight: { x: 5, y: 5 },
-        selectedPartitionIndex: -1,
+        selectedBoardStateIndex: 0,
         xLines: 5,
         yLines: 5
-
-        // partition placement & sizing
     },
     mutations: {
+        // board state
+        SELECT_BOARD_STATE: (state, payload) => {
+            state.selectedBoardStateIndex = payload
+        },
+
+        // grid manipulation
         CHANGE_BOTTOM_LEFT_BY: (state, payload) => {
             state.bottomLeft.x += payload[0]
             state.bottomLeft.y += payload[1]
@@ -44,9 +48,6 @@ export default new Vuex.Store({
         RECENTER_GRID: state => {
             state.bottomLeft = { x: -2, y: -2 }
             state.topRight = { x: 3, y: 3 }
-        },
-        SELECT_PARTITION: (state, payload) => {
-            state.selectedPartitionIndex = payload
         }
     },
     getters: {

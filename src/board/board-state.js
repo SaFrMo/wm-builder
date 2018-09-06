@@ -6,6 +6,6 @@ export default class {
         const pick = buildPick(opts)
 
         this.name = pick('name', 'State')
-        this.partitions = pick('partitions', {})
+        this.alterations = pick('alterations', [])
     }
 }

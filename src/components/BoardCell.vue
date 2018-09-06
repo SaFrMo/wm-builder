@@ -39,14 +39,11 @@ export default {
             })
             // if there isn't anything here yet...
             if (!occupants.length) {
-                // ...and if we're not currently in a partition...
-                if (this.$store.state.selectedPartitionIndex == -1) {
-                    // create a new partition!
-                    this.$store.commit('CREATE_PARTITION', {
-                        x: this.x,
-                        y: this.y
-                    })
-                }
+                // create a new partition!
+                this.$store.commit('CREATE_PARTITION', {
+                    x: this.x,
+                    y: this.y
+                })
             }
         }
     }
