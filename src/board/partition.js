@@ -1,9 +1,9 @@
+import { buildPick } from '@/utils/shared'
+
 export default class {
     constructor(opts = {}) {
         // default picker
-        function pick(name, defaultVal) {
-            return opts.hasOwnProperty(name) ? opts[name] : defaultVal
-        }
+        const pick = buildPick(opts)
 
         this.width = pick('width', 2)
         this.height = pick('height', 2)

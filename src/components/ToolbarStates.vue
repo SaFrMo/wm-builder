@@ -6,6 +6,11 @@
 
         <ul class="button-wrap">
             <button
+                v-for="(state, i) in $store.state.boardState.states"
+                :key="i"
+                @click="selectState(i)"
+                v-html="state.name"/>
+            <button
                 @click="addState"
                 aria-label="Add board state">+</button>
         </ul>
@@ -15,7 +20,12 @@
 </template>
 
 <script>
-export default {}
+export default {
+    methods: {
+        selectState(i) {},
+        addState() {}
+    }
+}
 </script>
 
 <style lang="scss">
@@ -53,6 +63,9 @@ export default {}
             &:hover,
             &:focus {
                 background-color: rgba($black, 0.4);
+            }
+            & + button {
+                margin-left: 10px;
             }
         }
         button:last-child {

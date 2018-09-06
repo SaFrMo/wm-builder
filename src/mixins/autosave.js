@@ -11,6 +11,11 @@ export default {
         if (localStorage.length) {
             // get the last autosave for this board
             const latest = localStorage.key(0)
+
+            // ignore webpack storage
+            if (latest.includes('webpack')) return
+
+            // load level
             this.$store.commit('LOAD_LEVEL', localStorage.getItem(latest))
         }
 
@@ -21,6 +26,8 @@ export default {
     },
     methods: {
         runAutosave() {
+            return
+
             localStorage.setItem(
                 `wm-board-autosave-${this.$store.state.boardState.guid}`,
                 JSON.stringify(this.$store.state.boardState)

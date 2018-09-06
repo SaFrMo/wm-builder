@@ -2,13 +2,15 @@ import board from '@/board'
 import { clamp } from '@/utils/shared'
 
 // deconstruct board classes
-const { Partition } = board
+const { Partition, BoardState } = board
 
 export default {
     state: {
         // this is the content that will be imported and exported in the level editor and in-game!
         partitions: [new Partition({ height: 4, width: 4 })],
         pois: [],
+
+        states: [new BoardState({ name: 'Default' })],
 
         // board meta info
         name: 'Board',
