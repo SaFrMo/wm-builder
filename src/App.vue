@@ -5,8 +5,11 @@
 </template>
 
 <script>
+import autosave from '@/mixins/autosave'
+
 export default {
-    name: 'App'
+    name: 'App',
+    mixins: [autosave]
 }
 </script>
 

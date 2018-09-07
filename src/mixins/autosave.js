@@ -13,10 +13,10 @@ export default {
             const latest = localStorage.key(0)
 
             // ignore webpack storage
-            if (latest.includes('webpack')) return
-
-            // load level
-            this.$store.commit('LOAD_LEVEL', localStorage.getItem(latest))
+            if (!latest.includes('webpack')) {
+                // load level
+                this.$store.commit('LOAD_LEVEL', localStorage.getItem(latest))
+            }
         }
 
         if (!this.interval) {
