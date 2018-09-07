@@ -2,14 +2,22 @@
 
     <section class="partition-directions">
 
-        <!-- Change size arrows -->
         <section
             v-for="(direction, i) in directions"
             :key="i"
             :class="['direction', direction]">
 
+            <!-- Change size arrows -->
             <button class="add" @click="changeSize(direction, 1)">+</button>
             <button class="subtract" @click="changeSize(direction, -1)">-</button>
+
+            <!-- Change position arrows -->
+            <button class="increment" @click="move(direction, 1)">
+                {{ direction == 'up' || direction == 'down' ? '↑' : '→' }}
+            </button>
+            <button class="decrement" @click="move(direction, -1)">
+                {{ direction == 'up' || direction == 'down' ? '↓' : '←' }}
+            </button>
 
         </section>
 
@@ -37,6 +45,13 @@ export default {
                 direction,
                 delta
             })
+        },
+        move(direction, delta) {
+            this.$store.dispatch('MOVE_PARTITION', {
+                guid: this.guid,
+                direction,
+                delta
+            })
         }
     }
 }
@@ -59,7 +74,13 @@ export default {
         button {
             background-color: $alt;
             color: $white;
-            font-size: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            padding: 5px;
 
             &:hover,
             &:focus {
@@ -71,16 +92,15 @@ export default {
         &.up,
         &.down {
             width: calc(100% - 45px);
-            height: 15px;
             right: 0;
             left: 0;
-            transform: scaleY(0);
+            // transform: scaleY(0);
 
             button {
-                width: 50%;
+                width: 100%;
 
-                &.add {
-                    order: 1;
+                &.subctract {
+                    order: -1;
                 }
             }
         }
@@ -99,9 +119,8 @@ export default {
             top: 0;
             bottom: 0;
             height: calc(100% - 45px);
-            width: 15px;
             flex-direction: column;
-            transform: scaleX(0);
+            // transform: scaleX(0);
 
             button {
                 height: 50%;
