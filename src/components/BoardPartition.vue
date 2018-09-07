@@ -92,6 +92,19 @@ export default {
             gridY -= this.partition.height - 1
             gridY += this.partition.pivot.y
 
+            // apply deltas from current state, if any
+            const currIndex = this.$store.state.selectedBoardStateIndex
+            if (currIndex !== 0) {
+                const boardState = this.$store.state.boardState.states[
+                    currIndex
+                ]
+                const delta = boardState.deltas[this.partition.guid]
+                if (delta) {
+                    gridX += delta.x
+                    gridY += delta.y
+                }
+            }
+
             // final clamping
             let width = this.partition.width
             let height = this.partition.height

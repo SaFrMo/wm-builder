@@ -90,10 +90,8 @@ export const actions = {
 
             let currentDelta = currentState.deltas[payload.guid]
             if (currentDelta) {
-                currentDelta = {
-                    x: currentDelta + delta.x,
-                    y: currentDelta + delta.y
-                }
+                currentState.deltas[payload.guid].x += delta.x
+                currentState.deltas[payload.guid].y -= delta.y
             } else {
                 currentState.deltas[payload.guid] = delta
             }
