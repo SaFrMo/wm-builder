@@ -76,13 +76,27 @@ export const actions = {
                     : 0
         }
 
-        // if we are in the default state,
-        // move the starting point of the partition
         if (isDefaultState) {
+            // if we are in the default state,
+            // move the starting point of the partition
             commit('MOVE_PARTITION', {
                 guid: payload.guid,
                 delta
             })
+        } else {
+            // otherwise, change the delta of the partition
+            // in this state
+            const currentState = state.states[rootState.selectedBoardStateIndex]
+
+            let currentDelta = currentState.deltas[payload.guid]
+            if (currentDelta) {
+                currentDelta = {
+                    x: currentDelta + delta.x,
+                    y: currentDelta + delta.y
+                }
+            } else {
+                currentState.deltas[payload.guid] = delta
+            }
         }
     }
 }
