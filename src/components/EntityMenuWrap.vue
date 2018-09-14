@@ -1,24 +1,24 @@
 <template>
 
-    <section class="poi-menu-wrap">
+    <section class="entity-menu-wrap">
 
         <button class="close" aria-label="close" @click="$emit('onClose')">X</button>
 
         <ul>
             <li
-                v-for="(poi, i) in pois"
+                v-for="(entity, i) in entities"
                 :key="i">
                 <button
-                    v-interact="() => selectedPoiIndex = i"
-                    v-interact.end="() => selectedPoiIndex = -1"
-                    @click="$emit('addPoi', cmpSelectedPoi)">
-                    {{ poi.name }}
+                    v-interact="() => selectedEntityIndex = i"
+                    v-interact.end="() => selectedEntityIndex = -1"
+                    @click="$emit('addEntity', cmpSelectedEntity)">
+                    {{ entity.name }}
                 </button>
             </li>
         </ul>
 
-        <span class="description" v-if="cmpSelectedPoi">
-            {{ cmpSelectedPoi.description }}
+        <span class="description" v-if="cmpSelectedEntity">
+            {{ cmpSelectedEntity.description }}
         </span>
 
     </section>
@@ -31,15 +31,15 @@ import _get from 'lodash/get'
 export default {
     data() {
         return {
-            selectedPoiIndex: -1
+            selectedEntityIndex: -1
         }
     },
     computed: {
-        cmpSelectedPoi() {
-            return _get(this.pois, `[${this.selectedPoiIndex}]`, false)
+        cmpSelectedEntity() {
+            return _get(this.entities, `[${this.selectedEntityIndex}]`, false)
         },
-        pois() {
-            return this.$root.pois
+        entities() {
+            return this.$root.entities
         }
     }
 }
@@ -48,7 +48,7 @@ export default {
 <style lang="scss">
 @import 'src/styles/vars';
 
-.poi-menu-wrap {
+.entity-menu-wrap {
     background-color: $white;
     padding: 10px;
     z-index: 15;

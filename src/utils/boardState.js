@@ -4,7 +4,7 @@ import {
     mutations as partitionMutations,
     actions as partitionActions
 } from '@/utils/board/partition-actions'
-import poiActions from '@/utils/board/poi-actions'
+import entityActions from '@/utils/board/entity-actions'
 
 // deconstruct board classes
 const { Partition, BoardState } = board
@@ -13,7 +13,7 @@ export default {
     state: {
         // this is the content that will be imported and exported in the level editor and in-game!
         partitions: [new Partition({ height: 4, width: 4 })],
-        pois: [],
+        entities: [],
 
         states: [new BoardState({ name: 'Default' })],
 
@@ -50,8 +50,8 @@ export default {
         // partitions
         ...partitionMutations,
 
-        // POIs
-        ...poiActions
+        // Entities
+        ...entityActions
     },
     actions: {
         ...partitionActions

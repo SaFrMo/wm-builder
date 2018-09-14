@@ -21,10 +21,10 @@ export default class {
         this.guid = pick('guid', Date.now())
 
         // points of interest
-        this.pois = []
+        this.entities = []
     }
 
-    addPoi(payload) {
-        this.pois.push(payload)
+    addEntity(payload) {
+        this.entities.push(payload)
     }
 }

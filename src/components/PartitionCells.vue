@@ -3,34 +3,34 @@
     <section class="partition-cells" :style="cmpStyle">
 
         <component
-            :is="getPoi(i + 1).length ? 'span': 'button'"
+            :is="getEntity(i + 1).length ? 'span': 'button'"
             v-for="(cell, i) in cmpTotalCells"
             v-if="isVisible(i + 1)"
             :key="i"
-            @click="getPoi(i + 1).length ? null : startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
+            @click="getEntity(i + 1).length ? null : startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
             class="single-cell">
 
             {{ getX(i + 1) + ', ' + getY(i + 1) }}
 
-            <span v-if="getPoi(i + 1).length" class="poi-contents">
-                <span class="poi">
-                    {{ getPoi(i + 1).map(poi => poi.name).join(',') }}
+            <span v-if="getEntity(i + 1).length" class="entity-contents">
+                <span class="entity">
+                    {{ getEntity(i + 1).map(entity => entity.name).join(',') }}
                 </span>
 
                 <button
                     class="remove"
-                    @click.stop="removePoi(i + 1)">
+                    @click.stop="removeEntity(i + 1)">
                     Remove
                 </button>
             </span>
 
-            <span v-else class="add-poi">+</span>
+            <span v-else class="add-entity">+</span>
         </component>
 
-        <poi-menu-wrap
+        <entity-menu-wrap
             v-if="adding"
             :style="cmpPoiMenuStyle"
-            @addPoi="addPoi"
+            @addEntity="addEntity"
             @onClose="adding = false"/>
 
     </section>
@@ -66,7 +66,7 @@ export default {
             adding: false,
             currentCell: { x: 0, y: 0 },
 
-            // POI menu location, in px
+            // ENTITY menu location, in px
             top: 0,
             left: 0
         }
@@ -97,28 +97,28 @@ export default {
             i = this.cmpTotalCells - i
             return Math.floor(i / this.partition.height)
         },
-        getPoi(i) {
+        getEntity(i) {
             const x = this.getX(i)
             const y = this.getY(i)
-            return this.$store.state.boardState.pois.filter(
-                poi =>
-                    poi.guid === this.partition.guid &&
-                    poi.coordinates.x === x &&
-                    poi.coordinates.y === y
+            return this.$store.state.boardState.entities.filter(
+                entity =>
+                    entity.guid === this.partition.guid &&
+                    entity.coordinates.x === x &&
+                    entity.coordinates.y === y
             )
         },
-        addPoi(poi) {
-            this.$store.commit('ADD_POI', {
+        addEntity(entity) {
+            this.$store.commit('ADD_ENTITY', {
                 guid: this.partition.guid,
                 coordinates: this.currentCell,
-                ...poi
+                ...entity
             })
             this.adding = false
         },
-        removePoi(i) {
+        removeEntity(i) {
             const x = this.getX(i)
             const y = this.getY(i)
-            this.$store.commit('REMOVE_POI', {
+            this.$store.commit('REMOVE_ENTITY', {
                 guid: this.partition.guid,
                 coordinates: { x, y }
             })
@@ -162,7 +162,7 @@ export default {
         overflow: hidden;
         position: relative;
 
-        .poi-contents {
+        .entity-contents {
             @include fill;
             display: flex;
             flex-direction: column;
@@ -170,7 +170,7 @@ export default {
             align-items: center;
             text-align: center;
 
-            .poi {
+            .entity {
                 flex: 1;
                 display: flex;
                 align-items: center;
@@ -188,7 +188,7 @@ export default {
             }
         }
 
-        .add-poi {
+        .add-entity {
             background-color: rgba($black, 0.2);
             width: 40px;
             height: 40px;
@@ -209,14 +209,14 @@ export default {
         // Hover state for single cell
         &:hover,
         &:focus-within {
-            .add-poi {
+            .add-entity {
                 transform: none;
                 transition: none;
             }
         }
     }
 
-    .poi-menu-wrap {
+    .entity-menu-wrap {
         position: fixed;
     }
 }

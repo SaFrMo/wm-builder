@@ -33,14 +33,14 @@ new Vue({
     template: '<App/>',
     data() {
         return {
-            pois: []
+            entities: []
         }
     },
     async mounted() {
         // Fetch POIs and make available to builder
-        const pois = await fetch('/static/assets/pois.json').then(res =>
+        const entities = await fetch('/static/assets/entities.json').then(res =>
             res.json()
         )
-        this.pois = pois.data
+        this.entities = entities.data
     }
 })
