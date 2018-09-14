@@ -21,6 +21,9 @@ export default {
         name: 'Board',
         guid: Date.now(),
 
+        // should be in { key, value } format for each value in array
+        meta: [],
+
         version: '1.0'
     },
     mutations: {
