@@ -1,4 +1,5 @@
 import board from '@/board/'
+import Vue from 'vue'
 const { Partition } = board
 
 function findPartition(state, guid) {
@@ -88,12 +89,30 @@ export const actions = {
             // in this state
             const currentState = state.states[rootState.selectedBoardStateIndex]
 
-            let currentDelta = currentState.deltas[payload.guid]
-            if (currentDelta) {
-                currentState.deltas[payload.guid].x += delta.x
-                currentState.deltas[payload.guid].y -= delta.y
+            // find index of current partition
+            let currentDeltaIndex = currentState.deltas.findIndex(
+                x => x.guid === payload.guid
+            )
+
+            if (currentDeltaIndex !== -1) {
+                // console.log(currentState.deltas[currentDeltaIndex].y)
+                const old = currentState.deltas[currentDeltaIndex]
+                // if we found it, modify the saved delta
+                Vue.set(currentState.deltas, currentDeltaIndex, {
+                    x: old.x + delta.x,
+                    y: old.y + delta.y,
+                    guid: old.guid
+                })
+                // currentState.deltas[currentDeltaIndex].x += delta.x
+                // currentState.deltas[currentDeltaIndex].y += delta.y
+                // console.log(currentState.deltas[currentDeltaIndex].y)
             } else {
-                currentState.deltas[payload.guid] = delta
+                // if not, create a saved delta
+                currentState.deltas.push({
+                    guid: payload.guid,
+                    x: delta.x,
+                    y: delta.y
+                })
             }
         }
     }

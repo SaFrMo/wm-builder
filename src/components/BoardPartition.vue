@@ -98,10 +98,12 @@ export default {
                 const boardState = this.$store.state.boardState.states[
                     currIndex
                 ]
-                const delta = boardState.deltas[this.partition.guid]
-                if (delta) {
-                    gridX += delta.x
-                    gridY += delta.y
+                const deltas = boardState.deltas.find(
+                    x => x.guid === this.partition.guid
+                )
+                if (deltas) {
+                    gridX += deltas.x
+                    gridY -= deltas.y
                 }
             }
 
