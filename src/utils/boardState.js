@@ -19,7 +19,9 @@ export default {
 
         // board meta info
         name: 'Board',
-        guid: Date.now()
+        guid: Date.now(),
+
+        version: '1.0'
     },
     mutations: {
         // save/load
