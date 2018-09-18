@@ -10,12 +10,12 @@ import entityActions from '@/utils/board/entity-actions'
 const { Partition, BoardState } = board
 
 export default {
+    // this exports directly to the Level class in-game
     state: {
-        // this is the content that will be imported and exported in the level editor and in-game!
         partitions: [new Partition({ height: 4, width: 4 })],
         entities: [],
-
         states: [new BoardState({ name: 'Default' })],
+        loops: [],
 
         // board meta info
         name: 'Board',
@@ -24,7 +24,7 @@ export default {
         // should be in { key, value } format for each value in array
         meta: [],
 
-        version: '1.0'
+        version: '1.0.0'
     },
     mutations: {
         // save/load
