@@ -4,7 +4,7 @@
 
         <h2 class="title">Board States</h2>
 
-        <ul class="button-wrap">
+        <ul class="button-wrap" v-if="toShow == 'States'">
             <board-state-item
                 v-for="(state, i) in $store.state.boardState.states"
                 :key="i"
@@ -18,12 +18,27 @@
                 aria-label="Add board state">+</button>
         </ul>
 
+        <nav class="display-types">
+            <button
+                v-for="(display, i) in displays"
+                :class="['display-type', { selected: toShow == display }]"
+                :key="i"
+                v-html="display"
+                @click="toShow = display"/>
+        </nav>
+
     </aside>
 
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            displays: ['States', 'Sequences'],
+            toShow: 'States'
+        }
+    },
     methods: {
         selectState(i) {
             this.$store.commit('SELECT_BOARD_STATE', i)
@@ -84,6 +99,34 @@ export default {
 
         .board-state-item.selected {
             border: 5px solid $white;
+        }
+    }
+
+    // Display types
+    .display-types {
+        position: absolute;
+        right: 20px;
+        bottom: 10px;
+
+        .display-type {
+            background-color: rgba($black, 0.3);
+            color: $white;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 3px;
+            border: 3px solid transparent;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+            &:hover,
+            &:focus {
+                background-color: rgba($black, 0.5);
+            }
+
+            &.selected {
+                border: 3px solid $white;
+            }
         }
     }
 }
