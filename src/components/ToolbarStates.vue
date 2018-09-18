@@ -4,6 +4,7 @@
 
         <h2 class="title">Board States</h2>
 
+        <!-- All states -->
         <ul class="button-wrap" v-if="toShow == 'States'">
             <board-state-item
                 v-for="(state, i) in $store.state.boardState.states"
@@ -17,6 +18,10 @@
                 @click="addState"
                 aria-label="Add board state">+</button>
         </ul>
+
+        <!-- Sequences -->
+        <wrap-sequences
+            v-else-if="toShow == 'Sequences'"/>
 
         <nav class="display-types">
             <button
@@ -36,7 +41,7 @@ export default {
     data() {
         return {
             displays: ['States', 'Sequences'],
-            toShow: 'States'
+            toShow: 'Sequences'
         }
     },
     methods: {
@@ -100,6 +105,16 @@ export default {
         .board-state-item.selected {
             border: 5px solid $white;
         }
+    }
+
+    // Sequences
+    .wrap-sequences {
+        overflow-y: auto;
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        bottom: 20px;
+        left: 40px;
     }
 
     // Display types

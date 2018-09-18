@@ -5,6 +5,7 @@ import {
     actions as partitionActions
 } from '@/utils/board/partition-actions'
 import entityActions from '@/utils/board/entity-actions'
+import sequenceActions from '@/utils/board/sequence-actions'
 
 // deconstruct board classes
 const { Partition, BoardState } = board
@@ -15,7 +16,7 @@ export default {
         partitions: [new Partition({ height: 4, width: 4 })],
         entities: [],
         states: [new BoardState({ name: 'Default' })],
-        loops: [],
+        sequences: [],
 
         // board meta info
         name: 'Board',
@@ -54,7 +55,10 @@ export default {
         ...partitionMutations,
 
         // Entities
-        ...entityActions
+        ...entityActions,
+
+        // Sequences
+        ...sequenceActions
     },
     actions: {
         ...partitionActions
