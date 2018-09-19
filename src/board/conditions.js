@@ -1,6 +1,9 @@
 export default {
     // Subjects
     occupant: 'CELL {X} OCCUPANT',
+    occupantHealth: 'CELL {X} OCCUPANT HEALTH',
+    sequence: 'SEQUENCE ID',
+    sequenceStep: 'SEQUENCE STEP',
 
     // Measurements
     equals: 'EQUALS',
@@ -9,6 +12,7 @@ export default {
 
     // Predicates
     anything: 'ANYTHING',
+    number: '{X}',
 
     // Booleans
     and: 'AND',
