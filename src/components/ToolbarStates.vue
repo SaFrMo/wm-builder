@@ -2,7 +2,7 @@
 
     <aside class="toolbar-states">
 
-        <h2 class="title">Board States</h2>
+        <h2 class="title">{{ toShow }}</h2>
 
         <!-- All states -->
         <ul class="button-wrap" v-if="toShow == 'States'">
@@ -112,24 +112,29 @@ export default {
         overflow-y: auto;
         position: absolute;
         top: 20px;
-        right: 40px;
+        right: 150px;
         bottom: 20px;
         left: 40px;
+        background-color: rgba($black, 0.2);
+        padding: 10px;
+        list-style: none;
     }
 
     // Display types
     .display-types {
         position: absolute;
+        top: 10px;
         right: 20px;
-        bottom: 10px;
+        display: flex;
+        flex-direction: column;
 
         .display-type {
             background-color: rgba($black, 0.3);
             color: $white;
             padding: 5px 10px;
-            margin: 0 5px;
             border-radius: 3px;
             border: 3px solid transparent;
+            box-sizing: border-box;
 
             &:last-of-type {
                 margin-right: 0;

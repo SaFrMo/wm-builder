@@ -13,22 +13,30 @@
 
         <div class="sequence-items">
 
-            <button
-                v-for="(id, i) in sequence.boardStateIds"
-                :key="i"
-                @click="removeIdAt(i)">
-                {{ id }}
-            </button>
-
-            <div class="add-wrap">
-                <span>Add...</span>
+            <div class="state-wrap">
                 <button
-                    v-for="(state, i) in cmpBoardStates"
+                    v-for="(state, i) in cmpSequenceStates"
+                    class="board-state"
                     :key="i"
-                    v-html="state.name"
-                    @click="addState(state)"/>
+                    @click="removeIdAt(i)">
+                    {{ state.name }}
                 </button>
             </div>
+
+            <ul class="add-wrap">
+                <li
+                    v-for="(state, i) in cmpBoardStates"
+                    :key="i"
+                    class="state-entry">
+
+                    <button
+                        class="button"
+                        v-html="'+ ' + state.name"
+                        @click="addState(state)"/>
+                    </button>
+
+                </li>
+            </ul>
 
         </div>
 
@@ -58,6 +66,10 @@ export default {
     computed: {
         cmpBoardStates() {
             return _get(this, '$store.state.boardState.states')
+        },
+        cmpSequenceStates() {
+            const ids = this.sequence.boardStateIds
+            return ids.map(id => this.cmpBoardStates.find(x => x.id == id))
         }
     },
     mounted() {
@@ -117,8 +129,43 @@ export default {
         padding: 5px;
     }
 
+    // States in sequence
+    .state-wrap {
+        display: flex;
+        flex-wrap: wrap;
+
+        .board-state {
+            padding: 3px 5px;
+            background-color: $danger;
+            color: $white;
+        }
+        .board-state {
+            margin: 5px 5px 0 0;
+        }
+    }
+
     // Add/Remove
     .add-wrap {
+        list-style: none;
+        margin-top: 15px;
+
+        .state-entry + .state-entry {
+            margin-top: 5px;
+        }
+        .state-entry .button {
+            color: $white;
+            background-color: rgba($black, 0.2);
+            padding: 2px 8px;
+            border-radius: 5px;
+            padding-left: 8px;
+            transition: padding 0.3s, background-color 0.3s;
+
+            &:hover,
+            &:focus {
+                padding-left: 20px;
+                background-color: rgba($black, 0.4);
+            }
+        }
     }
 }
 </style>

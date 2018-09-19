@@ -14,9 +14,15 @@ export default {
     ADD_STATE_ID_TO_SEQUENCE: (state, { stateId, sequenceId }) => {
         const targetSequence = state.sequences.find(p => p.id == sequenceId)
         targetSequence.boardStateIds.push(stateId)
+        targetSequence.boardStateIds = targetSequence.boardStateIds.filter(
+            x => x
+        )
     },
     REMOVE_STATE_ID_FROM_SEQUENCE: (state, { sequenceId, index }) => {
         const targetSequence = state.sequences.find(p => p.id == sequenceId)
         targetSequence.boardStateIds.splice(index, 1)
+        targetSequence.boardStateIds = targetSequence.boardStateIds.filter(
+            x => x
+        )
     }
 }

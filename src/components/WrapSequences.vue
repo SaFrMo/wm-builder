@@ -4,7 +4,8 @@
 
         <li
             v-for="(sequence, i) in $store.state.boardState.sequences"
-            :key="i">
+            :key="i"
+            class="wrap-entry">
 
             <single-sequence
                 :sequence="sequence"
@@ -13,7 +14,8 @@
 
         </li>
 
-        <li>
+        <li
+            class="wrap-entry">
             <button
                 @click="$store.commit('ADD_BOARD_SEQUENCE')">
                 Add Sequence
@@ -34,7 +36,7 @@ export default {}
 .wrap-sequences {
     margin: 0;
 
-    li + li {
+    .wrap-entry + .wrap-entry {
         margin-top: 20px;
     }
 }
