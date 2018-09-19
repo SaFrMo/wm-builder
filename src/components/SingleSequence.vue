@@ -24,8 +24,9 @@
                 <span>Add...</span>
                 <button
                     v-for="(state, i) in cmpBoardStates"
-                    :key="i">
-                    {{ state.name }}
+                    :key="i"
+                    v-html="state.name"
+                    @click="addState(state)"/>
                 </button>
             </div>
 
@@ -64,7 +65,16 @@ export default {
     },
     methods: {
         removeIdAt(i) {
-            this.sequence.splice(i, 1)
+            this.$store.commit('REMOVE_STATE_ID_FROM_SEQUENCE', {
+                sequenceId: this.sequence.id,
+                index: i
+            })
+        },
+        addState(state) {
+            this.$store.commit('ADD_STATE_ID_TO_SEQUENCE', {
+                stateId: state.id,
+                sequenceId: this.sequence.id
+            })
         }
     },
     watch: {
