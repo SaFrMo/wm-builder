@@ -8,6 +8,7 @@
 
             <single-sequence
                 :sequence="sequence"
+                :key="sequence.id"
                 :index="i"/>
 
         </li>

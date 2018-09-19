@@ -4,6 +4,10 @@
 
         {{ sequence }}
 
+        <br/>
+
+        <input v-model="name"/>
+
         <button
             @click="$store.commit('REMOVE_SEQUENCE', sequence.id)"
             class="remove">
@@ -24,6 +28,22 @@ export default {
         index: {
             type: Number,
             default: -1
+        }
+    },
+    data() {
+        return {
+            name: ''
+        }
+    },
+    mounted() {
+        this.name = this.sequence.name
+    },
+    watch: {
+        name(newVal) {
+            this.$store.commit('CHANGE_SEQUENCE_NAME', {
+                id: this.sequence.id,
+                value: newVal
+            })
         }
     }
 }
