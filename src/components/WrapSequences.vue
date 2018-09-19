@@ -33,5 +33,9 @@ export default {}
 
 .wrap-sequences {
     margin: 0;
+
+    li + li {
+        margin-top: 20px;
+    }
 }
 </style>
