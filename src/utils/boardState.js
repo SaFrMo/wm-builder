@@ -25,7 +25,7 @@ export default {
         // should be in { key, value } format for each value in array
         meta: [],
 
-        version: '1.0.0'
+        version: '1.1.0'
     },
     mutations: {
         // save/load

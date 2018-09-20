@@ -3,12 +3,21 @@
     <div class="single-sequence">
 
         <div class="meta-wrap">
+            <!-- Sequence name -->
             <input class="sequence-name" v-model="name"/>
+
+            <!-- Priority score -->
+            <label for="priority" class="priority-label">Priority</label>
+            <input id="priority" class="priority" v-model="priority"/>
+
+            <!-- Toggle preview -->
             <button
                 @click="playing = !playing"
                 class="play">
                 {{ playing ? 'Stop' : 'Preview' }}
             </button>
+
+            <!-- Delete sequence -->
             <button
                 @click="$store.commit('REMOVE_SEQUENCE', sequence.id)"
                 class="remove">
@@ -71,7 +80,8 @@ export default {
             name: '',
             playing: false,
             playIndex: 0,
-            savedPosition: 0
+            savedPosition: 0,
+            priority: 0
         }
     },
     computed: {
@@ -85,6 +95,7 @@ export default {
     },
     mounted() {
         this.name = this.sequence.name
+        this.priority = this.sequence.priority
     },
     methods: {
         removeIdAt(i) {
@@ -109,6 +120,12 @@ export default {
     watch: {
         name(newVal) {
             this.$store.commit('CHANGE_SEQUENCE_NAME', {
+                id: this.sequence.id,
+                value: newVal
+            })
+        },
+        priority(newVal) {
+            this.$store.commit('CHANGE_SEQUENCE_PRIORITY', {
                 id: this.sequence.id,
                 value: newVal
             })
@@ -144,8 +161,9 @@ export default {
     .meta-wrap {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
-    .sequence-name {
+    input {
         background-color: transparent;
         border: none;
         color: $white;
@@ -153,11 +171,22 @@ export default {
         font-weight: 700;
         font-family: $font-family;
         flex: 1;
+        margin-right: 5px;
 
         &:hover,
         &:focus {
             background-color: rgba($black, 0.2);
         }
+    }
+    .priority-label {
+        color: $white;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+    .priority {
+        width: 30px;
+        flex: initial;
+        text-align: right;
     }
     .play {
         background: $safe;

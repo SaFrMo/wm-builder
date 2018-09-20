@@ -14,5 +14,8 @@ export default class {
 
         // Conditions
         this.conditions = pick('conditions', [])
+
+        // Priority score
+        this.priority = pick('priority', 0)
     }
 }

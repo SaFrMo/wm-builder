@@ -11,6 +11,10 @@ export default {
         const targetSequence = state.sequences.find(p => p.id == id)
         targetSequence.name = value
     },
+    CHANGE_SEQUENCE_PRIORITY: (state, { id, value }) => {
+        const targetSequence = state.sequences.find(p => p.id == id)
+        targetSequence.priority = value
+    },
     ADD_STATE_ID_TO_SEQUENCE: (state, { stateId, sequenceId }) => {
         const targetSequence = state.sequences.find(p => p.id == sequenceId)
         targetSequence.boardStateIds.push(stateId)
