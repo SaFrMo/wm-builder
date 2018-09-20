@@ -5,6 +5,11 @@
         <div class="meta-wrap">
             <input class="sequence-name" v-model="name"/>
             <button
+                @click="playing = !playing"
+                class="play">
+                {{ playing ? 'Stop' : 'Preview' }}
+            </button>
+            <button
                 @click="$store.commit('REMOVE_SEQUENCE', sequence.id)"
                 class="remove">
                 Remove
@@ -16,7 +21,7 @@
             <div class="state-wrap">
                 <button
                     v-for="(state, i) in cmpSequenceStates"
-                    class="board-state"
+                    :class="['board-state', { playing: isPlaying(i) }]"
                     :key="i"
                     @click="removeIdAt(i)">
                     {{ state.name }}
@@ -47,6 +52,8 @@
 <script>
 import _get from 'lodash/get'
 
+let interval
+
 export default {
     props: {
         sequence: {
@@ -60,7 +67,10 @@ export default {
     },
     data() {
         return {
-            name: ''
+            name: '',
+            playing: false,
+            playIndex: 0,
+            savedPosition: 0
         }
     },
     computed: {
@@ -87,6 +97,12 @@ export default {
                 stateId: state.id,
                 sequenceId: this.sequence.id
             })
+        },
+        isPlaying(i) {
+            return (
+                this.playing &&
+                this.playIndex % this.sequence.boardStateIds.length == i
+            )
         }
     },
     watch: {
@@ -95,6 +111,25 @@ export default {
                 id: this.sequence.id,
                 value: newVal
             })
+        },
+        playing(newVal) {
+            if (newVal) {
+                this.savedPosition = this.$store.state.selectedBoardStateIndex
+                this.playIndex = 0
+                interval = setInterval(() => (this.playIndex += 1), 600)
+            } else {
+                clearInterval(interval)
+                this.$store.commit('SELECT_BOARD_STATE', this.savedPosition)
+            }
+        },
+        playIndex(newVal) {
+            const stateId = this.sequence.boardStateIds[
+                newVal % this.sequence.boardStateIds.length
+            ]
+            const stateIndex = this.$store.state.boardState.states.findIndex(
+                x => x.id == stateId
+            )
+            this.$store.commit('SELECT_BOARD_STATE', stateIndex)
         }
     }
 }
@@ -123,6 +158,12 @@ export default {
             background-color: rgba($black, 0.2);
         }
     }
+    .play {
+        background: $safe;
+        color: $white;
+        padding: 5px;
+        margin: 0 5px;
+    }
     .remove {
         background: $danger;
         color: $white;
@@ -138,6 +179,11 @@ export default {
             padding: 3px 5px;
             background-color: $danger;
             color: $white;
+            border: 2px solid transparent;
+
+            &.playing {
+                border: 2px solid $white;
+            }
         }
         .board-state {
             margin: 5px 5px 0 0;
