@@ -21,6 +21,7 @@
             <div class="state-wrap">
                 <button
                     v-for="(state, i) in cmpSequenceStates"
+                    v-if="state"
                     :class="['board-state', { playing: isPlaying(i) }]"
                     :key="i"
                     @click="removeIdAt(i)">

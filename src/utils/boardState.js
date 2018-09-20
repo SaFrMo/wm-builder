@@ -48,7 +48,17 @@ export default {
             )
         },
         DELETE_BOARD_STATE(state, payload) {
+            const id = state.states[payload].id
+
             state.states.splice(payload, 1)
+
+            // delete from all sequence entries
+            state.sequences = state.sequences.map(sequence => {
+                sequence.boardStateIds = sequence.boardStateIds.filter(
+                    step => step.id != id
+                )
+                return sequence
+            })
         },
 
         // partitions
