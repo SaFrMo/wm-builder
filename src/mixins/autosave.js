@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+const autosavePrefix = 'wm-board-autosave-'
+
 export default {
     data() {
         return {
@@ -9,14 +11,24 @@ export default {
     },
     async mounted() {
         if (localStorage.length) {
-            // get the last autosave for this board
-            const latest = localStorage.key(0)
-
-            // ignore webpack storage
-            if (latest && !latest.includes('webpack')) {
-                // load level
-                this.$store.commit('LOAD_LEVEL', localStorage.getItem(latest))
+            // get array of all localStorage keys
+            const timestamps = []
+            for (var i = 0, len = localStorage.length; i < len; ++i) {
+                if (localStorage.key(i).includes(autosavePrefix)) {
+                    // find timestamps of keys
+                    const number = localStorage
+                        .key(i)
+                        .replace(autosavePrefix, '')
+                    timestamps.push(parseInt(number))
+                }
             }
+
+            // find latest save
+            const latest = Math.max.apply(Math, timestamps)
+            this.$store.commit(
+                'LOAD_LEVEL',
+                localStorage.getItem(`${autosavePrefix}${latest}`)
+            )
         }
 
         if (!this.interval) {
@@ -27,7 +39,7 @@ export default {
     methods: {
         runAutosave() {
             localStorage.setItem(
-                `wm-board-autosave-${this.$store.state.boardState.guid}`,
+                `${autosavePrefix}${this.$store.state.boardState.guid}`,
                 JSON.stringify(this.$store.state.boardState)
             )
         }

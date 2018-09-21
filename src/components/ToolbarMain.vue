@@ -45,6 +45,15 @@
 
             <hr>
 
+            <!-- New Board -->
+
+            <button
+                @click="$store.commit('RESET_BOARD')">
+                New Board
+            </button>
+
+            <hr>
+
             <!-- Export/Import -->
             <button
                 @click="startExport">

@@ -14,5 +14,10 @@ export default class {
 
         // { id, x, y } for each item in array
         this.deltas = pick('deltas', [])
+
+        // image URL - bundle and download in export
+        this.image = pick('image', '')
+        this.imageWidth = pick('imageWidth', 5)
+        this.imageHeight = pick('imageHeight', 5)
     }
 }
