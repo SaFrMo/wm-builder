@@ -41,7 +41,7 @@ export default {
     data() {
         return {
             displays: ['States', 'Sequences'],
-            toShow: 'States'
+            toShow: 'Sequences'
         }
     },
     methods: {

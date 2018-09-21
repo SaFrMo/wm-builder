@@ -55,6 +55,10 @@
                 </li>
             </ul>
 
+            <!-- Conditions -->
+            <sequence-condition-wrap
+                @add-condition="addCondition"/>
+
         </div>
 
     </div>
@@ -117,6 +121,9 @@ export default {
                 this.playing &&
                 this.playIndex % this.sequence.boardStateIds.length == i
             )
+        },
+        addCondition({ subject, comparator, value }) {
+            console.log(subject, comparator, value)
         }
     },
     watch: {
