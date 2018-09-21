@@ -27,6 +27,7 @@
 
         <div class="sequence-items">
 
+            <!-- States in Sequence -->
             <div class="state-wrap">
                 <button
                     v-for="(state, i) in cmpSequenceStates"
@@ -38,6 +39,7 @@
                 </button>
             </div>
 
+            <!-- States available to add -->
             <ul class="add-wrap">
                 <li
                     v-for="(state, i) in cmpBoardStates"
