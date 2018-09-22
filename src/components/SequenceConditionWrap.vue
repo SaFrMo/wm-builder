@@ -29,7 +29,7 @@
                 </option>
             </select>
 
-            <!-- Comparator -->
+            <!-- Value -->
             <select v-model="value">
                 <option disabled value="">Value</option>
                 <option
@@ -38,6 +38,11 @@
                     {{ possibleValue }}
                 </option>
             </select>
+
+            <input
+                v-model="number"
+                v-if="cmpShowNumber"
+                class="number-input"/>
 
             <!-- Add button -->
             <button class="add-condition" @click="addCondition">Add</button>
@@ -53,14 +58,22 @@ export default {
     data() {
         return {
             conditions: {
-                subjects: ['sequence', 'sequence step'],
-                comparators: ['equals', 'less than', 'greater than'],
-                values: ['anything', 'number'],
+                subjects: ['Sequence', 'Sequence step'],
+                comparators: [
+                    'equals',
+                    'less than',
+                    'greater than',
+                    'less than or equal to',
+                    'greater than or equal to',
+                    'does not equal'
+                ],
+                values: ['anything', 'number', 'percentage'],
                 booleans: ['and', 'or']
             },
             subject: '',
             comparator: '',
-            value: ''
+            value: '',
+            number: 0
         }
     },
     methods: {
@@ -68,17 +81,44 @@ export default {
             this.$emit('add-condition', {
                 subject: this.subject,
                 comparator: this.comparator,
-                value: this.value
+                value: this.value,
+                number: this.number
             })
 
             this.subject = this.comparator = this.value = ''
+            this.number = 0
         }
     },
     computed: {
         // TODO: Start here - build out dynamic conditions
 
         cmpSubjects() {
-            const output = [].concat(this.conditions.subjects)
+            // get abbreviated version of all partitions
+            const partitionNames = this.$store.state.boardState.partitions.map(
+                p => p.name
+            )
+
+            // get all cells in all partitions
+            const cells = [].concat(
+                ...this.$store.state.boardState.partitions.map(p => {
+                    const output = []
+                    for (let y = 0; y < p.width; y++) {
+                        for (let x = 0; x < p.height; x++) {
+                            const base = `${p.name} (${x}, ${y})`
+                            output.push(`${base} occupant`)
+                            output.push(`${base} occupant health`)
+                            output.push(`${base} occupant AP`)
+                        }
+                    }
+                    return output
+                })
+            )
+
+            const output = [].concat(
+                this.conditions.subjects,
+                partitionNames,
+                cells
+            )
 
             return output
         },
@@ -91,6 +131,9 @@ export default {
             const output = [].concat(this.conditions.values)
 
             return output
+        },
+        cmpShowNumber() {
+            return this.value == 'number' || this.value == 'percentage'
         }
     }
 }
@@ -123,6 +166,9 @@ export default {
             background-color: $white;
             color: $black;
         }
+    }
+    .number-input {
+        max-width: 70px;
     }
 }
 </style>
