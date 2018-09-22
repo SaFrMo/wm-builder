@@ -122,7 +122,7 @@ export default {
                 this.playIndex % this.sequence.boardStateIds.length == i
             )
         },
-        addCondition({ subject, comparator, value }) {
+        addCondition({ subject, comparator, value, number }) {
             console.log(subject, comparator, value)
         }
     },

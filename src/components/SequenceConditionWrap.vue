@@ -58,7 +58,7 @@ export default {
     data() {
         return {
             conditions: {
-                subjects: ['Sequence', 'Sequence step'],
+                subjects: ['Sequence', 'Sequence step', 'Random number'],
                 comparators: [
                     'equals',
                     'less than',
