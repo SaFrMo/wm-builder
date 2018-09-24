@@ -1,6 +1,6 @@
 # wm-builder
 
-> Level builder for The White Mask
+> Level builder for The White Mask. WIP.
 
 ## Build Setup
 
