@@ -28,5 +28,15 @@ export default {
         targetSequence.boardStateIds = targetSequence.boardStateIds.filter(
             x => x
         )
+    },
+
+    // Conditions
+    ADD_SEQUENCE_CONDITION: (state, { sequenceId, condition }) => {
+        const targetSequence = state.sequences.find(p => p.id == sequenceId)
+        targetSequence.conditions.push(condition)
+    },
+    REMOVE_CONDITION: (state, { sequence, index }) => {
+        const targetSequence = state.sequences.find(p => p.id == sequence.id)
+        targetSequence.conditions.splice(index, 1)
     }
 }

@@ -2,9 +2,35 @@
 
     <ul class="sequence-condition-wrap">
 
-        <li><h3>Conditions</h3></li>
+        <li>
+            <h3>Conditions (All must be true to start sequence)</h3>
+
+        </li>
 
         <!-- Conditions -->
+        <li
+            v-for="(condition, i) in sequence.conditions"
+            :key="i"
+            class="single-condition">
+
+            <span class="subject">{{ condition.subject }}</span>
+            <span class="comparator">{{ condition.comparator }}</span>
+            <span class="value">{{ condition.value }}</span>
+            <span
+                v-if="showNumber(condition)"
+                class="number">
+                {{ condition.number }}
+            </span>
+
+            <span class="remove-wrap">
+                <button
+                    @click="$store.commit('REMOVE_CONDITION', { sequence, index: i })"
+                    class="remove">
+                    Remove
+                </button>
+            </span>
+
+        </li>
 
         <!-- Add condition -->
         <li class="add-condition-wrap">
@@ -55,6 +81,12 @@
 
 <script>
 export default {
+    props: {
+        sequence: {
+            type: Object,
+            default: () => {}
+        }
+    },
     data() {
         return {
             conditions: {
@@ -71,6 +103,7 @@ export default {
                 booleans: ['and', 'or']
             },
             subject: '',
+            subjectId: -1,
             comparator: '',
             value: '',
             number: 0
@@ -80,6 +113,7 @@ export default {
         addCondition() {
             this.$emit('add-condition', {
                 subject: this.subject,
+                subjectId: this.subjectId,
                 comparator: this.comparator,
                 value: this.value,
                 number: this.number
@@ -87,6 +121,11 @@ export default {
 
             this.subject = this.comparator = this.value = ''
             this.number = 0
+        },
+        showNumber(condition) {
+            return (
+                condition.value == 'number' || condition.value == 'percentage'
+            )
         }
     },
     computed: {
@@ -104,7 +143,7 @@ export default {
                     const output = []
                     for (let y = 0; y < p.width; y++) {
                         for (let x = 0; x < p.height; x++) {
-                            const base = `${p.name} (${x}, ${y})`
+                            const base = `[${p.name}] (${x}, ${y})`
                             output.push(`${base} occupant`)
                             output.push(`${base} occupant health`)
                             output.push(`${base} occupant AP`)
@@ -135,6 +174,17 @@ export default {
         cmpShowNumber() {
             return this.value == 'number' || this.value == 'percentage'
         }
+    },
+    watch: {
+        subject(newVal) {
+            const partitionName = newVal.match(/\[(.*?)\]/)
+            if (partitionName) {
+                const partition = this.$store.state.boardState.partitions.find(
+                    p => p.name == partitionName[1]
+                )
+                this.subjectId = partition.guid
+            }
+        }
     }
 }
 </script>
@@ -147,6 +197,21 @@ export default {
     list-style: none;
     padding: 0;
 
+    .single-condition {
+        display: flex;
+        align-items: center;
+
+        & > * {
+            margin-bottom: 5px;
+        }
+        & > * + * {
+            margin-left: 5px;
+        }
+        .remove-wrap {
+            flex: 1;
+            text-align: right;
+        }
+    }
     .add-condition-wrap {
         display: flex;
         align-items: center;

@@ -27,8 +27,16 @@
 
         <div class="sequence-items">
 
+            <!-- Conditions -->
+            <sequence-condition-wrap
+                :sequence="sequence"
+                @add-condition="addCondition"/>
+
             <!-- States in Sequence -->
+            <h3>States</h3>
+
             <div class="state-wrap">
+
                 <button
                     v-for="(state, i) in cmpSequenceStates"
                     v-if="state"
@@ -54,10 +62,6 @@
 
                 </li>
             </ul>
-
-            <!-- Conditions -->
-            <sequence-condition-wrap
-                @add-condition="addCondition"/>
 
         </div>
 
@@ -122,8 +126,11 @@ export default {
                 this.playIndex % this.sequence.boardStateIds.length == i
             )
         },
-        addCondition({ subject, comparator, value, number }) {
-            console.log(subject, comparator, value)
+        addCondition(condition) {
+            this.$store.commit('ADD_SEQUENCE_CONDITION', {
+                sequenceId: this.sequence.id,
+                condition
+            })
         }
     },
     watch: {
@@ -166,6 +173,13 @@ export default {
 @import 'src/styles/vars';
 
 .single-sequence {
+    // Labels
+    h3 {
+        margin-bottom: 0;
+        font-size: 14px;
+        color: $white;
+    }
+
     // Meta
     .meta-wrap {
         display: flex;
