@@ -1,4 +1,4 @@
 module.exports = {
-    title: 'White Mask docs',
-    description: 'Just playing around'
+    title: 'WM Docs',
+    description: 'Dev onboarding and documentation for The White Mask'
 }
