@@ -39,7 +39,7 @@ module.exports = {
         index: path.resolve(__dirname, '../dist/builder/index.html'),
 
         // Paths
-        assetsRoot: path.resolve(__dirname, '../dist/builder'),
+        assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'builder/static',
         assetsPublicPath: '/',
 
