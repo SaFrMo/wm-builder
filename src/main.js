@@ -5,6 +5,7 @@ import App from './App'
 import router from '@/utils/router'
 import store from '@/utils/store'
 import Case from 'case'
+import entities from '@/board/entities'
 
 Vue.config.productionTip = false
 
@@ -33,14 +34,7 @@ new Vue({
     template: '<App/>',
     data() {
         return {
-            entities: []
+            entities
         }
-    },
-    async mounted() {
-        // Fetch POIs and make available to builder
-        const entities = await fetch('/static/assets/entities.json').then(res =>
-            res.json()
-        )
-        this.entities = entities.data
     }
 })
