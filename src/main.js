@@ -8,7 +8,6 @@ import Case from 'case'
 import entities from '@/board/entities'
 
 Vue.config.productionTip = false
-Vue.config.devtools = true
 
 // Register directives
 Vue.directive('keydown', require('fh-components/v-keydown'))
