@@ -39,6 +39,30 @@ export const mutations = {
             const finalDelta = startingHeight - partition.height
             partition.pivot.y -= finalDelta
         }
+
+        // Remove any conditions referencing a removed cell
+        state.sequences.forEach(sequence => {
+            sequence.conditions = sequence.conditions.filter(condition => {
+                // not referencing this partition, so ignore
+                if (
+                    !condition.subjectId ||
+                    condition.subjectId !== partition.guid
+                ) {
+                    return true
+                }
+
+                const re = /\((\d+), (\d+)\)/g
+                const match = re.exec(condition.subject)
+                if (match && match.length >= 3) {
+                    // Find if cell was removed by alteration
+                    const x = parseInt(match[1]) + 1
+                    const y = parseInt(match[2]) + 1
+                    return x <= partition.width && y <= partition.height
+                } else {
+                    return true
+                }
+            })
+        })
     },
     CREATE_PARTITION: (state, payload) => {
         // add a new partition
@@ -50,6 +74,13 @@ export const mutations = {
     },
     DELETE_PARTITION: (state, payload) => {
         state.partitions = state.partitions.filter(x => x.guid !== payload.guid)
+
+        // Remove any conditions referencing this partition
+        state.sequences.forEach(sequence => {
+            sequence.conditions = sequence.conditions.filter(
+                condition => condition.subjectId !== payload.guid
+            )
+        })
     },
     MOVE_PARTITION: (state, { guid, delta }) => {
         // find the desired partition
