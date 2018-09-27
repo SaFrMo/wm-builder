@@ -38,5 +38,9 @@ export default {
     REMOVE_CONDITION: (state, { sequence, index }) => {
         const targetSequence = state.sequences.find(p => p.id == sequence.id)
         targetSequence.conditions.splice(index, 1)
+    },
+    EDIT_CONDITION: (state, { sequence, index, condition }) => {
+        const targetSequence = state.sequences.find(p => p.id == sequence.id)
+        targetSequence.conditions.splice(index, 1, condition)
     }
 }

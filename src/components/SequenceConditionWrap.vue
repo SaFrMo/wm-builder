@@ -80,6 +80,8 @@
 </template>
 
 <script>
+import _differenceWith from 'lodash/differenceWith'
+
 export default {
     props: {
         sequence: {
@@ -173,6 +175,14 @@ export default {
         },
         cmpShowNumber() {
             return this.value == 'number' || this.value == 'percentage'
+        },
+        cmpPartitionNames() {
+            return this.$store.state.boardState.partitions.map(p => {
+                return {
+                    name: p.name,
+                    id: p.guid
+                }
+            })
         }
     },
     watch: {
@@ -184,6 +194,41 @@ export default {
                 )
                 this.subjectId = partition.guid
             }
+        },
+        cmpPartitionNames(newVal, oldVal) {
+            // find any changed conditions
+            const changedConditions = _differenceWith(
+                newVal,
+                oldVal,
+                (x, y) => {
+                    return x.id == y.id && x.name == y.name
+                }
+            )
+
+            // for each condition...
+            this.sequence.conditions.forEach((condition, i) => {
+                // ...check if we're in the list of changed conditions...
+                const changed = changedConditions.find(
+                    x => x.id == condition.subjectId
+                )
+                if (changed) {
+                    // ...start a new value for that condition...
+                    const newCondition = { ...condition }
+
+                    // ...replace the old name with the new name...
+                    newCondition.subject = newCondition.subject.replace(
+                        /\[.*?\]/g,
+                        `[${changed.name}]`
+                    )
+
+                    // ...and replace the old condition with the new condition
+                    this.$store.commit('EDIT_CONDITION', {
+                        sequence: this.sequence,
+                        index: i,
+                        condition: newCondition
+                    })
+                }
+            })
         }
     }
 }
