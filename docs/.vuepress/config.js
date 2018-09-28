@@ -6,14 +6,16 @@ module.exports = {
             { text: 'Home', link: '/' },
             {
                 text: 'Overviews',
-                items: [{ text: 'Level', link: '/level/' }]
+                items: [
+                    { text: 'Level', link: '/level/' },
+                    { text: 'Turns', link: '/turns/' }
+                ]
             },
             {
                 text: 'API',
                 items: [
                     { text: 'Home', link: '/api/' },
-                    { text: 'Board', link: '/api/board/' },
-                    { text: 'Turns', link: '/api/turns/' }
+                    { text: 'Board', link: '/api/board/' }
                 ]
             },
             { text: 'Level Builder', link: 'https://white-mask.com/builder/' }

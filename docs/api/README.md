@@ -19,4 +19,3 @@ Documentation for the in-game code should follow this format:
 ## Contents
 
 -   [Board](/api/board/)
--   [Turns](/api/turns/)
