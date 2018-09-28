@@ -12,7 +12,8 @@ module.exports = {
                 text: 'API',
                 items: [
                     { text: 'Home', link: '/api/' },
-                    { text: 'Board', link: '/api/board/' }
+                    { text: 'Board', link: '/api/board/' },
+                    { text: 'Turns', link: '/api/turns/' }
                 ]
             },
             { text: 'Level Builder', link: 'https://white-mask.com/builder/' }
