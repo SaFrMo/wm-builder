@@ -25,6 +25,24 @@ Stay one step ahead of malicious hackers, government and otherwise, as you prote
 | Repo URL      | keybase://team/whitemaskgame/white-mask            |
 | Task Board    | [Trello](https://trello.com/b/pQkYudAl/white-mask) |
 
+## Contributing
+
+Interested in making a change/contribution to these docs? First of all, thanks - the more eyes on them, the better!
+
+### OSX
+
+**Skip to the next section if you already have Git and Node installed. If you don't or you're not sure, keep reading.**
+
+1.  Press Cmd+Space and open the program Terminal.
+1.  Type `git --version` and hit Enter.
+    1.  If you don't have Git installed, you'll see an error at this point - head over to [the Git website](https://git-scm.com/downloads) and download the software.
+1.  Type `node --version` and hit Enter.
+    1.  If you don't have Node installed, you'll see an error at this point - head over to [the Node website](https://git-scm.com/downloads) and download the software.
+
+**Now we're assuming that Git and Node are installed - `git --version` and `node --version` don't show errors when run.**
+
+**TODO**
+
 ## Code of Conduct
 
 Adopted from the Golang Code of Conduct.
