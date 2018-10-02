@@ -24,7 +24,7 @@ const defaultState = {
     // should be in { key, value } format for each value in array
     meta: [],
 
-    version: '1.1.0'
+    version: '1.1.01'
 }
 
 export default {

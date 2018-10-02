@@ -1,4 +1,5 @@
 import { buildPick } from './utils'
+import Entity from './entity'
 
 export default class Partition {
     width: number
