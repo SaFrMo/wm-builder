@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "tsc -w & webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
         "start": "npm run dev",
-        "build": "node build/build.js",
+        "build": "tsc && node build/build.js",
         "docs:dev": "cd ./docs && npm run dev",
         "eject": "rimraf ./dist && npm run build && cd ./docs && npm run build && mv ./.vuepress/dist/** ../dist"
     },
