@@ -5,7 +5,8 @@ import App from './App'
 import router from '@/utils/router'
 import store from '@/utils/store'
 import Case from 'case'
-import entities from '@/board/entities'
+import board from '@/board'
+const { entities } = board
 
 Vue.config.productionTip = false
 

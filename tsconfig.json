@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "./built/",
+        "sourceMap": false,
+        "strictNullChecks": true,
+        "module": "es6",
+        "jsx": "react",
+        "target": "es5",
+        "allowJs": true
+    },
+    "include": ["./board/"]
+}

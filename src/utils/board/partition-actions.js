@@ -1,4 +1,4 @@
-import board from '@/board/'
+import board from '@/board'
 import Vue from 'vue'
 const { Partition } = board
 

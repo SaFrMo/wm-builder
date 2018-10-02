@@ -1,6 +1,14 @@
-import { buildPick } from '@/utils/shared'
+import { buildPick } from './utils'
 
-export default class {
+export default class BoardState {
+    name: string
+    id: string
+    meta: Array<KeyValuePair>
+    deltas: Array<Delta>
+    image: string
+    imageWidth: number
+    imageHeight: number
+
     constructor(opts = {}) {
         // build default picker
         const pick = buildPick(opts)

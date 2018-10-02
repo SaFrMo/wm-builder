@@ -1,6 +1,13 @@
-import { buildPick } from '@/utils/shared'
+import { buildPick } from './utils'
 
-export default class {
+export default class BoardSequence {
+    name: string
+    id: string
+    meta: Array<KeyValuePair>
+    boardStateIds: Array<string>
+    conditions: Array<Condition>
+    priority: number
+
     constructor(opts = {}) {
         const pick = buildPick(opts)
 

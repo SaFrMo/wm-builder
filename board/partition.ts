@@ -1,6 +1,14 @@
-import { buildPick } from '@/utils/shared'
+import { buildPick } from './utils'
 
-export default class {
+export default class Partition {
+    width: number
+    height: number
+    pivot: Vector2
+    position: Vector2
+    name: string
+    guid: string
+    entities: Array<Entity>
+
     constructor(opts = {}) {
         // default picker
         const pick = buildPick(opts)

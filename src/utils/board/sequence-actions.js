@@ -1,4 +1,5 @@
-import BoardSequence from '@/board/board-sequence'
+import board from '@/board'
+const { BoardSequence } = board
 
 export default {
     ADD_BOARD_SEQUENCE: state => {
