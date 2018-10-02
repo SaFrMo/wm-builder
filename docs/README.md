@@ -38,10 +38,20 @@ Interested in making a change/contribution to these docs? First of all, thanks -
     1.  If you don't have Git installed, you'll see an error at this point - head over to [the Git website](https://git-scm.com/downloads) and download the software.
 1.  Type `node --version` and hit Enter.
     1.  If you don't have Node installed, you'll see an error at this point - head over to [the Node website](https://git-scm.com/downloads) and download the software.
+1.  Set up an account on [Github](https://github.com) if you don't already have one.
 
 **Now we're assuming that Git and Node are installed - `git --version` and `node --version` don't show errors when run.**
 
-**TODO**
+1.  In your web browser, head to [the repo](https://github.com/SaFrMo/wm-builder) for this site. Click the "Fork" button in the top right corner.
+    1.  Forking creates your own copy of a repo, which you can edit however you like. Eventually, you can request that the repo owner pull in your changes (called a "Pull Request").
+1.  Github should automatically redirect you to the new, forked repo when it's created. Copy the URL of this repo - it'll be the same `wm-builder` name, just under your Github user name.
+1.  If you don't have Terminal open already, press Cmd+Space and open it.
+1.  Navigate to the location where you want the working files kept. For example, `cd ~/` or `cd ~/misc`.
+1.  Enter `git clone` and the pasted URL of your forked repo, then hit Enter.
+1.  After the forked repo has finished cloning to your machine, enter `cd wm-builder` and hit enter.
+1.  Enter `npm install` and hit enter. This will install the necessary files.
+
+**TODO: Continue **
 
 ## Code of Conduct
 

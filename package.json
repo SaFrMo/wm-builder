@@ -5,6 +5,7 @@
     "author": "Sander <sander@funkhaus.us>",
     "private": true,
     "scripts": {
+        "postinstall": "cd ./docs && npm i && cd ../",
         "dev": "tsc -w & webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
         "start": "npm run dev",
         "build": "tsc && node build/build.js",
