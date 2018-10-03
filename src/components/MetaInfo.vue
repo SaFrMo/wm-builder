@@ -4,6 +4,20 @@
 
         <textarea class="board-name" type="text" v-model="boardName"/>
 
+        <key-value-field
+            v-for="(meta, i) in $store.state.boardState.meta"
+            :key="meta.guid"
+            :index="i"
+            :kv="meta"
+            :update="val => $store.commit('UPDATE_BOARD_META', { index: i, key: val.key, val: val.val })"/>
+
+        <button
+            class="add-new"
+            @click="$store.commit('ADD_NEW_BOARD_META')">
+            New
+        </button>
+
+
     </section>
 
 </template>
@@ -34,8 +48,6 @@ export default {
 
 .meta-info {
     color: $white;
-    background-color: rgba($black, 0.4);
-    padding: 20px;
 
     .board-name {
         background: transparent;
@@ -49,6 +61,7 @@ export default {
         text-align: center;
         resize: vertical;
         font-family: $font-family;
+        background-color: rgba($black, 0.4);
 
         &:hover,
         &:focus {
