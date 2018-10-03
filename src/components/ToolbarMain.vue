@@ -4,55 +4,9 @@
 
         <meta-info/>
 
-        <div>
-            <!-- NSEW -->
-            <button
-                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [-1, 0])">
-                Move left
-            </button>
-            <button
-                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [1, 0])">
-                Move right
-            </button>
-            <button
-                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, 1])">
-                Move up
-            </button>
-            <button
-                @click="$store.commit('CHANGE_BOTTOM_LEFT_BY', [0, -1])">
-                Move down
-            </button>
+        <div class="controls-wrap">
 
-            <hr>
-
-            <!-- Zoom -->
-            <button
-                @click="$store.commit('CHANGE_GRID_SIZE_BY', -1)">
-                Zoom in
-            </button>
-            <button
-                @click="$store.commit('CHANGE_GRID_SIZE_BY', 1)">
-                Zoom out
-            </button>
-
-            <hr>
-
-            <!-- Recenter -->
-            <button
-                @click="$store.commit('RECENTER_GRID')">
-                Recenter
-            </button>
-
-            <hr>
-
-            <!-- New Board -->
-
-            <button
-                @click="$store.commit('RESET_BOARD')">
-                New Board
-            </button>
-
-            <hr>
+            <controls-section/>
 
             <!-- Export/Import -->
             <button
