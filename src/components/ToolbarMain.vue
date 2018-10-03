@@ -73,6 +73,7 @@ export default {
     background-color: skyblue;
     padding: 10px;
     box-sizing: border-box;
+    overflow-y: auto;
 
     * + * {
         margin-top: 5px;

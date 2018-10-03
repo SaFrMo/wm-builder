@@ -14,7 +14,7 @@
         <button
             class="add-new"
             @click="$store.commit('ADD_NEW_BOARD_META')">
-            New
+            Add More Info
         </button>
 
 
@@ -68,6 +68,11 @@ export default {
             background-color: $white;
             color: $black;
         }
+    }
+    .add-new {
+        background: $safe;
+        height: 25px;
+        font-size: 14px;
     }
 }
 </style>
