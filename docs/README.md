@@ -49,9 +49,24 @@ Interested in making a change/contribution to these docs? First of all, thanks -
 1.  Navigate to the location where you want the working files kept. For example, `cd ~/` or `cd ~/misc`.
 1.  Enter `git clone` and the pasted URL of your forked repo, then hit Enter.
 1.  After the forked repo has finished cloning to your machine, enter `cd wm-builder` and hit enter.
-1.  Enter `npm install` and hit enter. This will install the necessary files.
+1.  Enter `npm install` and hit enter. This will install the necessary files. (It's okay if there are some security warnings about the packages in use - these are from dependencies and are acceptable errors.)
 
-**TODO: Continue **
+**Now you've got your local installation up and running, so you'll refer to the next section now and when making future changes.**
+
+1.  In the Terminal, navigate to your `wm-builder` folder and run `npm run docs:dev`.
+1.  You should see a notice about the "VuePress dev server listening at localhost:8080". If not, try running `npm install` again.
+1.  Open up `localhost:8080` in your browser.
+1.  Make changes to any README.md files in the `docs/` directory in the `wm-builder` folder. When you save those changes, you should immediately see your browser reload with the new information in place.
+1.  Edit, save, commit, and push like you normally would!
+
+**When you're ready to see your changes merged into the live website, you'll make a _pull request_ (PR):**
+
+1.  Go to [the main repo](https://github.com/SaFrMo/wm-builder). You'll see a "New pull request" button below the code summary:
+
+    ![Image showing New Pull Request button highlighted](./images/new-pr.png)
+
+1.  Click on this button and follow the [new pull request](https://help.github.com/articles/creating-a-pull-request/) instructions.
+1.  Submit your new PR and wait for review!
 
 ## Code of Conduct
 
