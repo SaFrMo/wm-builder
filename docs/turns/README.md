@@ -24,6 +24,28 @@ Segments alternate between player- and computer-controlled characters.
 
 ## Events
 
-Segments and Turns all come with their own associated events, triggered in the main `GameManager` instance.
+Segments and Turns all come with their own associated events, triggered in the main `GameManager` instance. Events are triggered in the following order:
 
-(TODO: continue here)
+| Event Name                                    | Trigger                   |
+| --------------------------------------------- | ------------------------- |
+| OnTurnStart                                   | A Turn begins             |
+| OnSegmentStart                                | A Segment begins          |
+| OnSegmentEnd                                  | A Segment ends            |
+| (...more OnSegmentStart + OnSegmentEnd pairs) | Segments play out         |
+| OnTurnEnd                                     | All Segments are complete |
+
+### Adding and Removing Listeners
+
+To add or remove a listener for a segment or turn event:
+
+```cs
+void MyListener() {
+    // ...
+}
+
+// add the listener wherever it makes sense to do so:
+gameManager.turnManager.OnTurnStart += MyListener
+
+// and make sure to remove the listener when the host is destroyed:
+gameManager.turnManager.OnTurnStart -= MyListener
+```
