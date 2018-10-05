@@ -13,13 +13,13 @@ module.exports = {
             },
             {
                 text: 'API',
-                items: [
-                    { text: 'Home', link: '/api/' },
-                    { text: 'Board', link: '/api/board/' }
-                ]
+                link: '/api/'
             },
             { text: 'Level Builder', link: 'https://white-mask.com/builder/' }
         ],
         sidebar: 'auto'
+    },
+    markdown: {
+        toc: { includeLevel: [1, 2] }
     }
 }
