@@ -20,6 +20,6 @@ module.exports = {
         sidebar: 'auto'
     },
     markdown: {
-        toc: { includeLevel: [1, 2] }
+        toc: { includeLevel: [1, 2, 3] }
     }
 }
