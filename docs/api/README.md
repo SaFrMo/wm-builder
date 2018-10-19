@@ -302,11 +302,6 @@ The pivot's distance from the anchor on the y axis.
 
 Manages the partitions of the board.
 
-### `partitions`
-
--   `List<Partition>`
--   Reference to the Partitions on this board. Populated from Level.partitions.
-
 ### `anchor`
 
 -   Transform
@@ -316,6 +311,26 @@ Manages the partitions of the board.
 
 -   void
 -   Builds out the given PartitionData instances. Instantiates prefabs and populates as described in each passed PartitionData.
+
+### `BuildSequences(List:Sequence)`
+
+-   void
+-   Saves the list of Sequences to `sequences`.
+
+### `partitions`
+
+-   `List<Partition>`
+-   Reference to the Partitions on this board. Populated from Level.partitions.
+
+### `sequences`
+
+-   `List<Sequence>`
+-   All Sequences in this level.
+
+### `UpdateSequence()`
+
+-   void
+-   Updates the current Sequence. Checks for Sequences that should override the current one and starts them if necessary; otherwise continues the currently-active Sequence.
 
 ## EntityManager
 
