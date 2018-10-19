@@ -12,6 +12,10 @@ module.exports = {
                 ]
             },
             {
+                text: 'Common Tasks',
+                link: '/common-tasks/'
+            },
+            {
                 text: 'API',
                 link: '/api/'
             },
