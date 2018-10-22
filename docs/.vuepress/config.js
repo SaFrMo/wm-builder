@@ -7,6 +7,7 @@ module.exports = {
             {
                 text: 'Overviews',
                 items: [
+                    { text: 'Building Levels', link: '/building-levels/' },
                     { text: 'Level', link: '/level/' },
                     { text: 'Turns', link: '/turns/' }
                 ]
