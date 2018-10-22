@@ -430,6 +430,15 @@ The amount a given Partition moves from its default state.
 
 # Turns
 
+## SegmentSummary
+
+Keeps track of a single Segment. Populated as a Segment is played out and savable/loadable afterwards.
+
+### `actor`
+
+-   Actor
+-   Actor controlling this Segment
+
 ## TurnSummary
 
 Keeps track of Segments in a single Turn. Populated as a Turn is played and savable/loadable afterwards.
