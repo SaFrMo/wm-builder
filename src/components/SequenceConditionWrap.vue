@@ -13,14 +13,20 @@
             :key="i"
             class="single-condition">
 
-            <span class="subject">{{ condition.subject }}</span>
-            <span class="comparator">{{ condition.comparator }}</span>
-            <span class="value">{{ condition.value }}</span>
-            <span
-                v-if="showNumber(condition)"
-                class="number">
-                {{ condition.number }}
-            </span>
+            <div class="factors">
+                <span class="subject">{{ condition.subject }}</span>
+                <span class="comparator">{{ condition.comparator }}</span>
+                <span class="value">{{ condition.value }}</span>
+                <span
+                    v-if="showNumber(condition)"
+                    class="number">
+                    {{ condition.number }}
+                </span>
+            </div>
+
+            <div class="meta">
+                <span>Activation: {{condition.triggerType}}; when complete: {{ condition.onComplete }}.</span>
+            </div>
 
             <span class="remove-wrap">
                 <button
@@ -36,7 +42,7 @@
         <li class="add-condition-wrap">
 
             <!-- Subject -->
-            <select v-model="subject">
+            <select class="subject" v-model="subject">
                 <option disabled value="">Subject</option>
                 <option
                     v-for="(possibleSubject, i) in cmpSubjects"
@@ -46,7 +52,7 @@
             </select>
 
             <!-- Comparator -->
-            <select v-model="comparator">
+            <select class="comparator" v-model="comparator">
                 <option disabled value="">Comparator</option>
                 <option
                     v-for="(possibleComparator, i) in cmpComparators"
@@ -56,7 +62,7 @@
             </select>
 
             <!-- Value -->
-            <select v-model="value">
+            <select class="value" v-model="value">
                 <option disabled value="">Value</option>
                 <option
                     v-for="(possibleValue, i) in cmpValues"
@@ -69,6 +75,29 @@
                 v-model="number"
                 v-if="cmpShowNumber"
                 class="number-input"/>
+
+            <div class="trigger-type">
+                <select
+                    v-model="triggerType">
+                    <option disabled value="">Type</option>
+                    <option
+                        v-for="(possibleValue, i) in triggerTypes"
+                        :key="i">
+                        {{ possibleValue }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="on-complete">
+                <select v-model="onComplete">
+                    <option disabled value="">When Complete...</option>
+                    <option
+                        v-for="(possibleValue, i) in onCompleteActions"
+                        :key="i">
+                        {{ possibleValue }}
+                    </option>
+                </select>
+            </div>
 
             <!-- Add button -->
             <button class="add-condition" @click="addCondition">Add</button>
@@ -91,6 +120,8 @@ export default {
     },
     data() {
         return {
+            triggerTypes: ['toggle', 'pressure'],
+            onCompleteActions: ['continue', 'loop'],
             conditions: {
                 subjects: ['Sequence', 'Sequence step', 'Random number'],
                 comparators: [
@@ -108,7 +139,9 @@ export default {
             subjectId: -1,
             comparator: '',
             value: '',
-            number: 0
+            number: 0,
+            triggerType: '',
+            onComplete: ''
         }
     },
     methods: {
@@ -118,7 +151,9 @@ export default {
                 subjectId: this.subjectId,
                 comparator: this.comparator,
                 value: this.value,
-                number: this.number
+                number: this.number,
+                onComplete: this.onComplete,
+                triggerType: this.triggerType
             })
 
             this.subject = this.comparator = this.value = ''
@@ -243,27 +278,62 @@ export default {
     padding: 0;
 
     .single-condition {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-areas:
+            'factors remove'
+            'meta remove';
+        grid-auto-flow: column;
+        margin: 10px auto;
+        border-left: 2px solid $white;
+        padding-left: 10px;
 
-        & > * {
-            margin-bottom: 5px;
-        }
-        & > * + * {
-            margin-left: 5px;
-        }
         .remove-wrap {
-            flex: 1;
             text-align: right;
+            grid-area: remove;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
         }
     }
     .add-condition-wrap {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-areas:
+            'subj comp valu numb'
+            'trig onco .    addc';
+        grid-template-columns: repeat(4, 1fr);
 
         select,
         button {
             flex: 1;
+        }
+        .subject {
+            grid-area: subj;
+        }
+        .comparator {
+            grid-area: comp;
+        }
+        .value {
+            grid-area: valu;
+        }
+        .number-input {
+            grid-area: numb;
+        }
+        .trigger-type {
+            grid-area: trig;
+        }
+        .on-complete {
+            grid-area: onco;
+            select,
+            option {
+                width: 100%;
+            }
+        }
+        .add-condition {
+            grid-area: addc;
+            select,
+            option {
+                width: 100%;
+            }
         }
     }
     .add-condition {

@@ -5,4 +5,6 @@ interface Condition {
     comparator: string
     value: string
     number: number
+    triggerType: string
+    onComplete: string
 }
