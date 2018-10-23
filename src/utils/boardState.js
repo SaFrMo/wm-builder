@@ -20,7 +20,7 @@ const defaultState = {
 
     // board meta info
     name: 'Board',
-    guid: Date.now(),
+    guid: Date.now().toString(),
 
     // should be in { key, value } format for each value in array
     meta: [],
@@ -38,7 +38,7 @@ export default {
 
         // board meta info
         name: 'Board',
-        guid: Date.now(),
+        guid: Date.now().toString(),
 
         // should be in { key, value } format for each value in array
         meta: [],
@@ -52,7 +52,7 @@ export default {
                 state[key] = defaultState[key]
             })
 
-            state.guid = Date.now()
+            state.guid = Date.now().toString()
         },
 
         // save/load
