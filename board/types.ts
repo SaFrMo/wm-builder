@@ -4,15 +4,6 @@ interface KeyValuePair {
     value: string
 }
 
-// Condition for a BoardSequence
-interface Condition {
-    subject: string
-    subjectId: number
-    comparator: string
-    value: string
-    number: number
-}
-
 // Generic x-y Vector2
 interface Vector2 {
     x: number

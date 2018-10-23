@@ -19,6 +19,13 @@
                 Import Level
             </button>
 
+            <input
+                class="upload"
+                type="file"
+                ref="upload"
+                @change="uploadFile"
+                accept=".json"/>
+
             <!-- Hidden element to export board -->
             <a
                 aria-hidden="true"
@@ -38,8 +45,13 @@ import Vue from 'vue'
 export default {
     data() {
         return {
-            dataString: ''
+            dataString: '',
+            reader: null
         }
+    },
+    mounted() {
+        this.reader = new FileReader()
+        this.reader.onload = this.fileLoaded
     },
     methods: {
         async startExport() {
@@ -54,7 +66,19 @@ export default {
             // Download json
             this.$refs.downloadLink.click()
         },
-        startImport() {}
+        startImport() {
+            this.$refs.upload.click()
+        },
+        uploadFile(evt) {
+            const files = this.$refs.upload.files
+            if (files.length) {
+                const file = files[0]
+                this.reader.readAsText(file, 'UTF-8')
+            }
+        },
+        fileLoaded() {
+            this.$store.commit('LOAD_LEVEL', this.reader.result)
+        }
     }
 }
 </script>
@@ -63,10 +87,6 @@ export default {
 @import 'src/styles/vars';
 
 .toolbar-main {
-    // position: absolute;
-    // top: 0;
-    // bottom: 0;
-    // left: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -97,6 +117,10 @@ export default {
 
     hr {
         opacity: 0;
+    }
+
+    .upload {
+        display: none;
     }
 }
 </style>
