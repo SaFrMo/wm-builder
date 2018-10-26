@@ -1,6 +1,7 @@
 module.exports = {
     title: 'WM Docs',
     description: 'Dev onboarding and documentation for The White Mask',
+    head: [['script', { src: '/jszip.min.js' }]],
     themeConfig: {
         nav: [
             { text: 'Home', link: '/' },

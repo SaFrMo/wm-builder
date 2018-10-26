@@ -45,7 +45,9 @@
 </template>
 
 <script>
+/* global JSZip */
 import Vue from 'vue'
+import saveAs from 'file-saver'
 
 export default {
     data() {
@@ -74,24 +76,31 @@ export default {
             }
         },
         async exportItem() {
-            // Build data from board state
-            this.dataString = `data:text/json;charset=utf-8,`
+            const zip = new JSZip()
 
-            // get relevant data
             const toSave = { ...this.$data }
-            // delete anything we don't need
+
+            // delete anything we don't want to save
             delete toSave.dataString
 
-            // save data to string
-            this.dataString += encodeURIComponent(JSON.stringify(toSave))
+            // delete any non-text
+            delete toSave.icon
 
-            // Let data string populate
-            await Vue.nextTick()
-            // Download json
-            this.$refs.downloadLink.click()
+            // save the text
+            zip.file(`${this.name}.json`, JSON.stringify(toSave))
 
-            // Next item needs to be unique, so let's generate a new guid
-            this.guid = Date.now()
+            // save the icon
+            const imgString = this.icon.replace(
+                /^data:image\/(png|jpg|jpeg);base64,/,
+                ''
+            )
+            zip.file('icon.png', imgString, { base64: true })
+
+            // create the zip
+            const res = await zip.generateAsync({ type: 'blob' })
+
+            // download!
+            saveAs(res, 'example.zip')
         }
     }
 }
