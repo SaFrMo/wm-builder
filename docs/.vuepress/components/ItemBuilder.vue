@@ -11,6 +11,12 @@
             <label for="name">Name</label>
             <input type="text" id="name" v-model="name"/>
 
+            <div class="icon">
+                <label for="icon">Icon</label>
+                <img :src="icon" class="full-width"/>
+            </div>
+            <input type="file" @change="iconUploaded" ref="icon"/>
+
             <div>
                 <label for="guid">GUID</label>
                 <button @click="guid = Date.now()">Generate New</button>
@@ -46,6 +52,7 @@ export default {
         return {
             // values to be serialized
             name: '',
+            icon: '',
             guid: Date.now(),
             description: '',
             value: 0,
@@ -55,6 +62,17 @@ export default {
         }
     },
     methods: {
+        iconUploaded() {
+            // get result
+            const reader = new FileReader()
+            reader.onload = () => {
+                this.icon = reader.result
+            }
+            if (this.$refs.icon) {
+                this.$refs.icon.blur()
+                reader.readAsDataURL(this.$refs.icon.files[0])
+            }
+        },
         async exportItem() {
             // Build data from board state
             this.dataString = `data:text/json;charset=utf-8,`
@@ -88,6 +106,11 @@ export default {
 
         textarea {
             grid-column: 1 / span 2;
+        }
+        .icon img {
+            width: 128px;
+            height: auto;
+            display: block;
         }
     }
 }
