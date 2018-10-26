@@ -1,6 +1,21 @@
 # API
 
-[[toc]]
+-   [Actors](#actors)
+    -   MonoBehaviour-based data about the players in a game - usually the player and the computer
+-   [Board](#board)
+    -   MonoBehaviour-based data about the board as it currently exists
+-   [Builders](#builders)
+    -   MonoBehaviour-based scripts that build out different sections of the board when the level is first loaded
+-   [Data](#data)
+    -   Non-MonoBehaviour data that can be serialized as JSON files
+-   [Entities](#entities)
+    -   MonoBehaviour-based data for anything that can exist in a Cell on a Board
+-   [Level](#level)
+    -   MonoBehaviour-based data about a level as it exists right when it's loaded
+-   [Managers](#managers)
+    -   MonoBehaviour-based controllers where most of the action happens
+-   [Turns](#turns)
+    -   MonoBehaviour-based Slots for player and computer action
 
 ## Format
 
