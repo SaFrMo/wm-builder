@@ -18,12 +18,18 @@ module.exports = {
                     {
                         text: 'Hacking',
                         items: [
+                            { text: 'Level', link: '/level/' },
+                            { text: 'Entities', link: '/entities/' },
+                            { text: 'Turns', link: '/turns/' }
+                        ]
+                    },
+                    {
+                        text: 'Tutorials',
+                        items: [
                             {
                                 text: 'Building Levels',
                                 link: '/building-levels/'
-                            },
-                            { text: 'Level', link: '/level/' },
-                            { text: 'Turns', link: '/turns/' }
+                            }
                         ]
                     }
                 ]
