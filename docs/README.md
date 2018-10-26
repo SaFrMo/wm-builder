@@ -4,7 +4,7 @@ We're building a game based on [Zedeck Siew's](http://zedecksiew.tumblr.com/) st
 
 If you're brand new, read the [pitch](#pitch) and the [Code of Conduct](#code-of-conduct) below. Then:
 
--   If you're a developer, read the [tech details](#tech-details) and then head over to the [Level overview](/level/).
+-   If you're a developer, read the [tech details](#tech-details), then head over to the [main overview](/overview/).
 -   If you're a artist, head over to the [Art overview](/art/).
 
 ## Pitch

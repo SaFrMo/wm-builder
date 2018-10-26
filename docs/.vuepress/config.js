@@ -8,9 +8,24 @@ module.exports = {
                 text: 'Overviews',
                 items: [
                     { text: 'Home', link: '/overview/' },
-                    { text: 'Building Levels', link: '/building-levels/' },
-                    { text: 'Level', link: '/level/' },
-                    { text: 'Turns', link: '/turns/' }
+                    {
+                        text: 'Management',
+                        items: [
+                            { text: 'Home Base', link: '/home-base/' },
+                            { text: 'Inventory', link: '/inventory/' }
+                        ]
+                    },
+                    {
+                        text: 'Hacking',
+                        items: [
+                            {
+                                text: 'Building Levels',
+                                link: '/building-levels/'
+                            },
+                            { text: 'Level', link: '/level/' },
+                            { text: 'Turns', link: '/turns/' }
+                        ]
+                    }
                 ]
             },
             {
