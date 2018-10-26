@@ -4,41 +4,63 @@
 
         <h2>Item Builder</h2>
 
-        <p>(Not yet complete! Use at your own risk!)</p>
-
         <div class="builder-wrap">
 
+            <!--Name-->
             <label for="name">Name</label>
             <input type="text" id="name" v-model="name"/>
 
+            <!--Icon-->
             <div class="icon">
                 <label for="icon">Icon</label>
                 <img :src="icon" class="full-width"/>
             </div>
             <input type="file" @change="iconUploaded" ref="icon"/>
 
+            <!--GUID-->
             <div>
                 <label for="guid">GUID</label>
                 <button @click="guid = Date.now()">Generate New</button>
             </div>
             <input readonly disabled type="text" id="guid" v-model="guid"/>
 
+            <!--Description-->
             <label for="description">Description</label>
             <textarea id="description" v-model="description"/>
 
+            <!--Value-->
             <label for="value">Value</label>
             <input type="number" id="value" v-model="value"/>
 
-            <a
-                aria-hidden="true"
-                v-show="false"
-                ref="downloadLink"
-                :href="dataString"
-                :download="name + '.json'"/>
+            <!--Type-->
+            <label for="item-type">I'm a(n)...</label>
+            <select v-model="itemType" id="item-type">
+                <option disabled value="">Select one</option>
+                <option v-for="(type, i) in itemTypes" :key="i" :value="type">{{ type }}</option>
+            </select>
+
+            <!--Details-->
+            <div class="item-details" v-if="itemType">
+
+                <!--Label-->
+                <h3 class="stat-label">Stats</h3>
+
+                <!--Details-->
+                <div
+                    v-for="(key, i) in Object.keys(details)"
+                    :key="i"
+                    class="detail">
+
+                    <label :for="key">{{ uppercase(key) }}</label>
+                    <nested-input type="text" v-model="details[key]"/>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <button @click="exportItem">Download Item</button>
+        <button class="export" @click="exportItem">Download Item</button>
 
     </section>
 
@@ -48,6 +70,8 @@
 /* global JSZip */
 import Vue from 'vue'
 import saveAs from 'file-saver'
+import defaults from './items'
+import toCapitalCase from 'to-capital-case'
 
 export default {
     data() {
@@ -58,12 +82,19 @@ export default {
             guid: Date.now(),
             description: '',
             value: 0,
+            details: {},
 
             // other values
-            dataString: ''
+            dataString: '',
+            itemType: '',
+            itemTypes: Object.keys(defaults).sort(),
+            defaults
         }
     },
     methods: {
+        uppercase(val) {
+            return toCapitalCase(val)
+        },
         iconUploaded() {
             // get result
             const reader = new FileReader()
@@ -82,6 +113,9 @@ export default {
 
             // delete anything we don't want to save
             delete toSave.dataString
+            delete toSave.itemType
+            delete toSave.itemTypes
+            delete toSave.defaults
 
             // delete any non-text
             delete toSave.icon
@@ -102,6 +136,11 @@ export default {
             // download!
             saveAs(res, 'example.zip')
         }
+    },
+    watch: {
+        itemType(newVal) {
+            this.details = { ...this.defaults[newVal] }
+        }
     }
 }
 </script>
@@ -121,6 +160,17 @@ export default {
             height: auto;
             display: block;
         }
+        .stat-label {
+            margin: 5px 0 10px;
+        }
+        .detail {
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+        }
+    }
+
+    .export {
+        margin-top: 15px;
     }
 }
 </style>
