@@ -13,6 +13,7 @@
         "eject": "rimraf ./dist && npm run build && cd ./docs && npm run build && mv ./.vuepress/dist/** ../dist"
     },
     "dependencies": {
+        "case": "^1.5.5",
         "fh-components": "^1.2.96",
         "file-saver": "^2.0.0-rc.4",
         "lodash": "^4.17.11",
@@ -60,7 +61,7 @@
         "source-map-loader": "^0.2.4",
         "typescript": "^3.1.1",
         "uglifyjs-webpack-plugin": "^1.1.1",
-        "url-loader": "^0.5.8",
+        "url-loader": "^1.1.2",
         "vue-loader": "^13.3.0",
         "vue-style-loader": "^3.0.1",
         "vue-template-compiler": "^2.5.2",
