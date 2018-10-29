@@ -2,8 +2,6 @@
 
     <section class="item-builder">
 
-        <h2>Item Builder</h2>
-
         <div class="builder-wrap">
 
             <!--Name-->
@@ -147,6 +145,8 @@ export default {
 
 <style lang="scss">
 .item-builder {
+    margin-top: 20px;
+
     .builder-wrap {
         display: grid;
         grid-template-columns: repeat(2, 50%);
