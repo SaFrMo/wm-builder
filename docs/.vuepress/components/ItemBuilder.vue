@@ -126,13 +126,13 @@ export default {
                 /^data:image\/(png|jpg|jpeg);base64,/,
                 ''
             )
-            zip.file('icon.png', imgString, { base64: true })
+            zip.file(`${this.guid}.png`, imgString, { base64: true })
 
             // create the zip
             const res = await zip.generateAsync({ type: 'blob' })
 
             // download!
-            saveAs(res, 'example.zip')
+            saveAs(res, `${this.name}.zip`)
         }
     },
     watch: {
