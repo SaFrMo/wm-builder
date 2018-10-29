@@ -15,6 +15,8 @@
             </div>
             <input type="file" @change="iconUploaded" ref="icon"/>
 
+            <!--TODO: Add model uploaders-->
+
             <!--GUID-->
             <div>
                 <label for="guid">GUID</label>
