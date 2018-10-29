@@ -10,6 +10,8 @@
     -   Non-MonoBehaviour data that can be serialized as JSON files
 -   [Entities](#entities)
     -   MonoBehaviour-based data for anything that can exist in a Cell on a Board
+-   [Items](#items)
+    -   Non-MonoBehaviour data for anything that can be owned by an Actor.
 -   [Level](#level)
     -   MonoBehaviour-based data about a level as it exists right when it's loaded
 -   [Managers](#managers)
@@ -184,6 +186,10 @@ Data on a particular board state.
 
 -   void
 -   Behavior when cell is interacted with.
+
+## Items
+
+**TODO:** Document items
 
 ## Level
 
