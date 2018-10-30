@@ -28,6 +28,14 @@
             <label for="description">Description</label>
             <textarea id="description" v-model="description"/>
 
+            <!-- Uses -->
+            <label for="useCount">
+                <div>Uses Before Breaking</div>
+                <div>(-1 = unbreakable)</div>
+            </label>
+            <input type="number" id="useCount" v-model="useCount"/>
+
+
             <!--Value-->
             <label for="value">Value</label>
             <input type="number" id="value" v-model="value"/>
@@ -82,6 +90,7 @@ export default {
             guid: Date.now(),
             description: '',
             value: 0,
+            useCount: -1,
             details: {},
 
             // other values
