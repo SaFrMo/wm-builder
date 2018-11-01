@@ -91,11 +91,12 @@ export default {
             description: '',
             value: 0,
             useLimit: -1,
+            itemType: '',
             details: {},
+            meta: [],
 
             // other values
             dataString: '',
-            itemType: '',
             itemTypes: Object.keys(defaults).sort(),
             defaults
         }
@@ -122,7 +123,6 @@ export default {
 
             // delete anything we don't want to save
             delete toSave.dataString
-            delete toSave.itemType
             delete toSave.itemTypes
             delete toSave.defaults
 

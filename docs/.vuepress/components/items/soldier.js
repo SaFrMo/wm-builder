@@ -1,4 +1,5 @@
 export default {
-    attackType: 10,
-    defense: 5
+    attack: 2,
+    defense: 0,
+    hp: 3
 }
