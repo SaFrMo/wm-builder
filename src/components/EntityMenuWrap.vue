@@ -39,7 +39,11 @@ export default {
             return _get(this.entities, `[${this.selectedEntityIndex}]`, false)
         },
         entities() {
-            return this.$root.entities
+            return this.$root.entities.concat({
+                name: 'Pivot Point',
+                description: "Set this cell as the partition's pivot point",
+                isPivot: true
+            })
         }
     }
 }

@@ -89,6 +89,22 @@ export const mutations = {
             x: partition.position.x + delta.x,
             y: partition.position.y + delta.y
         }
+    },
+    SET_PIVOT_POINT: (state, { guid, cell }) => {
+        const partition = findPartition(state, guid)
+
+        const oldX = partition.pivot.x
+        const oldY = partition.pivot.y
+
+        // set new pivot point
+        partition.pivot.x = cell.x
+        partition.pivot.y = cell.y
+
+        // calculate change
+        const deltaX = partition.pivot.x - oldX
+        partition.position.x += deltaX
+        const deltaY = partition.pivot.y - oldY
+        partition.position.y += deltaY
     }
 }
 

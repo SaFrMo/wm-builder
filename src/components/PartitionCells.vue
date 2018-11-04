@@ -8,9 +8,9 @@
             v-if="isVisible(i + 1)"
             :key="i"
             @click="getEntity(i + 1).length ? null : startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
-            class="single-cell">
+            :class="getClasses(i)">
 
-            {{ getX(i + 1) + ', ' + getY(i + 1) }}
+            {{ getX(i) + ', ' + getY(i + 1) }}
 
             <span v-if="getEntity(i + 1).length" class="entity-contents">
                 <span class="entity">
@@ -91,7 +91,7 @@ export default {
     },
     methods: {
         getX(i) {
-            return (i - 1) % this.partition.width
+            return i % this.partition.width
         },
         getY(i) {
             i = this.cmpTotalCells - i
@@ -108,11 +108,19 @@ export default {
             )
         },
         addEntity(entity) {
-            this.$store.commit('ADD_ENTITY', {
-                guid: this.partition.guid,
-                coordinates: this.currentCell,
-                ...entity
-            })
+            if (entity.isPivot) {
+                this.$store.commit('SET_PIVOT_POINT', {
+                    guid: this.partition.guid,
+                    cell: this.currentCell
+                })
+            } else {
+                this.$store.commit('ADD_ENTITY', {
+                    guid: this.partition.guid,
+                    coordinates: this.currentCell,
+                    ...entity
+                })
+            }
+
             this.adding = false
         },
         removeEntity(i) {
@@ -135,6 +143,16 @@ export default {
             const y = this.getY(i)
 
             return x < this.visibleWidth && x >= 0
+        },
+        getClasses(i) {
+            return [
+                'single-cell',
+                {
+                    'is-pivot':
+                        this.partition.pivot.x == this.getX(i + 1) &&
+                        this.partition.pivot.y == this.getY(i + 1)
+                }
+            ]
         }
     }
 }
@@ -161,6 +179,10 @@ export default {
         justify-content: center;
         overflow: hidden;
         position: relative;
+
+        &.is-pivot {
+            background-color: rgba(green, 0.5);
+        }
 
         .entity-contents {
             @include fill;

@@ -1,7 +1,7 @@
 <template>
 
     <button
-        :class="['board-cell', { separator }, { center: x == 0 && y == 0 }]"
+        :class="classes"
         @click="handleClick">
 
         <span class="coordinates">
@@ -29,6 +29,13 @@ export default {
                 this.x % this.$store.state.xLines == 0 ||
                 this.y % this.$store.state.yLines == 0
             )
+        },
+        classes() {
+            return [
+                'board-cell',
+                { separator: this.separator },
+                { center: this.x == 0 && this.y == 0 }
+            ]
         }
     },
     methods: {
