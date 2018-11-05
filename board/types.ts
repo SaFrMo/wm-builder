@@ -16,4 +16,5 @@ interface Delta {
     id: string
     x: number
     y: number
+    rotation: number
 }

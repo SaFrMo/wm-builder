@@ -21,6 +21,12 @@
 
         </section>
 
+        <!-- Change rotation arrows -->
+        <div class="rotation-wrap">
+            <button class="rotate counterclockwise" @click="changeRotation(-90)">⤿</button>
+            <button class="rotate clockwise" @click="changeRotation(90)">⤾</button>
+        </div>
+
     </section>
 
 </template>
@@ -52,6 +58,12 @@ export default {
                 direction,
                 delta
             })
+        },
+        changeRotation(delta) {
+            this.$store.commit('CHANGE_PARTITION_ROTATION', {
+                guid: this.guid,
+                delta
+            })
         }
     }
 }
@@ -63,6 +75,23 @@ export default {
 .partition-directions {
     @include fill;
 
+    button {
+        background-color: $alt;
+        color: $white;
+        font-size: 16px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        padding: 5px;
+
+        &:hover,
+        &:focus {
+            background-color: $dark-alt;
+        }
+    }
+
     // Directions
     .direction {
         position: absolute;
@@ -71,30 +100,13 @@ export default {
         justify-content: space-between;
         transition: transform 0.2s 0.2s;
 
-        button {
-            background-color: $alt;
-            color: $white;
-            font-size: 16px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            padding: 5px;
-
-            &:hover,
-            &:focus {
-                background-color: $dark-alt;
-            }
-        }
-
         // top/bottom
         &.up,
         &.down {
             width: calc(100% - 45px);
             right: 0;
             left: 0;
-            // transform: scaleY(0);
+            transform: scaleY(0);
 
             button {
                 width: 100%;
@@ -120,7 +132,7 @@ export default {
             bottom: 0;
             height: calc(100% - 45px);
             flex-direction: column;
-            // transform: scaleX(0);
+            transform: scaleX(0);
 
             button {
                 height: 50%;
@@ -133,6 +145,27 @@ export default {
         &.left {
             right: 100%;
             transform-origin: right center;
+        }
+    }
+
+    // Rotation
+    .rotation-wrap {
+        position: absolute;
+        display: flex;
+        right: $edit-info-width;
+        bottom: 0;
+        z-index: 5;
+
+        button {
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: darken($dark-partition, 20%);
+
+            &:hover,
+            &:focus {
+                background-color: $dark-partition;
+            }
         }
     }
 }

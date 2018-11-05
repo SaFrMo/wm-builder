@@ -17,6 +17,8 @@ $dark-danger: darken($danger, 20%);
 
 $safe: lighten(seagreen, 10%);
 
+$edit-info-width: 100px;
+
 @mixin fill {
     position: absolute;
     top: 0;

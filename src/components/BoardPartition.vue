@@ -195,6 +195,8 @@ export default {
         position: absolute;
         right: 0;
         bottom: 0;
+        width: $edit-info-width;
+        height: 40px;
         z-index: 5;
 
         &:hover,

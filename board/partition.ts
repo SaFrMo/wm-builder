@@ -9,6 +9,7 @@ export default class Partition {
     name: string
     guid: string
     entities: Array<Entity>
+    rotation: number
 
     constructor(opts = {}) {
         // default picker
@@ -31,6 +32,9 @@ export default class Partition {
 
         // points of interest
         this.entities = []
+
+        // rotation, in degrees
+        this.rotation = 0
     }
 
     addEntity(payload) {
