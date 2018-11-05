@@ -105,10 +105,6 @@ export const mutations = {
         partition.position.x += deltaX
         const deltaY = partition.pivot.y - oldY
         partition.position.y += deltaY
-    },
-    CHANGE_PARTITION_ROTATION: (state, { guid, delta }) => {
-        const partition = findPartition(state, guid)
-        partition.rotation += delta
     }
 }
 
@@ -166,5 +162,19 @@ export const actions = {
                 })
             }
         }
+    },
+    CHANGE_PARTITION_ROTATION: (
+        { state, commit, rootState },
+        { guid, delta }
+    ) => {
+        // get current BoardState
+        const currentState = state.states[rootState.selectedBoardStateIndex]
+        // apply rotation
+        currentState.deltas.push({
+            guid,
+            x: 0,
+            y: 0,
+            rotation: delta
+        })
     }
 }

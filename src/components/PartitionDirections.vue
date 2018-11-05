@@ -22,7 +22,7 @@
         </section>
 
         <!-- Change rotation arrows -->
-        <div class="rotation-wrap">
+        <div class="rotation-wrap" v-if="$store.state.selectedBoardStateIndex != 0">
             <button class="rotate counterclockwise" @click="changeRotation(-90)">⤿</button>
             <button class="rotate clockwise" @click="changeRotation(90)">⤾</button>
         </div>
@@ -60,7 +60,7 @@ export default {
             })
         },
         changeRotation(delta) {
-            this.$store.commit('CHANGE_PARTITION_ROTATION', {
+            this.$store.dispatch('CHANGE_PARTITION_ROTATION', {
                 guid: this.guid,
                 delta
             })

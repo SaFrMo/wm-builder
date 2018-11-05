@@ -92,17 +92,24 @@ export default {
             gridY -= this.partition.height - 1
             gridY += this.partition.pivot.y
 
-            // apply deltas from current state, if any
+            // are we in a non-default BoardState?
             const currIndex = this.$store.state.selectedBoardStateIndex
             if (currIndex !== 0) {
+                // get the state
                 const boardState = this.$store.state.boardState.states[
                     currIndex
                 ]
+
+                // if the state exists...
                 if (boardState) {
+                    // ...look for the deltas...
                     const deltas = boardState.deltas.find(
                         x => x.guid === this.partition.guid
                     )
+
+                    // ...and if the deltas exist...
                     if (deltas) {
+                        // apply X and Y deltas
                         gridX += deltas.x
                         gridY -= deltas.y
                     }
