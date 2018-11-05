@@ -3,23 +3,24 @@
     <section class="partition-cells" :style="cmpStyle">
 
         <component
-            :is="getEntity(i + 1).length ? 'span': 'button'"
+            :is="getEntity(i).length ? 'span': 'button'"
             v-for="(cell, i) in cmpTotalCells"
-            v-if="isVisible(i + 1)"
+            v-if="isVisible(i)"
             :key="i"
-            @click="getEntity(i + 1).length ? null : startAdding($event, { x: getX(i + 1), y: getY(i + 1) })"
+            :data-i="i"
+            @click="getEntity(i).length ? null : startAdding($event, { x: getX(i), y: getY(i) })"
             :class="getClasses(i)">
 
-            {{ getX(i) + ', ' + getY(i + 1) }}
+            {{ getX(i) + ', ' + getY(i) }}
 
-            <span v-if="getEntity(i + 1).length" class="entity-contents">
+            <span v-if="getEntity(i).length" class="entity-contents">
                 <span class="entity">
-                    {{ getEntity(i + 1).map(entity => entity.name).join(',') }}
+                    {{ getEntity(i).map(entity => entity.name).join(',') }}
                 </span>
 
                 <button
                     class="remove"
-                    @click.stop="removeEntity(i + 1)">
+                    @click.stop="removeEntity(i)">
                     Remove
                 </button>
             </span>
@@ -94,8 +95,15 @@ export default {
             return i % this.partition.width
         },
         getY(i) {
-            i = this.cmpTotalCells - i
-            return Math.floor(i / this.partition.height)
+            let n = this.cmpTotalCells - i
+
+            // something happens on the first column that adds 1 to the Y position -
+            // not sure why it happens, but this fixes it
+            if (i % this.partition.width == 0) {
+                n -= this.partition.width
+            }
+
+            return Math.floor(n / this.partition.height)
         },
         getEntity(i) {
             const x = this.getX(i)
@@ -149,8 +157,8 @@ export default {
                 'single-cell',
                 {
                     'is-pivot':
-                        this.partition.pivot.x == this.getX(i + 1) &&
-                        this.partition.pivot.y == this.getY(i + 1)
+                        this.partition.pivot.x == this.getX(i) &&
+                        this.partition.pivot.y == this.getY(i)
                 }
             ]
         }
