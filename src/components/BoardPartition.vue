@@ -121,11 +121,11 @@ export default {
                     // ...and if the deltas exist...
                     deltas.forEach(d => {
                         // apply X and Y deltas
-                        gridX += d.x
-                        gridY -= d.y
+                        gridX += d.x || 0
+                        gridY -= d.y || 0
 
                         // apply rotation
-                        rotation += d.rotation
+                        rotation += d.rotation || 0
                     })
                 }
             }
