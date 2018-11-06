@@ -67,18 +67,21 @@ export default {
 .board-view {
     margin: auto;
     width: 100%;
-    height: 100%;
+    height: 0;
     position: relative;
-    padding: 40px;
+    padding-bottom: 100%;
     box-sizing: border-box;
 
     .grid {
         display: grid;
         grid-gap: 10px;
-        width: 100%;
-        height: 100%;
+        width: calc(100% - 80px);
+        height: calc(100% - 80px);
         margin: auto;
-        position: relative;
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        overflow: hidden;
     }
     .cell {
         width: 100%;

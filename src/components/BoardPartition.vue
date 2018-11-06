@@ -81,6 +81,17 @@ export default {
     },
     computed: {
         cmpStyle() {
+            // starting rotation
+            let rotation = 0
+
+            // pivot point
+            const pivotXPct =
+                (100 / this.partition.width / 2) * (this.partition.pivot.x + 1)
+            const pivotYPct =
+                100 -
+                (100 / this.partition.height / 2) * (this.partition.pivot.y + 1)
+            const transformOrigin = `calc(${pivotXPct}% - 3px) calc(${pivotYPct}% + 3px)`
+
             // find the position on the visible grid
             const bottomLeftX = this.$store.state.bottomLeft.x
             let gridX = this.partition.position.x - bottomLeftX + 1
@@ -103,16 +114,19 @@ export default {
                 // if the state exists...
                 if (boardState) {
                     // ...look for the deltas...
-                    const deltas = boardState.deltas.find(
+                    const deltas = boardState.deltas.filter(
                         x => x.guid === this.partition.guid
                     )
 
                     // ...and if the deltas exist...
-                    if (deltas) {
+                    deltas.forEach(d => {
                         // apply X and Y deltas
-                        gridX += deltas.x
-                        gridY -= deltas.y
-                    }
+                        gridX += d.x
+                        gridY -= d.y
+
+                        // apply rotation
+                        rotation += d.rotation
+                    })
                 }
             }
 
@@ -157,7 +171,9 @@ export default {
             }
 
             return {
-                'grid-area': gridArea
+                'grid-area': gridArea,
+                transform: `rotate(${rotation}deg)`,
+                'transform-origin': transformOrigin
             }
         },
         cmpVisibleWidth() {

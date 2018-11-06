@@ -143,8 +143,9 @@ export default {
         startAdding(evt, cellCoords) {
             this.currentCell = cellCoords
             this.adding = true
-            this.left = evt.clientX
-            this.top = evt.clientY
+            const { top, left } = this.$el.getBoundingClientRect()
+            this.left = evt.clientX - left
+            this.top = evt.clientY - top
         },
         isVisible(i) {
             const x = this.getX(i)
