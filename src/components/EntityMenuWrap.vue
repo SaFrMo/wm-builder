@@ -56,6 +56,7 @@ export default {
     background-color: $white;
     padding: 10px;
     z-index: 15;
+    position: fixed;
 
     // Close button
     .close {

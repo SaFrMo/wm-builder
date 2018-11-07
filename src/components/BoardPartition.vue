@@ -13,7 +13,9 @@
             :start-x="startX"
             :start-y="startY"
             :visible-width="cmpVisibleWidth"
-            :visible-height="cmpVisibleHeight"/>
+            :visible-height="cmpVisibleHeight"
+            :rotation="rotation"
+            :origin="transformOrigin"/>
 
         <!-- Toggle meta -->
         <button class="toggle-meta" @click="metaVisible = !metaVisible">
@@ -62,7 +64,10 @@ export default {
             fullWidth: 0,
             fullHeight: 0,
             startX: 0,
-            startY: 0
+            startY: 0,
+
+            // Rotation info
+            rotation: 0
         }
     },
     props: {
@@ -80,17 +85,18 @@ export default {
         this.displayName = this.partition.name
     },
     computed: {
-        cmpStyle() {
-            // starting rotation
-            let rotation = 0
-
+        transformOrigin() {
             // pivot point
             const pivotXPct =
                 (100 / this.partition.width / 2) * (this.partition.pivot.x + 1)
             const pivotYPct =
                 100 -
                 (100 / this.partition.height / 2) * (this.partition.pivot.y + 1)
-            const transformOrigin = `calc(${pivotXPct}% - 3px) calc(${pivotYPct}% + 3px)`
+            return `calc(${pivotXPct}% - 3px) calc(${pivotYPct}% + 3px)`
+        },
+        cmpStyle() {
+            // starting rotation
+            let rotation = 0
 
             // find the position on the visible grid
             const bottomLeftX = this.$store.state.bottomLeft.x
@@ -118,6 +124,9 @@ export default {
                         x => x.guid === this.partition.guid
                     )
 
+                    // reset rotation
+                    this.rotation = 0
+
                     // ...and if the deltas exist...
                     deltas.forEach(d => {
                         // apply X and Y deltas
@@ -126,6 +135,7 @@ export default {
 
                         // apply rotation
                         rotation += d.rotation || 0
+                        this.rotation += d.rotation || 0
                     })
                 }
             }
@@ -171,9 +181,9 @@ export default {
             }
 
             return {
-                'grid-area': gridArea,
-                transform: `rotate(${rotation}deg)`,
-                'transform-origin': transformOrigin
+                'grid-area': gridArea
+                // transform: `rotate(${rotation}deg)`,
+                // 'transform-origin': transformOrigin
             }
         },
         cmpVisibleWidth() {
@@ -203,7 +213,6 @@ export default {
 
 .board-partition {
     position: absolute;
-    background-color: rgba($partition, 0.9);
     z-index: 5;
     overflow-y: visible;
     width: 100%;

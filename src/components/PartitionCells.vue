@@ -1,9 +1,11 @@
 <template>
 
+    <div>
     <section class="partition-cells" :style="cmpStyle">
 
         <component
             :is="getEntity(i).length ? 'span': 'button'"
+            :style="{ transform: `rotate(-${rotation}deg)` }"
             v-for="(cell, i) in cmpTotalCells"
             v-if="isVisible(i)"
             :key="i"
@@ -28,22 +30,33 @@
             <span v-else class="add-entity">+</span>
         </component>
 
-        <entity-menu-wrap
-            v-if="adding"
-            :style="cmpPoiMenuStyle"
-            @addEntity="addEntity"
-            @onClose="adding = false"/>
 
     </section>
+
+    <entity-menu-wrap
+        v-if="adding"
+        :style="cmpPoiMenuStyle"
+        @addEntity="addEntity"
+        @onClose="adding = false"/>
+
+    </div>
 
 </template>
 
 <script>
 export default {
     props: {
+        origin: {
+            type: [String, Number],
+            default: 0
+        },
         partition: {
             type: Object,
             required: true
+        },
+        rotation: {
+            type: [String, Number],
+            default: 0
         },
         visibleWidth: {
             type: Number,
@@ -75,6 +88,8 @@ export default {
     computed: {
         cmpStyle() {
             return {
+                transform: `rotate(${this.rotation}deg)`,
+                'transform-origin': this.origin,
                 'grid-template': `repeat( ${
                     this.visibleHeight
                 }, 1fr) / repeat(${this.visibleWidth}, 1fr)`
@@ -87,6 +102,7 @@ export default {
             return {
                 top: this.top + 'px',
                 left: this.left + 'px'
+                // transform: `rotate(-${this.rotation}deg)`
             }
         }
     },
@@ -143,9 +159,8 @@ export default {
         startAdding(evt, cellCoords) {
             this.currentCell = cellCoords
             this.adding = true
-            const { top, left } = this.$el.getBoundingClientRect()
-            this.left = evt.clientX - left
-            this.top = evt.clientY - top
+            this.left = evt.clientX
+            this.top = evt.clientY
         },
         isVisible(i) {
             const x = this.getX(i)
@@ -174,6 +189,7 @@ export default {
     @include fill;
     display: grid;
     grid-gap: 10px;
+    background-color: rgba($partition, 0.9);
 
     .single-cell {
         background-color: rgba($black, 0.2);
