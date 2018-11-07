@@ -103,7 +103,7 @@ export default {
         // top/bottom
         &.up,
         &.down {
-            width: calc(100% - 45px);
+            width: 100%;
             right: 0;
             left: 0;
             // transform: scaleY(0);
@@ -130,7 +130,7 @@ export default {
         &.left {
             top: 0;
             bottom: 0;
-            height: calc(100% - 45px);
+            height: 100%;
             flex-direction: column;
             // transform: scaleX(0);
 
@@ -152,14 +152,14 @@ export default {
     .rotation-wrap {
         position: absolute;
         display: flex;
-        right: $edit-info-width;
+        right: 0;
         bottom: 0;
         z-index: 5;
 
         button {
             font-size: 20px;
-            width: 40px;
-            height: 40px;
+            width: 20px;
+            height: 20px;
             background-color: darken($dark-partition, 20%);
 
             &:hover,

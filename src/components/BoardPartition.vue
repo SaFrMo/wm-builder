@@ -6,7 +6,9 @@
         :style="cmpStyle"
         v-show="visible">
 
-        <partition-directions :guid="partition.guid"/>
+        <div class="direction-wrap">
+            <partition-directions :guid="partition.guid"/>
+        </div>
 
         <partition-cells
             :partition="partition"
@@ -237,6 +239,21 @@ export default {
         }
     }
 
+    .direction-wrap {
+        position: absolute;
+        bottom: calc(100% + 25px);
+        right: 0;
+        width: 110px;
+        height: 110px;
+        background: rgba($dark-partition, 0.4);
+        z-index: 5;
+        border-radius: 50%;
+        transition: opacity 0.2s, transform 0.2s;
+        transform: translateY(10px);
+        opacity: 0;
+        pointer-events: none;
+    }
+
     // Meta
     .meta {
         position: absolute;
@@ -312,6 +329,11 @@ export default {
         .partition-directions .direction {
             transform: none;
             transition: none;
+        }
+        .direction-wrap {
+            opacity: 1;
+            transform: none;
+            pointer-events: all;
         }
     }
 }
