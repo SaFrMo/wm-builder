@@ -2,19 +2,11 @@
 
 We're building a game based on [Zedeck Siew's](http://zedecksiew.tumblr.com/) story _[The White Mask](https://www.amazon.com/Cyberpunk-Malaysia-Various-ebook/dp/B01GPCENNG/ref=sr_1_1_twi_kin_2)_.
 
-If you're brand new:
-
--   read the [pitch](#pitch), then
--   read the [Code of Conduct](#code-of-conduct) below.
-
-Then:
-
--   If you're a developer, read the [tech details](#tech-details), then head over to the [main overview](/overview/).
--   If you're a artist, head over to the [Art overview](/art/).
+<new-people/>
 
 ## Pitch
 
-In the near future, artists using an advanced new tech called smart graffiti - living street art that can watch, listen to, and interact with its surroundings - have a responsibility to know everything they can about how their art communicates with the living world. Since the tech has skyrocketed in popularity and potential, opportunity abounds for hijacking and misusing the art, especially with the enormous money and power that the oppressive government and its supporters can bring to bear.
+In the near future, artists using an advanced new tech called smart graffiti - living street art that can watch, listen to, and interact with its surroundings - have a responsibility to know everything they can about how their art communicates with the living world. Since the tech has skyrocketed in popularity and potential, opportunity abounds for hijacking and misusing the art, especially with the enormous money and power that oppressive governments and their supporters can bring to bear.
 
 This is where you come in.
 
