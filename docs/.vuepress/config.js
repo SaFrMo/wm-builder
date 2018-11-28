@@ -6,7 +6,7 @@ module.exports = {
         nav: [
             { text: 'Home', link: '/' },
             {
-                text: 'Overviews',
+                text: 'Game',
                 items: [
                     { text: 'Home', link: '/overview/' },
                     {
@@ -45,14 +45,24 @@ module.exports = {
                 ]
             },
             {
-                text: 'Common Tasks',
-                link: '/common-tasks/'
+                text: 'Programming',
+                items: [
+                    {
+                        text: 'Common Tasks',
+                        link: '/common-tasks/'
+                    },
+                    {
+                        text: 'API',
+                        link: '/api/'
+                    },
+                    {
+                        text: 'Level Builder',
+                        link: 'https://white-mask.com/builder/'
+                    }
+                ]
             },
-            {
-                text: 'API',
-                link: '/api/'
-            },
-            { text: 'Level Builder', link: 'https://white-mask.com/builder/' }
+            { text: 'Writing', link: '/writing/' },
+            { text: 'Art', link: '/art/' }
         ],
         sidebar: 'auto'
     },

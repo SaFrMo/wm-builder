@@ -39,6 +39,16 @@
             </div>
         </div>
 
+        <div class="section">
+            <h3 class="label">...Writer</h3>
+            <div class="cell-contents">
+                <ul>
+                    <li>Head over to the <router-link to="/writing/">writing overview</router-link></li>
+                </ul>
+
+            </div>
+        </div>
+
     </section>
 
 </template>
