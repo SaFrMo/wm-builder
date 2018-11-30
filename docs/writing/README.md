@@ -16,7 +16,14 @@ You're writing as anyone who would have (a) a reason and (b) the required money,
 
 ### What
 
-A smart graffiti mural is analogous to a small phone app. Just about everyone's got an idea for one, but there's a steep learning curve when it comes to actually building it.
+Smart graffiti, per the original story, is:
+
+> Motorized nano-particulates, germs of pigment - umber or arsenic or ultramarine - movement-capable, programmable, bearing networked memory full of commands and subroutines.
+>
+> I am something of an expert; I did engineering in Korea, at a university where they developed the technology.
+> [...i]t isn't just an animation on a screen; the paint itself is shifting, spinning around the ceramic surface.
+
+A smart mural is analogous to a small phone app. Just about everyone's got an idea for one, but there's a steep learning curve when it comes to actually building it.
 
 People tend to work in teams of 2-4 on a mural, with some focusing on programming and some focusing on art. If it's a single person creating a mural, either the art or the complexity of programmed animation tends to be the clear favorite.
 
@@ -39,7 +46,7 @@ Smart graffiti murals can:
 
 Smart graffiti murals cannot:
 
--   Move off the wall into 3D space
+-   [TODO]
 
 ### When
 
