@@ -21,7 +21,7 @@ Smart graffiti, per the original story, is:
 > Motorized nano-particulates, germs of pigment - umber or arsenic or ultramarine - movement-capable, programmable, bearing networked memory full of commands and subroutines.
 >
 > I am something of an expert; I did engineering in Korea, at a university where they developed the technology.
-> [...i]t isn't just an animation on a screen; the paint itself is shifting, spinning around the ceramic surface.
+> [...I]t isn't just an animation on a screen; the paint itself is shifting, spinning around the ceramic surface.
 
 A smart mural is analogous to a small phone app. Just about everyone's got an idea for one, but there's a steep learning curve when it comes to actually building it.
 
