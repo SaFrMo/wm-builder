@@ -12,7 +12,9 @@
             :class="getClasses(i)">
 
             <!-- {{ getX(i) + ', ' + getY(i) }}<br/> -->
-            <hp-display :hp="getHp(i)"/>
+            <hp-display
+                :hp="getHp(i)"
+                @onHpChanged="updateHp(i)($event)"/>
 
             <span v-if="getEntity(i).length" class="entity-contents">
                 <span class="entity">
@@ -187,6 +189,15 @@ export default {
                         this.partition.pivot.y == this.getY(i)
                 }
             ]
+        },
+        updateHp(i) {
+            return newHp => {
+                this.$store.commit('SET_CELL_HP', {
+                    guid: this.partition.guid,
+                    index: i,
+                    hp: newHp
+                })
+            }
         }
     }
 }

@@ -105,6 +105,15 @@ export const mutations = {
         partition.position.x += deltaX
         const deltaY = partition.pivot.y - oldY
         partition.position.y += deltaY
+    },
+    SET_CELL_HP: (state, { guid, index, hp }) => {
+        const partition = findPartition(state, guid)
+
+        partition.hps[index] = {
+            min: parseInt(hp.min),
+            current: parseInt(hp.current),
+            max: parseInt(hp.max)
+        }
     }
 }
 

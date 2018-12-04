@@ -40,6 +40,29 @@ export default {
     },
     computed: {
         cmpStyle() {}
+    },
+    watch: {
+        current() {
+            this.$emit('onHpChanged', {
+                min: this.min,
+                current: this.current,
+                max: this.max
+            })
+        },
+        min() {
+            this.$emit('onHpChanged', {
+                min: this.min,
+                current: this.current,
+                max: this.max
+            })
+        },
+        max() {
+            this.$emit('onHpChanged', {
+                min: this.min,
+                current: this.current,
+                max: this.max
+            })
+        }
     }
 }
 </script>
