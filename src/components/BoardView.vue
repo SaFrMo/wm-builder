@@ -67,10 +67,10 @@ export default {
 .board-view {
     margin: auto;
     width: 100%;
-    height: 0;
+    height: 100%;
     position: relative;
-    padding-bottom: 100%;
     box-sizing: border-box;
+    overflow: auto;
 
     .grid {
         display: grid;

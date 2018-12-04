@@ -6,9 +6,7 @@
         :style="cmpStyle"
         v-show="visible">
 
-        <div class="direction-wrap">
-            <partition-directions :guid="partition.guid"/>
-        </div>
+        <partition-directions :guid="partition.guid"/>
 
         <partition-cells
             :partition="partition"
@@ -241,10 +239,7 @@ export default {
 
     .direction-wrap {
         position: absolute;
-        bottom: calc(100% + 25px);
-        right: 0;
-        width: 110px;
-        height: 110px;
+        @include fill;
         background: rgba($dark-partition, 0.4);
         z-index: 5;
         border-radius: 50%;
