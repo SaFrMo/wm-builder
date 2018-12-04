@@ -111,10 +111,13 @@ export default {
             return i % this.partition.width
         },
         getY(i) {
+            // if we're in the first row, get ready to decrement by 1
             let modifier = 0
             if (i % this.partition.width === 0) {
                 modifier = 1
             }
+
+            // calculate Y coordinate from current index
             return (
                 Math.floor((this.cmpTotalCells - i) / this.partition.width) -
                 modifier
