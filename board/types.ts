@@ -18,3 +18,11 @@ interface Delta {
     y: number
     rotation: number
 }
+
+// Contains HP information
+// (should match HP class in-game)
+interface HP {
+    max: number
+    min: number
+    current: number
+}

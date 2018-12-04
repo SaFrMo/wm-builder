@@ -187,19 +187,9 @@ export default {
         align-items: center;
     }
     input {
-        background-color: transparent;
-        border: none;
-        color: $white;
-        font-size: 18px;
-        font-weight: 700;
-        font-family: $font-family;
+        @include input-styling;
         flex: 1;
         margin-right: 5px;
-
-        &:hover,
-        &:focus {
-            background-color: rgba($black, 0.2);
-        }
     }
     .priority-label {
         color: $white;

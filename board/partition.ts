@@ -10,6 +10,7 @@ export default class Partition {
     guid: string
     entities: Array<Entity>
     rotation: number
+    hps: Array<HP>
 
     constructor(opts = {}) {
         // default picker
@@ -35,6 +36,18 @@ export default class Partition {
 
         // rotation, in degrees
         this.rotation = 0
+
+        // HP levels of Cells
+        this.hps = pick(
+            'hps',
+            Array.apply(null, new Array(this.width * this.height)).map(() => {
+                return {
+                    current: 10,
+                    max: 10,
+                    min: -10
+                }
+            })
+        )
     }
 
     addEntity(payload) {

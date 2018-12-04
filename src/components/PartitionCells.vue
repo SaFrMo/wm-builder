@@ -3,17 +3,16 @@
     <div>
     <section class="partition-cells" :style="cmpStyle">
 
-        <component
-            :is="getEntity(i).length ? 'span': 'button'"
+        <span
             :style="{ transform: `rotate(-${rotation}deg)` }"
             v-for="(cell, i) in cmpTotalCells"
             v-if="isVisible(i)"
             :key="i"
             :data-i="i"
-            @click="getEntity(i).length ? null : startAdding($event, { x: getX(i), y: getY(i) })"
             :class="getClasses(i)">
 
-            {{ getX(i) + ', ' + getY(i) }}
+            <!-- {{ getX(i) + ', ' + getY(i) }}<br/> -->
+            <hp-display :hp="getHp(i)"/>
 
             <span v-if="getEntity(i).length" class="entity-contents">
                 <span class="entity">
@@ -27,8 +26,14 @@
                 </button>
             </span>
 
-            <span v-else class="add-entity">+</span>
-        </component>
+            <button
+                v-else
+                class="add-entity"
+                aria-label="Add entity"
+                @click="getEntity(i).length ? null : startAdding($event, { x: getX(i), y: getY(i) })">
+                +
+            </button>
+</span>
 
 
     </section>
@@ -132,6 +137,9 @@ export default {
                     entity.coordinates.x === x &&
                     entity.coordinates.y === y
             )
+        },
+        getHp(i) {
+            return this.partition.hps[i]
         },
         addEntity(entity) {
             if (entity.isPivot) {
@@ -239,15 +247,18 @@ export default {
 
         .add-entity {
             background-color: rgba($black, 0.2);
-            width: 40px;
-            height: 40px;
+            width: 25px;
+            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: $white;
-            border-radius: 50%;
+            // border-radius: 50%;
             transform: scale(0);
             transition: transform 0.2s;
+            position: absolute;
+            right: 0;
+            bottom: 0;
 
             &:hover,
             &:focus {
