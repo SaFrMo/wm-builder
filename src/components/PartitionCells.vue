@@ -111,15 +111,14 @@ export default {
             return i % this.partition.width
         },
         getY(i) {
-            let n = this.cmpTotalCells - i
-
-            // something happens on the first column that adds 1 to the Y position -
-            // not sure why it happens, but this fixes it
-            if (i % this.partition.width == 0) {
-                n -= this.partition.width
+            let modifier = 0
+            if (i % this.partition.width === 0) {
+                modifier = 1
             }
-
-            return Math.floor(n / this.partition.height)
+            return (
+                Math.floor((this.cmpTotalCells - i) / this.partition.width) -
+                modifier
+            )
         },
         getEntity(i) {
             const x = this.getX(i)
