@@ -4,6 +4,8 @@
 
         <textarea class="board-name" type="text" v-model="boardName"/>
 
+        <h3 class="section-label">Meta Information</h3>
+
         <key-value-field
             v-for="(meta, i) in $store.state.boardState.meta"
             :key="meta.guid"
@@ -68,6 +70,10 @@ export default {
             background-color: $white;
             color: $black;
         }
+    }
+    .section-label {
+        margin: 5px auto;
+        color: $black;
     }
     .add-new {
         background: $safe;
