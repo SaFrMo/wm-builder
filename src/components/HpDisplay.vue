@@ -2,22 +2,22 @@
 
     <div class="hp-display">
 
-        <!-- <span class="min" v-html="hp.min"/> -->
-        <input class="min" v-model="min">
-        <!-- <span class="bar-wrap" :style="cmpStyle">
-            <span class="center-line"/>
-        </span> -->
-        <span class="bar-wrap">
-            <input
-                type="range"
-                class="bar"
-                v-model="current"
-                :min="min"
-                :max="max"
-                step="1"/>
-            <input class="current" v-model="current"/>
-        </span>
-        <input class="max" v-model="max">
+        <div class="input-wrap">
+
+            <input class="min" v-model="min">
+            <span class="bar-wrap">
+                <input
+                    type="range"
+                    class="bar"
+                    v-model="current"
+                    :min="min"
+                    :max="max"
+                    step="1"/>
+                <input class="current" v-model="current"/>
+            </span>
+            <input class="max" v-model="max">
+
+        </div>
 
     </div>
 
@@ -71,11 +71,16 @@ export default {
 @import 'src/styles/vars';
 
 .hp-display {
-    display: flex;
-    align-items: center;
-    margin: 10px 5px;
-    width: calc(100% - 10px);
-
+    .label {
+        text-align: center;
+        font-size: 12px;
+    }
+    .input-wrap {
+        display: flex;
+        align-items: center;
+        margin: 10px 5px;
+        width: calc(100% - 10px);
+    }
     .min,
     .max,
     .current {

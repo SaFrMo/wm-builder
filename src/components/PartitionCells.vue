@@ -11,7 +11,7 @@
             :data-i="i"
             :class="getClasses(i)">
 
-            <!-- {{ getX(i) + ', ' + getY(i) }}<br/> -->
+            {{ getX(i) + ', ' + getY(i) }}<br/>
             <hp-display
                 :hp="getHp(i)"
                 @onHpChanged="updateHp(i)($event)"/>
