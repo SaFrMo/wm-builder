@@ -62,21 +62,14 @@ export default {
                 state[key] = parsed[key]
             })
 
-            // add HP levels if they don't exist
-            state.partitions.forEach(partition => {
-                if (!partition.hps) {
-                    partition.hps = Array.apply(
-                        null,
-                        new Array(partition.width * partition.height)
-                    ).map(() => {
-                        return {
-                            current: 10,
-                            max: 10,
-                            min: -10
-                        }
-                    })
-                }
-            })
+            // turn partition data into full Partition instance
+            const builtPartitions = state.partitions.map(
+                partition => new Partition(partition)
+            )
+            state.partitions = builtPartitions
+
+            // refresh partition HPs
+            state.partitions.forEach(p => p.refreshHps())
         },
 
         // board meta

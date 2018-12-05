@@ -24,18 +24,20 @@
 </template>
 
 <script>
+import _get from 'lodash/get'
+
 export default {
     props: {
         hp: {
             type: Object,
-            required: true
+            default: () => {}
         }
     },
     data() {
         return {
-            min: this.hp.min,
-            current: this.hp.current,
-            max: this.hp.max
+            min: _get(this, 'hp.min', 0),
+            current: _get(this, 'hp.current', 0),
+            max: _get(this, 'hp.max', 0)
         }
     },
     computed: {

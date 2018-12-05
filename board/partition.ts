@@ -57,4 +57,37 @@ export default class Partition {
     addEntity(payload) {
         this.entities.push(payload)
     }
+
+    refreshHps() {
+        // get a list of all viable coordinates
+        const allCellCoordinates = Array.apply(
+            null,
+            new Array(this.width * this.height)
+        ).map((v, i) => {
+            return {
+                x: getX(i, this.width),
+                y: getY(i, this.width, this.width * this.height)
+            }
+        })
+
+        // filter out any unusued values from hps
+        this.hps = this.hps.filter(v => {
+            return allCellCoordinates.find(
+                coord => coord.x === v.x && coord.y === v.y
+            )
+        })
+
+        // add any new cell HPs
+        allCellCoordinates.forEach(coord => {
+            if (!this.hps.find(v => v.x === coord.x && v.y === coord.y)) {
+                this.hps.push({
+                    current: 10,
+                    max: 10,
+                    min: -10,
+                    x: coord.x,
+                    y: coord.y
+                })
+            }
+        })
+    }
 }

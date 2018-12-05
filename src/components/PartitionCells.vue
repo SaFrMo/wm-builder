@@ -141,7 +141,9 @@ export default {
             )
         },
         getHp(i) {
-            return this.partition.hps[i]
+            const x = this.getX(i)
+            const y = this.getY(i)
+            return this.partition.hps.find(hp => hp.x == x && hp.y == y)
         },
         addEntity(entity) {
             if (entity.isPivot) {
@@ -194,7 +196,8 @@ export default {
             return newHp => {
                 this.$store.commit('SET_CELL_HP', {
                     guid: this.partition.guid,
-                    index: i,
+                    x: this.getX(i),
+                    y: this.getY(i),
                     hp: newHp
                 })
             }

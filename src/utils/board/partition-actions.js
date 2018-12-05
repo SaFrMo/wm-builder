@@ -63,6 +63,10 @@ export const mutations = {
                 }
             })
         })
+
+        // Update HPs
+        console.log(partition)
+        partition.refreshHps()
     },
     CREATE_PARTITION: (state, payload) => {
         // add a new partition
@@ -106,13 +110,19 @@ export const mutations = {
         const deltaY = partition.pivot.y - oldY
         partition.position.y += deltaY
     },
-    SET_CELL_HP: (state, { guid, index, hp }) => {
+    SET_CELL_HP: (state, { guid, x, y, hp }) => {
         const partition = findPartition(state, guid)
+
+        const index = partition.hps.findIndex(
+            cell => cell.x == x && cell.y == y
+        )
 
         partition.hps[index] = {
             min: parseInt(hp.min),
             current: parseInt(hp.current),
-            max: parseInt(hp.max)
+            max: parseInt(hp.max),
+            x: partition.hps[index].x,
+            y: partition.hps[index].y
         }
     }
 }
