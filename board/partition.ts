@@ -1,4 +1,4 @@
-import { buildPick } from './utils'
+import { buildPick, getX, getY } from './utils'
 import Entity from './entity'
 
 export default class Partition {
@@ -40,13 +40,17 @@ export default class Partition {
         // HP levels of Cells
         this.hps = pick(
             'hps',
-            Array.apply(null, new Array(this.width * this.height)).map(() => {
-                return {
-                    current: 10,
-                    max: 10,
-                    min: -10
+            Array.apply(null, new Array(this.width * this.height)).map(
+                (v, i) => {
+                    return {
+                        current: 10,
+                        max: 10,
+                        min: -10,
+                        x: getX(i, this.width),
+                        y: getY(i, this.width, this.width * this.height)
+                    }
                 }
-            })
+            )
         )
     }
 

@@ -25,4 +25,6 @@ interface HP {
     max: number
     min: number
     current: number
+    x: number
+    y: number
 }
