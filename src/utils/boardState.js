@@ -61,6 +61,22 @@ export default {
             Object.keys(parsed).map(key => {
                 state[key] = parsed[key]
             })
+
+            // add HP levels if they don't exist
+            state.partitions.forEach(partition => {
+                if (!partition.hps) {
+                    partition.hps = Array.apply(
+                        null,
+                        new Array(partition.width * partition.height)
+                    ).map(() => {
+                        return {
+                            current: 10,
+                            max: 10,
+                            min: -10
+                        }
+                    })
+                }
+            })
         },
 
         // board meta
