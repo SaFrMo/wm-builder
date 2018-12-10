@@ -32,15 +32,6 @@ module.exports = {
                                 link: '/saving-and-loading/'
                             }
                         ]
-                    },
-                    {
-                        text: 'Tutorials',
-                        items: [
-                            {
-                                text: 'Building Levels',
-                                link: '/building-levels/'
-                            }
-                        ]
                     }
                 ]
             },
@@ -58,6 +49,10 @@ module.exports = {
                     {
                         text: 'Level Builder',
                         link: 'https://white-mask.com/builder/'
+                    },
+                    {
+                        text: 'Building Levels',
+                        link: '/building-levels/'
                     }
                 ]
             },

@@ -12,6 +12,12 @@ The WM Builder is divided into three sections: **meta**, **map**, and **actions*
 
 ![Version of the image above with the main sections labelled](./layout-labelled.png)
 
+**Meta** controls information about the board. Think flavor text, board title, etc.
+
+**Map** displays the way the map actually appears at any given point.
+
+**Actions** control the way a board arranges its Map.
+
 Let's go through these one at a time.
 
 ## Meta
@@ -38,12 +44,22 @@ Let's jump over to the Map and keep going.
 
 ## Map
 
-The first thing you'll see is the large blue rectangle in the center of the map:
+The first thing you'll see in the Map is the large blue rectangle in the center:
 
 ![The square in the center of the map](./map-starting.png)
 
 This is a **Partition** - a section of the game board that can move and react to its environment.
 
-Partitions usually (but not always!) correspond to a section of the mural they contain.
+Let's take a look at the controls available on a Partition:
+
+![A single Partition labeled with the numbers described below](./partition-labeled.png)
+
+1.  The **Control Bar** is available on each edge of a Partition. Click the arrow to move the entire Partition in the indicated direction. You can also click the plus or minus signs to expand or shrink the Partition in the desired direction.
+2.  A **single Cell** contains:
+    -   The Cell's coordinates
+    -   The min, current, and max HP of that Cell (each editable as a text field)
+    -   A slider indicated the current HP percentage
+3.  A green-highlighted **pivot point**, the Cell around which the entire Partition will pivot
+4.  A button to add in **more info** about the Partition
 
 ## TODO: Continue
