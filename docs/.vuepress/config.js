@@ -46,13 +46,23 @@ module.exports = {
                         text: 'API',
                         link: '/api/'
                     },
+
+                    {
+                        text: 'Building Levels',
+                        link: '/building-levels/'
+                    }
+                ]
+            },
+            {
+                text: 'Tools',
+                items: [
                     {
                         text: 'Level Builder',
                         link: 'https://white-mask.com/builder/'
                     },
                     {
-                        text: 'Building Levels',
-                        link: '/building-levels/'
+                        text: 'Item Builder',
+                        link: '/item-builder/'
                     }
                 ]
             },

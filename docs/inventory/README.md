@@ -57,7 +57,3 @@ Example flow:
 -   The player modifies their inventory by playing the first level; it is held in-memory in the `KeepAlive` Inventory script and interacted with through the `GameManager.inventoryManager` script. Saving the level writes main JSON save file, as in the previous step.
 -   The player completes the level, triggering another autosave; the main JSON save file is written as in the second step above.
 -   The player modifies their Inventory more in the Management mode. It is held in-memory in the `KeepAlive` Inventory. (TODO: how to interact with?)
-
-## Item Builder
-
-<item-builder/>
