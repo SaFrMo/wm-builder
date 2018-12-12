@@ -19,10 +19,10 @@
 
             <!--GUID-->
             <div>
-                <label for="guid">GUID</label>
-                <button @click="guid = Date.now()">Generate New</button>
+                <label for="prefabGuid">GUID</label>
+                <button @click="prefabGuid = Date.now()">Generate New</button>
             </div>
-            <input readonly disabled type="text" id="guid" v-model="guid"/>
+            <input readonly disabled type="text" id="prefabGuid" v-model="prefabGuid"/>
 
             <!--Description-->
             <label for="description">Description</label>
@@ -87,7 +87,7 @@ export default {
             // values to be serialized
             name: '',
             icon: '',
-            guid: Date.now(),
+            prefabGuid: Date.now(),
             description: '',
             value: 0,
             useLimit: -1,
@@ -137,7 +137,7 @@ export default {
                 /^data:image\/(png|jpg|jpeg);base64,/,
                 ''
             )
-            zip.file(`${this.guid}.png`, imgString, { base64: true })
+            zip.file(`${this.prefabGuid}.png`, imgString, { base64: true })
 
             // create the zip
             const res = await zip.generateAsync({ type: 'blob' })
