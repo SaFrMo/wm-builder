@@ -12,45 +12,26 @@ module.exports = {
                     {
                         text: 'Management',
                         items: [
-                            { text: 'Home Base', link: '/home-base/' },
-                            { text: 'Inventory', link: '/inventory/' }
+                            { text: 'Home Base', link: '/home-base/' }
+                            // { text: 'Inventory', link: '/inventory/' }
                         ]
                     },
                     {
                         text: 'Hacking',
                         items: [
                             { text: 'Level', link: '/level/' },
-                            { text: 'Entities', link: '/entities/' },
                             { text: 'Turns', link: '/turns/' }
                         ]
-                    },
-                    {
-                        text: 'Game-Wide',
-                        items: [
-                            {
-                                text: 'Saving and Loading',
-                                link: '/saving-and-loading/'
-                            }
-                        ]
                     }
-                ]
-            },
-            {
-                text: 'Programming',
-                items: [
-                    {
-                        text: 'Common Tasks',
-                        link: '/common-tasks/'
-                    },
-                    {
-                        text: 'API',
-                        link: '/api/'
-                    },
-
-                    {
-                        text: 'Building Levels',
-                        link: '/building-levels/'
-                    }
+                    // {
+                    //     text: 'Game-Wide',
+                    //     items: [
+                    //         {
+                    //             text: 'Saving and Loading',
+                    //             link: '/saving-and-loading/'
+                    //         }
+                    //     ]
+                    // }
                 ]
             },
             {
@@ -61,8 +42,20 @@ module.exports = {
                         link: 'https://white-mask.com/builder/'
                     },
                     {
+                        text: 'Level Builder Tutorial',
+                        link: '/building-levels/'
+                    },
+                    {
                         text: 'Item Builder',
                         link: '/item-builder/'
+                    },
+                    {
+                        text: 'Common Tasks',
+                        link: '/common-tasks/'
+                    },
+                    {
+                        text: 'API',
+                        link: '/api/'
                     }
                 ]
             },
