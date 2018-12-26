@@ -1,4 +1,4 @@
-# Hacking
+# Level
 
 When a player selects a mural to hack, they've started a new _Level_.
 
