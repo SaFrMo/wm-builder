@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import _kebabCase from 'lodash/kebabCase'
+
 export default {
     props: {
         origin: {
@@ -155,6 +157,16 @@ export default {
                 this.$store.commit('ADD_ENTITY', {
                     guid: this.partition.guid,
                     coordinates: this.currentCell,
+
+                    // updated structure
+                    location: {
+                        partitionGuid: this.partition.guid,
+                        x: this.currentCell.x,
+                        y: this.currentCell.y
+                    },
+                    prefabGuid: _kebabCase(entity.name),
+
+                    // defaults
                     ...entity
                 })
             }
