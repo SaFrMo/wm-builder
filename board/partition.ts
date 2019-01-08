@@ -1,4 +1,4 @@
-import { buildPick, getX, getY } from './utils'
+import { buildPick, getX, getY, createGuid } from './utils'
 import Entity from './entity'
 
 export default class Partition {
@@ -29,7 +29,7 @@ export default class Partition {
         this.name = pick('name', 'Partition')
 
         // GUID
-        this.guid = pick('guid', Date.now())
+        this.guid = pick('guid', createGuid())
 
         // points of interest
         this.entities = []

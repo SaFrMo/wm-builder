@@ -1,4 +1,4 @@
-import { buildPick } from './utils'
+import { buildPick, createGuid } from './utils'
 
 export default class BoardSequence {
     name: string
@@ -13,7 +13,7 @@ export default class BoardSequence {
 
         // Basic info
         this.name = pick('name', 'Sequence')
-        this.id = pick('id', Date.now())
+        this.id = pick('id', createGuid())
         this.meta = pick('meta', [])
 
         // BoardState IDs

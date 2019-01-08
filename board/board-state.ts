@@ -1,4 +1,4 @@
-import { buildPick } from './utils'
+import { buildPick, createGuid } from './utils'
 
 export default class BoardState {
     name: string
@@ -15,7 +15,7 @@ export default class BoardState {
 
         // Basic info
         this.name = pick('name', 'State')
-        this.id = pick('id', Date.now())
+        this.id = pick('id', createGuid())
 
         // { key, value } for each item in array
         this.meta = pick('meta', [])

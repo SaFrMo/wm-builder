@@ -1,3 +1,5 @@
+import { createGuid } from './utils'
+
 export default class Entity {
     name: string
     id: string
@@ -5,7 +7,7 @@ export default class Entity {
 
     constructor(opts) {
         this.name = opts.name || 'Entity'
-        this.id = opts.id || Date.now()
+        this.id = opts.id || createGuid()
         this.description = opts.description || 'An entity.'
     }
 }

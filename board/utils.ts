@@ -19,3 +19,14 @@ export function getY(i: number, width: number, totalCells: number): number {
     // calculate Y coordinate from current index
     return Math.floor((totalCells - i) / width) - modifier
 }
+
+const guids = new Array<string>()
+
+// ensure creation of a unique GUID
+export function createGuid(desired: string = '') {
+    while (guids.indexOf(desired) != -1 || !desired.length) {
+        desired = Date.now().toString()
+    }
+
+    return desired
+}
