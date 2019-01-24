@@ -35,7 +35,7 @@
 export default {
     props: {
         guid: {
-            type: Number,
+            type: [Number, String],
             default: 0
         }
     },
