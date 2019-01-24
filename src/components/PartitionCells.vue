@@ -11,31 +11,34 @@
             :data-i="i"
             :class="getClasses(i)">
 
-            {{ getX(i) + ', ' + getY(i) }}<br/>
+            <span class="coordinates">{{ getX(i) + ', ' + getY(i) }}</span>
+
+            <span class="entity-contents">
+                <div class="entity-wrap" v-if="getEntity(i).length">
+                    <span class="entity">
+                        {{ getEntity(i).map(entity => entity.name).join(',') }}
+                    </span>
+
+                    <button
+                        class="remove"
+                        @click.stop="removeEntity(i)">
+                        X
+                    </button>
+                </div>
+                <button
+                    v-else
+                    class="add-entity"
+                    aria-label="Add entity"
+                    @click="getEntity(i).length ? null : startAdding($event, { x: getX(i), y: getY(i) })">
+                    +
+                </button>
+            </span>
+
             <hp-display
                 :hp="getHp(i)"
                 @onHpChanged="updateHp(i)($event)"/>
 
-            <span v-if="getEntity(i).length" class="entity-contents">
-                <span class="entity">
-                    {{ getEntity(i).map(entity => entity.name).join(',') }}
-                </span>
-
-                <button
-                    class="remove"
-                    @click.stop="removeEntity(i)">
-                    Remove
-                </button>
-            </span>
-
-            <button
-                v-else
-                class="add-entity"
-                aria-label="Add entity"
-                @click="getEntity(i).length ? null : startAdding($event, { x: getX(i), y: getY(i) })">
-                +
-            </button>
-</span>
+        </span>
 
 
     </section>
@@ -225,7 +228,7 @@ export default {
     @include fill;
     display: grid;
     grid-gap: 10px;
-    background-color: rgba($partition, 0.9);
+    background: $partition;
 
     .single-cell {
         background-color: rgba($black, 0.2);
@@ -234,41 +237,69 @@ export default {
         width: calc(100% - 10px);
         height: calc(100% - 10px);
         margin: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // justify-content: center;
         overflow: hidden;
         position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 33.333%);
 
         &.is-pivot {
             background-color: rgba(green, 0.5);
         }
 
+        .coordinates {
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .entity-contents {
             @include fill;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            // flex-direction: column;
+            justify-content: flex-end;
+            // align-items: center;
             text-align: center;
+            grid-column: 2 / span 2;
+            grid-row: 1 / span 1;
+            background: rgba($black, 0.2);
+            font-size: 12px;
 
+            .entity-wrap {
+                display: flex;
+                width: 100%;
+            }
             .entity {
                 flex: 1;
                 display: flex;
                 align-items: center;
+                justify-content: center;
             }
             .remove {
                 background-color: $danger;
                 color: $white;
                 width: 100%;
                 font-size: 14px;
+                width: 23px;
+                height: 23px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 &:hover,
                 &:focus {
                     background-color: $dark-danger;
                 }
             }
+        }
+        .hp-display {
+            grid-column: 1 / span 3;
+            grid-row: 2 / span 1;
+            height: 10px;
         }
 
         .add-entity {
@@ -280,9 +311,9 @@ export default {
             justify-content: center;
             color: $white;
             // border-radius: 50%;
-            transform: scale(0);
+            // transform: scale(0.8);
             transition: transform 0.2s;
-            position: absolute;
+            // position: absolute;
             right: 0;
             bottom: 0;
 
