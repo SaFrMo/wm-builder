@@ -11,7 +11,17 @@
             :data-i="i"
             :class="getClasses(i)">
 
-            <span class="coordinates">{{ getX(i) + ', ' + getY(i) }}</span>
+            <span class="coordinates-wrap">
+                <span class="coordinates">{{ getX(i) + ', ' + getY(i) }}</span>
+                <span class="deploy">
+                    <input
+                        type="checkbox"
+                        id="deploy"
+                        @change="updateDeployable($event, i)"
+                        :checked="isDeployable(i)">
+                    <label for="deploy">🛬</label>
+                </span>
+            </span>
 
             <span class="entity-contents">
                 <div class="entity-wrap" v-if="getEntity(i).length">
@@ -216,6 +226,24 @@ export default {
                     hp: newHp
                 })
             }
+        },
+        updateDeployable(evt, i) {
+            this.$store.commit('SET_DEPLOYABLE', {
+                guid: this.partition.guid,
+                x: this.getX(i),
+                y: this.getY(i),
+                deployable: evt.target.checked
+            })
+        },
+        isDeployable(i) {
+            const x = this.getX(i)
+            const y = this.getY(i)
+
+            return (
+                this.partition.deployable.findIndex(
+                    v => v.x == x && v.y == y
+                ) != -1
+            )
         }
     }
 }
@@ -250,11 +278,16 @@ export default {
             background-color: rgba(green, 0.5);
         }
 
-        .coordinates {
+        .coordinates-wrap {
             font-size: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+
+            .deploy {
+                display: flex;
+            }
         }
 
         .entity-contents {

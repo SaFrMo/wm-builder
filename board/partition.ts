@@ -11,6 +11,7 @@ export default class Partition {
     entities: Array<Entity>
     rotation: number
     hps: Array<HP>
+    deployable: Array<Vector2>
 
     constructor(opts = {}) {
         // default picker
@@ -52,6 +53,9 @@ export default class Partition {
                 }
             )
         )
+
+        // Coordinates of deployable Cells
+        this.deployable = pick('deployable', [])
     }
 
     addEntity(payload) {
@@ -89,5 +93,20 @@ export default class Partition {
                 })
             }
         })
+    }
+
+    setDeployable(x: number, y: number, canDeploy: boolean) {
+        const coordinates = { x, y }
+        const index = this.deployable.findIndex(
+            v => v.x == coordinates.x && v.y == coordinates.y
+        )
+        const containsCoordinates = index != -1
+
+        // if we're adding these coordinates
+        if (canDeploy && !containsCoordinates) {
+            this.deployable.push(coordinates)
+        } else if (!canDeploy && containsCoordinates) {
+            this.deployable.splice(index, 1)
+        }
     }
 }

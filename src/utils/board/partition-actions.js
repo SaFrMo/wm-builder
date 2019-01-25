@@ -124,6 +124,11 @@ export const mutations = {
             x: partition.hps[index].x,
             y: partition.hps[index].y
         }
+    },
+    SET_DEPLOYABLE: (state, { guid, x, y, deployable }) => {
+        const partition = findPartition(state, guid)
+
+        partition.setDeployable(x, y, deployable)
     }
 }
 

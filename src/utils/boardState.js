@@ -63,9 +63,9 @@ export default {
             })
 
             // turn partition data into full Partition instance
-            const builtPartitions = state.partitions.map(
-                partition => new Partition(partition)
-            )
+            const builtPartitions = state.partitions.map(partition => {
+                return new Partition(partition)
+            })
             state.partitions = builtPartitions
 
             // refresh partition HPs
