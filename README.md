@@ -19,3 +19,10 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Adding Entity Types
+
+To add to the list of placeable entities:
+
+1.  Add to `board/entities.ts`.
+1.  Game > Create New Item in Unity, using kebab-cased entity name.

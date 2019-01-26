@@ -27,6 +27,7 @@ export function createGuid(desired: string = '') {
     while (guids.indexOf(desired) != -1 || !desired.length) {
         desired = Date.now().toString()
     }
+    guids.push(desired)
 
     return desired
 }
