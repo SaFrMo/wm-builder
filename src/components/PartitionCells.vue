@@ -25,9 +25,12 @@
 
             <span class="entity-contents">
                 <div class="entity-wrap" v-if="getEntity(i).length">
-                    <span class="entity">
+                    <button
+                        class="entity"
+                        v-if="getEntity(i)"
+                        @click="toggleEntity(i)">
                         {{ getEntity(i).map(entity => entity.name).join(',') }}
-                    </span>
+                    </button>
 
                     <button
                         class="remove"
@@ -53,6 +56,11 @@
 
     </section>
 
+    <entity-expanded-meta
+        v-if="expandedEntity != null"
+        :entity="expandedEntity"
+        @onClose="expandedEntity = null"/>
+
     <entity-menu-wrap
         v-if="adding"
         :style="cmpPoiMenuStyle"
@@ -65,6 +73,7 @@
 
 <script>
 import _kebabCase from 'lodash/kebabCase'
+import _get from 'lodash/get'
 
 export default {
     props: {
@@ -101,6 +110,7 @@ export default {
         return {
             adding: false,
             currentCell: { x: 0, y: 0 },
+            expandedEntity: null,
 
             // ENTITY menu location, in px
             top: 0,
@@ -244,6 +254,16 @@ export default {
                     v => v.x == x && v.y == y
                 ) != -1
             )
+        },
+        toggleEntity(i) {
+            const entity = _get(this.getEntity(i), '[0]', null)
+
+            if (!entity) return
+
+            this.expandedEntity =
+                this.expandedEntity && this.expandedEntity.guid == entity.guid
+                    ? null
+                    : entity
         }
     }
 }
@@ -311,6 +331,9 @@ export default {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                color: $white;
+                font-size: 12px;
+                position: relative;
             }
             .remove {
                 background-color: $danger;
