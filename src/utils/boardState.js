@@ -17,6 +17,7 @@ const defaultState = {
     entities: [],
     states: [new BoardState({ name: 'Default' })],
     sequences: [],
+    goals: [],
 
     // board meta info
     name: 'Board',
@@ -35,6 +36,7 @@ export default {
         entities: [],
         states: [new BoardState({ name: 'Default' })],
         sequences: [],
+        goals: [],
 
         // board meta info
         name: 'Board',
