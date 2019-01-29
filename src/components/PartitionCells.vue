@@ -179,6 +179,7 @@ export default {
                     cell: this.currentCell
                 })
             } else {
+                const clone = JSON.parse(JSON.stringify(entity))
                 const newEntity = {
                     guid: this.partition.guid,
                     coordinates: this.currentCell,
@@ -192,7 +193,7 @@ export default {
                     prefabGuid: _kebabCase(entity.name),
 
                     // defaults
-                    ...entity
+                    ...clone
                 }
 
                 newEntity.id = createGuid()
