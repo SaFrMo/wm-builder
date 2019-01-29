@@ -8,11 +8,15 @@
 
         <div class="entry" v-for="(entry, i) in entity.meta">
 
+            <input aria-label="key" type="text" v-model="entity.meta[i].key">
 
+            <input aria-label="value" type="text" v-model="entity.meta[i].value">
+
+            <button class="delete" @click="entity.meta.splice(i, 1)">X</button>
 
         </div>
 
-        <button class="add">+</button>
+        <button class="add" @click="entity.meta.push({ key: '', value: '' })">+</button>
 
     </aside>
 
@@ -71,6 +75,18 @@ export default {
         &:hover,
         &:focus {
             background: $dark-safe;
+        }
+    }
+
+    // Delete entry
+    .delete {
+        background: $danger;
+        color: $white;
+        padding: 0 5px;
+
+        &:hover,
+        &:focus {
+            background: $dark-danger;
         }
     }
 }

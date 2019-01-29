@@ -59,7 +59,8 @@
     <entity-expanded-meta
         v-if="expandedEntity != null"
         :entity="expandedEntity"
-        @onClose="expandedEntity = null"/>
+        @onClose="expandedEntity = null"
+        :key="expandedEntity.id"/>
 
     <entity-menu-wrap
         v-if="adding"
@@ -74,6 +75,7 @@
 <script>
 import _kebabCase from 'lodash/kebabCase'
 import _get from 'lodash/get'
+import { createGuid } from '@/utils/shared'
 
 export default {
     props: {
@@ -177,7 +179,7 @@ export default {
                     cell: this.currentCell
                 })
             } else {
-                this.$store.commit('ADD_ENTITY', {
+                const newEntity = {
                     guid: this.partition.guid,
                     coordinates: this.currentCell,
 
@@ -191,7 +193,10 @@ export default {
 
                     // defaults
                     ...entity
-                })
+                }
+
+                newEntity.id = createGuid()
+                this.$store.commit('ADD_ENTITY', newEntity)
             }
 
             this.adding = false
@@ -261,7 +266,7 @@ export default {
             if (!entity) return
 
             this.expandedEntity =
-                this.expandedEntity && this.expandedEntity.guid == entity.guid
+                this.expandedEntity && this.expandedEntity.id == entity.id
                     ? null
                     : entity
         }
