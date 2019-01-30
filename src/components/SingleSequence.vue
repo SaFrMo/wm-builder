@@ -28,14 +28,14 @@
         <div class="sequence-items">
 
             <!-- Conditions -->
-            <sequence-condition-wrap
+            <condition-wrap
                 :sequence="sequence"
                 @add-condition="addCondition"
                 @remove-condition="({ index }) => removeCondition(index)">
 
                 <h3>Conditions (All must be true to start sequence)</h3>
 
-            </sequence-condition-wrap>
+            </condition-wrap>
 
             <!-- States in Sequence -->
             <h3>States</h3>

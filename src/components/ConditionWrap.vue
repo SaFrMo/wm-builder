@@ -1,6 +1,6 @@
 <template>
 
-    <ul class="sequence-condition-wrap">
+    <ul class="condition-wrap">
 
         <li>
             <slot/>
@@ -25,7 +25,8 @@
             </div>
 
             <div class="meta">
-                <span>Activation: {{condition.triggerType}}; when complete: {{ condition.onComplete }}.</span>
+                <span v-if="condition.triggerType">Activation: {{condition.triggerType}}.</span>
+                <span v-if="condition.onComplete">When complete: {{ condition.onComplete }}.</span>
             </div>
 
             <span class="remove-wrap">
@@ -116,6 +117,10 @@ export default {
         sequence: {
             type: Object,
             default: () => {}
+        },
+        isGoal: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -272,7 +277,7 @@ export default {
 <style lang="scss">
 @import 'src/styles/vars';
 
-.sequence-condition-wrap {
+.condition-wrap {
     color: $white;
     list-style: none;
     padding: 0;
