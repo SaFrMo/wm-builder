@@ -20,8 +20,7 @@
         </ul>
 
         <!-- Sequences -->
-        <wrap-sequences
-            v-else-if="toShow == 'Sequences'"/>
+        <wrap-sequences v-else-if="toShow == 'Sequences'"/>
 
         <!-- Goals -->
         <wrap-goals v-else-if="toShow == 'Goals'"/>
