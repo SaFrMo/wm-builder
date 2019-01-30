@@ -3,7 +3,7 @@
     <ul class="sequence-condition-wrap">
 
         <li>
-            <h3>Conditions (All must be true to start sequence)</h3>
+            <slot/>
 
         </li>
 
@@ -30,7 +30,7 @@
 
             <span class="remove-wrap">
                 <button
-                    @click="$store.commit('REMOVE_CONDITION', { sequence, index: i })"
+                    @click="$emit('remove-condition', { index: i })"
                     class="remove">
                     Remove
                 </button>

@@ -30,7 +30,12 @@
             <!-- Conditions -->
             <sequence-condition-wrap
                 :sequence="sequence"
-                @add-condition="addCondition"/>
+                @add-condition="addCondition"
+                @remove-condition="({ index }) => removeCondition(index)">
+
+                <h3>Conditions (All must be true to start sequence)</h3>
+
+            </sequence-condition-wrap>
 
             <!-- States in Sequence -->
             <h3>States</h3>
@@ -130,6 +135,12 @@ export default {
             this.$store.commit('ADD_SEQUENCE_CONDITION', {
                 sequenceId: this.sequence.id,
                 condition
+            })
+        },
+        removeCondition(index) {
+            this.$store.commit('REMOVE_CONDITION', {
+                sequence: this.sequence,
+                index
             })
         }
     },

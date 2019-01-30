@@ -9,17 +9,21 @@
 
         <div class="text">
             <label :for="`text-${ goal.guid }`">Text</label>
-            <input type="text" :id="`text-${ goal.guid }`" v-model="goal.text">
+            <textarea type="text" :id="`text-${ goal.guid }`" v-model="goal.text"/>
         </div>
 
-        <div class="conditions">Conditions</div>
-
         <div class="importance">
-            <select v-model="goal.importance">
+            <label :for="`importance-${ goal.guid }`">Priority</label>
+            <select v-model="goal.importance" :id="`importance-${ goal.guid }`">
                 <option disabled value="">Select one...</option>
                 <option v-for="level in importanceLevels">{{ level }}</option>
             </select>
         </div>
+
+        <sequence-condition-wrap
+            :sequence="goal"
+            @add-condition="addCondition"
+            @remove-condition="({ index }) => removeCondition(index)"/>
 
         <button class="remove" @click="$store.commit('REMOVE_GOAL', { goal })">X</button>
 
@@ -38,6 +42,14 @@ export default {
     data() {
         return {
             importanceLevels: ['primary', 'secondary']
+        }
+    },
+    methods: {
+        addCondition(condition) {
+            this.goal.conditions.push(condition)
+        },
+        removeCondition(index) {
+            this.goal.conditions.splice(index, 1)
         }
     }
 }
