@@ -10,5 +10,8 @@ function findPartition(state, guid) {
 export const mutations = {
     ADD_BOARD_GOAL: state => {
         state.goals.push(new Goal())
+    },
+    REMOVE_GOAL: (state, { goal }) => {
+        state.goals = state.goals.filter(g => g.guid != goal.guid)
     }
 }

@@ -116,9 +116,9 @@ export default {
     .wrap-goals {
         overflow-y: auto;
         position: absolute;
-        top: 20px;
+        top: 10px;
         right: 150px;
-        bottom: 20px;
+        bottom: 10px;
         left: 40px;
         background-color: rgba($black, 0.2);
         padding: 10px;

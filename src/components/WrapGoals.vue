@@ -2,6 +2,18 @@
 
     <ul class="wrap-goals">
 
+        <li
+            v-for="(goal, i) in $store.state.boardState.goals"
+            :key="i"
+            class="wrap-entry">
+
+            <single-goal
+                :goal="goal"
+                :key="goal.guid"
+                :index="i"/>
+
+        </li>
+
         <li class="wrap-entry">
             <button
                 class="add-goal"
