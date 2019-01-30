@@ -23,6 +23,10 @@
         <wrap-sequences
             v-else-if="toShow == 'Sequences'"/>
 
+        <!-- Goals -->
+        <wrap-goals v-else-if="toShow == 'Goals'"/>
+
+        <!-- Nav -->
         <nav class="display-types">
             <button
                 v-for="(display, i) in displays"
@@ -40,7 +44,7 @@
 export default {
     data() {
         return {
-            displays: ['States', 'Sequences'],
+            displays: ['States', 'Sequences', 'Goals'],
             toShow: 'States'
         }
     },
