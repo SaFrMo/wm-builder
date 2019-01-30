@@ -45,7 +45,7 @@ export default {
     data() {
         return {
             displays: ['States', 'Sequences', 'Goals'],
-            toShow: 'States'
+            toShow: 'Goals'
         }
     },
     methods: {
@@ -111,8 +111,9 @@ export default {
         }
     }
 
-    // Sequences
-    .wrap-sequences {
+    // Sequences & goals
+    .wrap-sequences,
+    .wrap-goals {
         overflow-y: auto;
         position: absolute;
         top: 20px;
@@ -136,7 +137,6 @@ export default {
             background-color: rgba($black, 0.3);
             color: $white;
             padding: 5px 10px;
-            border-radius: 3px;
             border: 3px solid transparent;
             box-sizing: border-box;
 

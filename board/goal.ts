@@ -7,10 +7,16 @@ export default class Goal {
     conditions: Array<Condition>
     importance: string
 
-    static get LOW(){ return 'secondary' }
-    static get HIGH(){return 'primary'}
+    static get LOW() {
+        return 'secondary'
+    }
+    static get HIGH() {
+        return 'primary'
+    }
 
-    constructor(opts){
+    constructor(opts) {
+        opts = opts || {}
+
         this.guid = opts.guid || createGuid()
         this.name = opts.name || ''
         this.text = opts.text || ''

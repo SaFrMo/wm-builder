@@ -7,6 +7,7 @@ import {
 import entityActions from '@/utils/board/entity-actions'
 import sequenceActions from '@/utils/board/sequence-actions'
 import boardActions from '@/utils/board/board-actions'
+import * as goalActions from '@/utils/board/goal-actions'
 
 // deconstruct board classes
 const { Partition, BoardState } = board
@@ -109,7 +110,10 @@ export default {
         ...sequenceActions,
 
         // Misc board actions
-        ...boardActions
+        ...boardActions,
+
+        // Goals
+        ...goalActions.mutations
     },
     actions: {
         ...partitionActions
