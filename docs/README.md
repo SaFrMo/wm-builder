@@ -6,11 +6,13 @@ We're building a game based on [Zedeck Siew's](http://zedecksiew.tumblr.com/) st
 
 ## Pitch
 
-In the near future, artists using an advanced new tech called smart graffiti - living street art that can watch, listen to, and interact with its surroundings - have a responsibility to know everything they can about how their art communicates with the living world. Since the tech has skyrocketed in popularity and potential, opportunity abounds for hijacking and misusing the art, especially with the enormous money and power that oppressive governments and their supporters can bring to bear.
+In the near future, artists using an advanced new tech called smart paint - living street art that can watch, listen to, and interact with its surroundings - have a responsibility to know everything they can about how their art communicates with the living world. Since the tech has skyrocketed in popularity and potential, opportunity abounds for hijacking and misusing the art, especially with the enormous money and power that oppressive governments and their supporters can bring to bear.
 
 This is where you come in.
 
-You're a hacker whose experience with smart graffiti lets you find all the vulnerabilities any mural has left exposed - open doors, poor security, and more are all ready to be patched up for good after you put murals through every trial you can think of.
+You're a hacker whose experience with smart paint lets you find all the vulnerabilities any mural has left exposed - open doors, poor security, and more are all ready to be patched up for good after you put murals through every trial you can think of.
+
+Map out and explore the inner workings of each mural in XCOM/Into the Breach-style turn-based tactical gameplay, putting the art through its paces and testing its weaknesses. Keep up with the moving, shifting mural as it responds to your actions and shifts the game board, using that mural's own behavior to hack into it and learn more about this burgeoning art form.
 
 Stay one step ahead of malicious hackers, government and otherwise, as you protect artists, their audience, and their work, sneaking a glimmer of hope into a cruel and controlled world.
 
