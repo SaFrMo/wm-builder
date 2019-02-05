@@ -61,6 +61,7 @@ export default {
         // save/load
         LOAD_LEVEL(state, payload) {
             const parsed = JSON.parse(payload)
+            if (!parsed) return
             Object.keys(parsed).map(key => {
                 state[key] = parsed[key]
             })

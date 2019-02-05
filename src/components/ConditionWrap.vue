@@ -2,10 +2,7 @@
 
     <ul class="condition-wrap">
 
-        <li>
-            <slot/>
-
-        </li>
+        <li><slot/></li>
 
         <!-- Conditions -->
         <li
@@ -195,10 +192,22 @@ export default {
                 })
             )
 
+            // get all entities
+            const entities = this.$store.state.boardState.entities.map(e => {
+                const hostPartition = this.$store.state.boardState.partitions.filter(
+                    p => p.guid == e.location.partitionGuid
+                )[0]
+
+                return `${e.name} starting at [${hostPartition.name}] (${
+                    e.location.x
+                }, ${e.location.y}) health`
+            })
+
             const output = [].concat(
                 this.conditions.subjects,
                 partitionNames,
-                cells
+                cells,
+                entities
             )
 
             return output
