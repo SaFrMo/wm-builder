@@ -17,5 +17,12 @@ export default [
         name: 'Goober',
         description: 'A goober with some HP. Like Into the Spider-Verse.',
         meta: [{ key: 'hp', value: '10' }]
+    }),
+
+    new Entity({
+        name: 'Guard',
+        description:
+            'A basic guard that moves toward the player and tries to attack them.',
+        meta: [{ key: 'hp', value: '10' }]
     })
 ]
