@@ -162,7 +162,7 @@ export default {
             const y = this.getY(i)
             return this.$store.state.boardState.entities.filter(
                 entity =>
-                    entity.guid === this.partition.guid &&
+                    entity.location.partitionGuid === this.partition.guid &&
                     entity.coordinates.x === x &&
                     entity.coordinates.y === y
             )
@@ -181,7 +181,7 @@ export default {
             } else {
                 const clone = JSON.parse(JSON.stringify(entity))
                 const newEntity = {
-                    guid: this.partition.guid,
+                    guid: createGuid(),
                     coordinates: this.currentCell,
 
                     // updated structure
@@ -196,7 +196,6 @@ export default {
                     ...clone
                 }
 
-                newEntity.id = createGuid()
                 this.$store.commit('ADD_ENTITY', newEntity)
             }
 

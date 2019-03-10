@@ -5,7 +5,7 @@ export default {
     REMOVE_ENTITY: (state, { guid, coordinates }) => {
         state.entities = state.entities.filter(entity => {
             return !(
-                entity.guid == guid &&
+                entity.location.partitionGuid == guid &&
                 entity.coordinates.x == coordinates.x &&
                 entity.coordinates.y == coordinates.y
             )
