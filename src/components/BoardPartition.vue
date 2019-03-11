@@ -290,6 +290,8 @@ export default {
         margin: auto;
         display: flex;
         flex-direction: column;
+        position: relative;
+        z-index: 10;
 
         .main {
             display: block;
