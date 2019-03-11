@@ -10,6 +10,16 @@
 
             <input aria-label="key" type="text" v-model="entity.meta[i].key">
 
+            <button class="toggle-presets" @click="showPresetsOn = showPresetsOn == i ? -1 : i">
+                {{ showPresetsOn == i ? 'X' : '...' }}
+            </button>
+
+            <div class="presets" v-if="showPresetsOn == i">
+                <button v-for="(preset, j) in presets" @click="entity.meta[i].key = preset.value; showPresetsOn = -1">
+                    {{ preset.name }}
+                </button>
+            </div>
+
             <input aria-label="value" type="text" v-model="entity.meta[i].value">
 
             <button class="delete" @click="entity.meta.splice(i, 1)">X</button>
@@ -28,6 +38,12 @@ export default {
         entity: {
             type: Object,
             default: () => {}
+        }
+    },
+    data() {
+        return {
+            showPresetsOn: -1,
+            presets: [{ name: 'HP', value: 'hp' }, { name: 'AP', value: 'ap' }]
         }
     },
     computed: {
@@ -49,6 +65,37 @@ export default {
 
     .title {
         margin-top: 0;
+    }
+
+    .entry {
+        display: grid;
+        grid-template-columns: [key] 1fr [button] auto [value] 1fr [delete] auto;
+        grid-auto-flow: dense;
+
+        .toggle-presets {
+            padding: 0 5px;
+            background: rgba($black, 0.2);
+
+            &:hover,
+            &:focus {
+                background: rgba($black, 0.1);
+            }
+        }
+        .presets {
+            grid-column: key / value;
+            padding: 5px 0;
+
+            button {
+                padding: 2px 8px;
+                background: rgba($black, 0.2);
+                border-radius: 10px;
+
+                &:hover,
+                &:focus {
+                    background: rgba($black, 0.1);
+                }
+            }
+        }
     }
 
     // Close button
