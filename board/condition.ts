@@ -8,3 +8,8 @@ interface Condition {
     triggerType: string
     onComplete: string
 }
+
+interface ConditionGroup {
+    conditions: Array<Condition>
+    operator: Operator
+}

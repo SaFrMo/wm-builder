@@ -28,3 +28,9 @@ interface HP {
     x: number
     y: number
 }
+
+// Logic operators
+enum Operator {
+    AND = 'AND',
+    OR = 'OR'
+}
