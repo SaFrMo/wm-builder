@@ -24,5 +24,11 @@ export default [
         description:
             'A basic guard that moves toward the player and tries to attack them.',
         meta: [{ key: 'hp', value: '10' }]
+    }),
+
+    new Entity({
+        name: 'Artillery',
+        description: 'A 2x1 unit with a sliceable weapon to its right.',
+        meta: [{ key: 'hp', value: '10' }]
     })
 ]
