@@ -180,8 +180,8 @@ export default {
             const cells = [].concat(
                 ...this.$store.state.boardState.partitions.map(p => {
                     const output = []
-                    for (let y = 0; y < p.width; y++) {
-                        for (let x = 0; x < p.height; x++) {
+                    for (let y = 0; y < p.height; y++) {
+                        for (let x = 0; x < p.width; x++) {
                             const base = `[${p.name}] (${x}, ${y})`
                             output.push(`${base} occupant`)
                             output.push(`${base} occupant health`)
