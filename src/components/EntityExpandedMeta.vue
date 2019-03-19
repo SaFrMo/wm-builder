@@ -43,7 +43,15 @@ export default {
     data() {
         return {
             showPresetsOn: -1,
-            presets: [{ name: 'HP', value: 'hp' }, { name: 'AP', value: 'ap' }]
+            presets: [
+                { name: 'HP', value: 'hp' },
+                { name: 'AP', value: 'ap' },
+                { name: 'Name', value: 'name' },
+                {
+                    name: 'Description',
+                    value: 'description'
+                }
+            ]
         }
     },
     computed: {
