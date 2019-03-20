@@ -20,7 +20,7 @@ Stay one step ahead of malicious hackers, government and otherwise, as you prote
 
 |               |                                                    |
 | ------------- | -------------------------------------------------- |
-| Unity version | 2018.2.0f2                                         |
+| Unity version | 2018.3.9f1                                         |
 | Repo URL      | keybase://team/whitemaskgame/white-mask            |
 | Task Board    | [Trello](https://trello.com/b/pQkYudAl/white-mask) |
 
