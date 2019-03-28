@@ -12,7 +12,7 @@ This is where you come in.
 
 You're a hacker whose experience with smart paint lets you find all the vulnerabilities any mural has left exposed - open doors, poor security, and more are all ready to be patched up for good after you put murals through every trial you can think of.
 
-Map out and explore the inner workings of each mural in XCOM/Into the Breach-style turn-based tactical gameplay, putting the art through its paces and testing its weaknesses. Keep up with the moving, shifting mural as it responds to your actions and shifts the game board, using that mural's own behavior to hack into it and learn more about this burgeoning art form.
+Map out and explore the inner workings of each mural in XCOM/Into the Breach-style turn-based tactical gameplay, putting the art through its paces and testing its weaknesses. Keep up with the moving, shifting mural as it responds to your actions and changes the layout of the game board, using its own behavior to hack your way in and learn more about this burgeoning art form.
 
 Stay one step ahead of malicious hackers, government and otherwise, as you protect artists, their audience, and their work, sneaking a glimmer of hope into a cruel and controlled world.
 
