@@ -2,7 +2,19 @@
 
     <ul class="condition-wrap">
 
-        <li><slot/></li>
+        <li class="slot">
+            <slot/>
+        </li>
+
+        <li class="boolean">
+            <select v-model="boolean">
+                <option
+                    v-for="(val, i) in conditions.booleans"
+                    :key="i"
+                    v-html="val == 'and' ? 'All must be true' : 'Any can be true'"
+                    :value="val"/>
+            </select>
+        </li>
 
         <!-- Conditions -->
         <li
@@ -143,7 +155,8 @@ export default {
             value: '',
             number: 0,
             triggerType: '',
-            onComplete: ''
+            onComplete: '',
+            boolean: 'and'
         }
     },
     methods: {
@@ -243,6 +256,9 @@ export default {
                 )
                 this.subjectId = partition.guid
             }
+        },
+        boolean(newVal) {
+            this.$emit('boolean-changed', newVal)
         },
         cmpPartitionNames(newVal, oldVal) {
             // find any changed conditions

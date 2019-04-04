@@ -7,6 +7,7 @@ export default class BoardSequence {
     boardStateIds: Array<string>
     conditions: Array<Condition>
     priority: number
+    boolean: boolean
 
     constructor(opts = {}) {
         const pick = buildPick(opts)

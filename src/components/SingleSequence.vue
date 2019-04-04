@@ -31,9 +31,10 @@
             <condition-wrap
                 :sequence="sequence"
                 @add-condition="addCondition"
-                @remove-condition="({ index }) => removeCondition(index)">
+                @remove-condition="({ index }) => removeCondition(index)"
+                @boolean-changed="updateBoolean">
 
-                <h3>Conditions (All must be true to start sequence)</h3>
+                <h3>Conditions</h3>
 
             </condition-wrap>
 
@@ -113,6 +114,12 @@ export default {
         this.priority = this.sequence.priority
     },
     methods: {
+        updateBoolean(newVal) {
+            this.$store.commit('SET_SEQUENCE_CONDITION_BOOL', {
+                sequenceId: this.sequence.id,
+                val: newVal
+            })
+        },
         removeIdAt(i) {
             this.$store.commit('REMOVE_STATE_ID_FROM_SEQUENCE', {
                 sequenceId: this.sequence.id,

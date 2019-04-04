@@ -32,6 +32,10 @@ export default {
     },
 
     // Conditions
+    SET_SEQUENCE_CONDITION_BOOL: (state, { sequenceId, val }) => {
+        const targetSequence = state.sequences.find(p => p.id == sequenceId)
+        targetSequence.boolean = val
+    },
     ADD_SEQUENCE_CONDITION: (state, { sequenceId, condition }) => {
         const targetSequence = state.sequences.find(p => p.id == sequenceId)
         targetSequence.conditions.push(condition)
