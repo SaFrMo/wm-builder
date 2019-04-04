@@ -316,6 +316,7 @@ export default {
         margin: 10px auto;
         border-left: 2px solid $white;
         padding-left: 10px;
+        position: relative;
 
         .remove-wrap {
             text-align: right;
