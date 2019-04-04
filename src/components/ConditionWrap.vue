@@ -120,6 +120,7 @@
 
 <script>
 import _differenceWith from 'lodash/differenceWith'
+const entityStartingAtText = 'starting at'
 
 export default {
     props: {
@@ -211,9 +212,9 @@ export default {
                     p => p.guid == e.location.partitionGuid
                 )[0]
 
-                return `${e.name} starting at [${hostPartition.name}] (${
-                    e.location.x
-                }, ${e.location.y}) health`
+                return `${e.name} ${entityStartingAtText} [${
+                    hostPartition.name
+                }] (${e.location.x}, ${e.location.y}) health`
             })
 
             const output = [].concat(
@@ -249,12 +250,43 @@ export default {
     },
     watch: {
         subject(newVal) {
+            let partitionGuid = null
+
+            // partition name will be in square brackets - check if one exists
             const partitionName = newVal.match(/\[(.*?)\]/)
             if (partitionName) {
                 const partition = this.$store.state.boardState.partitions.find(
                     p => p.name == partitionName[1]
                 )
                 this.subjectId = partition.guid
+                partitionGuid = partition.guid
+            }
+
+            // if we're referencing an entity, switch the subject ID to that entity
+            if (newVal.includes(entityStartingAtText)) {
+                // get the cell coordinates
+                const coords = newVal.match(/\((\d+), (\d+)\)/)
+                let coordsX, coordsY
+                if (coords) {
+                    coordsX = coords[1]
+                    coordsY = coords[2]
+                }
+                const targetEntity = this.$store.state.boardState.entities.find(
+                    e => {
+                        return (
+                            e.location.partitionGuid == partitionGuid &&
+                            e.location.x == coordsX &&
+                            e.location.y == coordsY
+                        )
+                    }
+                )
+                if (targetEntity) {
+                    this.subjectId = targetEntity.guid
+                } else {
+                    console.log(
+                        `Couln't find entity at ${partitionGuid} coordinates (${coordsX}, ${coordsY})`
+                    )
+                }
             }
         },
         boolean(newVal) {
