@@ -16,19 +16,25 @@ export default [
     new Entity({
         name: 'Goober',
         description: 'A goober with some HP. Like Into the Spider-Verse.',
-        meta: [{ key: 'hp', value: '10' }]
+        meta: [{ key: 'hp', value: '4' }]
     }),
 
     new Entity({
         name: 'Guard',
         description:
             'A basic guard that moves toward the player and tries to attack them.',
-        meta: [{ key: 'hp', value: '10' }]
+        meta: [{ key: 'hp', value: '3' }]
     }),
 
     new Entity({
         name: 'Artillery',
         description: 'A 2x1 unit with a sliceable weapon to its right.',
-        meta: [{ key: 'hp', value: '10' }]
+        meta: [{ key: 'hp', value: '3' }]
+    }),
+
+    new Entity({
+        name: 'Data',
+        description: 'Data drop revealing one or more Sequences.',
+        meta: [{ key: 'sequences', value: '' }]
     })
 ]

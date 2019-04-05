@@ -20,7 +20,19 @@
                 </button>
             </div>
 
-            <input aria-label="value" type="text" v-model="entity.meta[i].value">
+            <input aria-label="value" type="text" v-if="entity.meta[i].key != 'sequences'" v-model="entity.meta[i].value">
+            <ul class="sequence-selection-wrap" v-else>
+                <li v-for="(sequence, j) in $store.state.boardState.sequences" :key="j">
+                    <input
+                        type="checkbox"
+                        :id="`seq${j}`"
+                        :key="`seq${j}`"
+                        :value="sequence.id"
+                        @change="updateList($event, i)"
+                        v-model="checkedSequences"/>
+                    <label :for="`seq${j}`">{{ sequence.name }}</label>
+                </li>
+            </ul>
 
             <button class="delete" @click="entity.meta.splice(i, 1)">X</button>
 
@@ -40,6 +52,12 @@ export default {
             default: () => {}
         }
     },
+    mounted() {
+        const sequencesItem = this.entity.meta.filter(x => x.key == 'sequences')
+        if (sequencesItem.length) {
+            this.checkedSequences = sequencesItem[0].value.split(',')
+        }
+    },
     data() {
         return {
             showPresetsOn: -1,
@@ -50,13 +68,20 @@ export default {
                 {
                     name: 'Description',
                     value: 'description'
-                }
-            ]
+                },
+                { name: 'Sequences', value: 'sequences' }
+            ],
+            checkedSequences: []
         }
     },
     computed: {
         sortedMeta() {
             return entity.meta
+        }
+    },
+    methods: {
+        updateList(evt, index) {
+            this.entity.meta[index].value = this.checkedSequences.join(',')
         }
     }
 }
@@ -104,6 +129,15 @@ export default {
                 }
             }
         }
+    }
+
+    // Sequence selection for drops
+    .sequence-selection-wrap {
+        margin-left: 5px;
+        list-style: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
     }
 
     // Close button
