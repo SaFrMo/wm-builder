@@ -26,15 +26,22 @@ export default [
         meta: [{ key: 'hp', value: '3' }]
     }),
 
-    new Entity({
-        name: 'Artillery',
-        description: 'A 2x1 unit with a sliceable weapon to its right.',
-        meta: [{ key: 'hp', value: '3' }]
-    }),
+    // new Entity({
+    //     name: 'Artillery',
+    //     description: 'A 2x1 unit with a sliceable weapon to its right.',
+    //     meta: [{ key: 'hp', value: '3' }]
+    // }),
 
     new Entity({
         name: 'Data',
         description: 'Data drop revealing one or more Sequences.',
         meta: [{ key: 'sequences', value: '' }]
+    }),
+
+    new Entity({
+        name: 'Deploy Lock',
+        description:
+            'A lock that prevents deployment on this space until picked up.',
+        meta: [{ key: 'hp', value: '1' }, { key: 'ap', value: '1' }]
     })
 ]
