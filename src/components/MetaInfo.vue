@@ -2,7 +2,7 @@
 
     <section class="meta-info">
 
-        <textarea class="board-name" type="text" v-model="boardName"/>
+        <textarea class="board-name" type="text" v-model="boardName" :key="boardName"/>
 
         <h3 class="section-label">Meta Information</h3>
 

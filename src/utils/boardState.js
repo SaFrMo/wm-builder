@@ -56,6 +56,7 @@ export default {
             })
 
             state.guid = Date.now().toString()
+            localStorage.setItem('force-load', state.guid)
         },
 
         // save/load
@@ -74,6 +75,9 @@ export default {
 
             // refresh partition HPs
             state.partitions.forEach(p => p.refreshHps())
+
+            // save that this is our go-to level
+            localStorage.setItem('force-load', parsed.guid)
         },
 
         // board meta

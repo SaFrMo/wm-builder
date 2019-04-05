@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 const autosavePrefix = 'wm-board-autosave-'
+const forceLoad = 'force-load'
 
 export default {
     data() {
@@ -24,10 +25,18 @@ export default {
             }
 
             // find latest save
-            const latest = Math.max.apply(Math, timestamps)
+            let toLoadGuid = ''
+
+            if (localStorage[forceLoad]) {
+                toLoadGuid = localStorage[forceLoad]
+            } else {
+                // default to most recent timestamp
+                toLoadGuid = Math.max.apply(Math, timestamps)
+            }
+
             this.$store.commit(
                 'LOAD_LEVEL',
-                localStorage.getItem(`${autosavePrefix}${latest}`)
+                localStorage.getItem(`${autosavePrefix}${toLoadGuid}`)
             )
         }
 
