@@ -106,7 +106,7 @@ export default {
             width: 100%;
             right: 0;
             left: 0;
-            // transform: scaleY(0);
+            transform: scaleY(0);
 
             button {
                 width: 100%;
@@ -132,7 +132,7 @@ export default {
             bottom: 0;
             height: 100%;
             flex-direction: column;
-            // transform: scaleX(0);
+            transform: scaleX(0);
 
             button {
                 height: 50%;

@@ -74,7 +74,7 @@ export default {
 
     .grid {
         display: grid;
-        grid-gap: 10px;
+        grid-gap: 1px;
         width: calc(100% - 80px);
         height: calc(100% - 80px);
         margin: auto;

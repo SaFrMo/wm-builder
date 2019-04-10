@@ -4,9 +4,9 @@
         :class="classes"
         @click="handleClick">
 
-        <span class="coordinates">
+        <!-- <span class="coordinates">
             ({{ x }}, {{ y }})
-        </span>
+        </span> -->
     </button>
 
 </template>
