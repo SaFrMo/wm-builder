@@ -230,6 +230,7 @@ export default {
         width: $edit-info-width;
         height: 40px;
         z-index: 5;
+        display: none;
 
         &:hover,
         &:focus {
@@ -324,6 +325,8 @@ export default {
     // Partition hover state
     &:hover,
     &:focus-within {
+        z-index: 100;
+
         .partition-directions .direction {
             transform: none;
             transition: none;
@@ -333,7 +336,9 @@ export default {
             transform: none;
             pointer-events: all;
         }
-        z-index: 100;
+        .toggle-meta {
+            display: initial;
+        }
     }
 }
 </style>
