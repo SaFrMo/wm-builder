@@ -90,7 +90,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: skyblue;
+    background-color: $main-color;
     padding: 10px;
     box-sizing: border-box;
     overflow-y: auto;

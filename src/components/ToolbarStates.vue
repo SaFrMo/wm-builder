@@ -65,7 +65,7 @@ export default {
 @import 'src/styles/vars';
 
 .toolbar-states {
-    background-color: $partition;
+    background-color: $main-color;
     position: relative;
 
     .title {

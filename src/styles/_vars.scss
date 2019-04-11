@@ -20,6 +20,8 @@ $dark-safe: darken($safe, 10%);
 
 $edit-info-width: 100px;
 
+$main-color: skyblue;
+
 @mixin fill {
     position: absolute;
     top: 0;
