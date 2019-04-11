@@ -47,9 +47,9 @@
                 </button>
             </span>
 
-            <hp-display
+            <!-- <hp-display
                 :hp="getHp(i)"
-                @onHpChanged="updateHp(i)($event)"/>
+                @onHpChanged="updateHp(i)($event)"/> -->
 
         </span>
 
@@ -223,7 +223,7 @@ export default {
             return x < this.visibleWidth && x >= 0
         },
         getClasses(i) {
-            return [
+            const output = [
                 'single-cell',
                 {
                     'is-pivot':
@@ -231,6 +231,13 @@ export default {
                         this.partition.pivot.y == this.getY(i)
                 }
             ]
+
+            const entity = this.getEntity(i).pop()
+            if (entity) {
+                output.push('contents-' + _kebabCase(entity.name))
+            }
+
+            return output
         },
         updateHp(i) {
             return newHp => {
@@ -280,35 +287,39 @@ export default {
 .partition-cells {
     @include fill;
     display: grid;
-    grid-gap: 10px;
+    // grid-gap: 10px;
     background: $partition;
 
     .single-cell {
-        background-color: rgba($black, 0.2);
-        color: $white;
-        border-radius: 5px;
-        width: calc(100% - 10px);
-        height: calc(100% - 10px);
+        background-color: $white;
+        color: $black;
+        // border-radius: 5px;
+        width: calc(100%);
+        height: calc(100%);
         margin: auto;
-        // display: flex;
-        // flex-direction: column;
+        display: flex;
+        flex-direction: column;
         // align-items: center;
-        // justify-content: center;
+        justify-content: center;
         overflow: hidden;
         position: relative;
-        display: grid;
-        grid-template-columns: repeat(3, 33.333%);
+        // display: grid;
+        // grid-template-columns: repeat(3, 33.333%);
+        border: 0.5px solid $black;
+        box-sizing: border-box;
 
         &.is-pivot {
-            background-color: rgba(green, 0.5);
+            background-color: rgba(#9c9, 1);
+        }
+        &.contents-empty-space {
+            opacity: 0;
         }
 
         .coordinates-wrap {
             font-size: 12px;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-            flex-direction: column;
 
             .deploy {
                 display: flex;
@@ -316,7 +327,7 @@ export default {
         }
 
         .entity-contents {
-            @include fill;
+            // @include fill;
             display: flex;
             // flex-direction: column;
             justify-content: flex-end;
@@ -324,7 +335,7 @@ export default {
             text-align: center;
             grid-column: 2 / span 2;
             grid-row: 1 / span 1;
-            background: rgba($black, 0.2);
+            // background: rgba($black, 0.2);
             font-size: 12px;
 
             .entity-wrap {
@@ -336,7 +347,7 @@ export default {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: $white;
+                // color: $white;
                 font-size: 12px;
                 position: relative;
             }

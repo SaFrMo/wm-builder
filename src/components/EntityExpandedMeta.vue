@@ -95,6 +95,7 @@ export default {
     padding: 10px;
     z-index: 15;
     position: fixed;
+    border: 1px solid $black;
 
     .title {
         margin-top: 0;

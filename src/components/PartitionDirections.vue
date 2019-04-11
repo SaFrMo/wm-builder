@@ -76,7 +76,7 @@ export default {
     @include fill;
 
     button {
-        background-color: $alt;
+        background-color: $black;
         color: $white;
         font-size: 16px;
         font-weight: 700;
@@ -88,7 +88,8 @@ export default {
 
         &:hover,
         &:focus {
-            background-color: $dark-alt;
+            background-color: $white;
+            color: $black;
         }
     }
 

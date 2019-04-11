@@ -222,18 +222,19 @@ export default {
 
     .toggle-meta {
         color: $white;
-        background-color: darken($dark-partition, 20%);
+        background-color: $black;
         padding: 10px;
         position: absolute;
+        top: calc(100% + 26px);
         right: 0;
-        bottom: 0;
         width: $edit-info-width;
         height: 40px;
         z-index: 5;
 
         &:hover,
         &:focus {
-            background-color: $dark-partition;
+            background-color: $white;
+            color: $black;
         }
     }
 
@@ -332,6 +333,7 @@ export default {
             transform: none;
             pointer-events: all;
         }
+        z-index: 100;
     }
 }
 </style>
