@@ -1,50 +1,71 @@
 <template>
-
     <aside class="entity-expanded-meta">
-
         <h3 class="title">{{ entity.name }} Meta</h3>
 
-        <button class="close" aria-label="close" @click="$emit('onClose')">X</button>
+        <button class="close" aria-label="close" @click="$emit('onClose')">
+            X
+        </button>
 
         <div class="entry" v-for="(entry, i) in entity.meta">
+            <input aria-label="key" type="text" v-model="entity.meta[i].key" />
 
-            <input aria-label="key" type="text" v-model="entity.meta[i].key">
-
-            <button class="toggle-presets" @click="showPresetsOn = showPresetsOn == i ? -1 : i">
+            <button
+                class="toggle-presets"
+                @click="showPresetsOn = showPresetsOn == i ? -1 : i"
+            >
                 {{ showPresetsOn == i ? 'X' : '...' }}
             </button>
 
             <div class="presets" v-if="showPresetsOn == i">
-                <button v-for="(preset, j) in presets" @click="entity.meta[i].key = preset.value; showPresetsOn = -1">
+                <button
+                    v-for="(preset, j) in presets"
+                    @click="
+                        entity.meta[i].key = preset.value
+                        showPresetsOn = -1
+                    "
+                >
                     {{ preset.name }}
                 </button>
             </div>
 
-            <input aria-label="value" type="text" v-if="entity.meta[i].key != 'sequences'" v-model="entity.meta[i].value">
-            <ul class="sequence-selection-wrap" v-else>
-                <li v-for="(sequence, j) in $store.state.boardState.sequences" :key="j">
-                    <input
-                        type="checkbox"
-                        :id="`seq${j}`"
-                        :key="`seq${j}`"
-                        :value="sequence.id"
-                        @change="updateList($event, i)"
-                        v-model="checkedSequences"/>
-                    <label :for="`seq${j}`">{{ sequence.name }}</label>
-                </li>
-            </ul>
+            <!-- Sequences -->
+            <meta-predefined-choices
+                v-if="entity.meta[i].key == 'sequences'"
+                :choices="$store.state.boardState.sequences"
+                :getValue="val => val.id"
+                :getLabel="val => val.name"
+                :passed-values="entity.meta[i].value"
+                @value-change="vals => (entity.meta[i].value = vals)"
+            />
+            <!-- Behaviors -->
+            <meta-predefined-choices
+                v-else-if="entity.meta[i].key == 'behavior'"
+                :choices="entityBehaviors"
+                :passed-values="entity.meta[i].value"
+                :getValue="val => val.value"
+                :getLabel="val => val.label"
+                @value-change="vals => (entity.meta[i].value = vals)"
+            />
+            <!-- All other values -->
+            <input
+                aria-label="value"
+                type="text"
+                v-else
+                v-model="entity.meta[i].value"
+            />
 
             <button class="delete" @click="entity.meta.splice(i, 1)">X</button>
-
         </div>
 
-        <button class="add" @click="entity.meta.push({ key: '', value: '' })">+</button>
-
+        <button class="add" @click="entity.meta.push({ key: '', value: '' })">
+            +
+        </button>
     </aside>
-
 </template>
 
 <script>
+import { entityMetaPresetKeys, entityBehaviors } from '@/content'
+
 export default {
     props: {
         entity: {
@@ -61,17 +82,8 @@ export default {
     data() {
         return {
             showPresetsOn: -1,
-            presets: [
-                { name: 'HP', value: 'hp' },
-                { name: 'AP', value: 'ap' },
-                { name: 'Name', value: 'name' },
-                {
-                    name: 'Description',
-                    value: 'description'
-                },
-                { name: 'Sequences', value: 'sequences' }
-            ],
-            checkedSequences: []
+            presets: entityMetaPresetKeys,
+            entityBehaviors
         }
     },
     computed: {
