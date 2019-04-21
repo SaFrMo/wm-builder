@@ -1,9 +1,7 @@
 <template>
-
     <ul class="condition-wrap">
-
         <li class="slot">
-            <slot/>
+            <slot />
         </li>
 
         <li class="boolean">
@@ -11,8 +9,11 @@
                 <option
                     v-for="(val, i) in conditions.booleans"
                     :key="i"
-                    v-html="val == 'and' ? 'All must be true' : 'Any can be true'"
-                    :value="val"/>
+                    :value="val"
+                    v-html="
+                        val == 'and' ? 'All must be true' : 'Any can be true'
+                    "
+                />
             </select>
         </li>
 
@@ -20,43 +21,42 @@
         <li
             v-for="(condition, i) in sequence.conditions"
             :key="i"
-            class="single-condition">
-
+            class="single-condition"
+        >
             <div class="factors">
                 <span class="subject">{{ condition.subject }}</span>
                 <span class="comparator">{{ condition.comparator }}</span>
                 <span class="value">{{ condition.value }}</span>
-                <span
-                    v-if="showNumber(condition)"
-                    class="number">
+                <span v-if="showNumber(condition)" class="number">
                     {{ condition.number }}
                 </span>
             </div>
 
             <div class="meta">
-                <span v-if="condition.triggerType">Activation: {{condition.triggerType}}.</span>
-                <span v-if="condition.onComplete">When complete: {{ condition.onComplete }}.</span>
+                <span v-if="condition.triggerType"
+                    >Activation: {{ condition.triggerType }}.</span
+                >
+                <span v-if="condition.onComplete"
+                    >When complete: {{ condition.onComplete }}.</span
+                >
             </div>
 
             <span class="remove-wrap">
                 <button
                     @click="$emit('remove-condition', { index: i })"
-                    class="remove">
+                    class="remove"
+                >
                     Remove
                 </button>
             </span>
-
         </li>
 
         <!-- Add condition -->
         <li class="add-condition-wrap">
-
             <!-- Subject -->
             <select class="subject" v-model="subject">
                 <option disabled value="">Subject</option>
-                <option
-                    v-for="(possibleSubject, i) in cmpSubjects"
-                    :key="i">
+                <option v-for="(possibleSubject, i) in cmpSubjects" :key="i">
                     {{ possibleSubject }}
                 </option>
             </select>
@@ -66,7 +66,8 @@
                 <option disabled value="">Comparator</option>
                 <option
                     v-for="(possibleComparator, i) in cmpComparators"
-                    :key="i">
+                    :key="i"
+                >
                     {{ possibleComparator }}
                 </option>
             </select>
@@ -74,25 +75,17 @@
             <!-- Value -->
             <select class="value" v-model="value">
                 <option disabled value="">Value</option>
-                <option
-                    v-for="(possibleValue, i) in cmpValues"
-                    :key="i">
+                <option v-for="(possibleValue, i) in cmpValues" :key="i">
                     {{ possibleValue }}
                 </option>
             </select>
 
-            <input
-                v-model="number"
-                v-if="cmpShowNumber"
-                class="number-input"/>
+            <input v-model="number" v-if="cmpShowNumber" class="number-input" />
 
             <div class="trigger-type">
-                <select
-                    v-model="triggerType">
+                <select v-model="triggerType">
                     <option disabled value="">Type</option>
-                    <option
-                        v-for="(possibleValue, i) in triggerTypes"
-                        :key="i">
+                    <option v-for="(possibleValue, i) in triggerTypes" :key="i">
                         {{ possibleValue }}
                     </option>
                 </select>
@@ -103,7 +96,8 @@
                     <option disabled value="">When Complete...</option>
                     <option
                         v-for="(possibleValue, i) in onCompleteActions"
-                        :key="i">
+                        :key="i"
+                    >
                         {{ possibleValue }}
                     </option>
                 </select>
@@ -111,11 +105,8 @@
 
             <!-- Add button -->
             <button class="add-condition" @click="addCondition">Add</button>
-
         </li>
-
     </ul>
-
 </template>
 
 <script>
@@ -157,8 +148,11 @@ export default {
             number: 0,
             triggerType: '',
             onComplete: '',
-            boolean: 'and'
+            boolean: ''
         }
+    },
+    mounted() {
+        this.boolean = this.sequence.boolean
     },
     methods: {
         addCondition() {
