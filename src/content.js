@@ -16,4 +16,7 @@ export const entityMetaPresetKeys = [
 export const entityBehaviors = [{ label: 'Stationary', value: 'stationary' }]
 
 // preset enemy types
-export const enemyTypes = [{ label: 'Bulwark', value: 'bulwark' }]
+export const enemyTypes = [
+    { label: 'Bulwark', value: 'bulwark' },
+    { label: 'Guard', value: 'guard' }
+]
