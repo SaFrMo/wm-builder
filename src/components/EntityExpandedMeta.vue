@@ -46,6 +46,15 @@
                 :getLabel="val => val.label"
                 @value-change="vals => (entity.meta[i].value = vals)"
             />
+            <!-- Enemies -->
+            <meta-predefined-choices
+                v-else-if="entity.meta[i].key == 'enemy-selector'"
+                :choices="enemyTypes"
+                :passed-values="entity.meta[i].value"
+                :getValue="val => val.value"
+                :getLabel="val => val.label"
+                @value-change="vals => (entity.meta[i].value = vals)"
+            />
             <!-- All other values -->
             <input
                 aria-label="value"
@@ -64,7 +73,7 @@
 </template>
 
 <script>
-import { entityMetaPresetKeys, entityBehaviors } from '@/content'
+import { entityMetaPresetKeys, entityBehaviors, enemyTypes } from '@/content'
 
 export default {
     props: {
@@ -83,7 +92,8 @@ export default {
         return {
             showPresetsOn: -1,
             presets: entityMetaPresetKeys,
-            entityBehaviors
+            entityBehaviors,
+            enemyTypes
         }
     },
     computed: {

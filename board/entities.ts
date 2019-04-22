@@ -22,7 +22,7 @@ export default [
     new Entity({
         name: 'Guard',
         description:
-            'A basic guard that moves toward the player and tries to attack them.',
+            'DEPRECATED: Prefer "Enemy" over this. A basic guard that moves toward the player and tries to attack them.',
         meta: [{ key: 'hp', value: '3' }]
     }),
 
@@ -43,5 +43,15 @@ export default [
         description:
             'A lock that prevents deployment on this space until picked up.',
         meta: [{ key: 'hp', value: '1' }, { key: 'ap', value: '1' }]
+    }),
+
+    new Entity({
+        name: 'Enemy',
+        description: 'Selector for any kind of enemy.',
+        meta: [
+            { key: 'hp', value: '2' },
+            { key: 'ap', value: '2' },
+            { key: 'enemy-selector', value: '' }
+        ]
     })
 ]
