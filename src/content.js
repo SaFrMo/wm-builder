@@ -18,5 +18,6 @@ export const entityBehaviors = [{ label: 'Stationary', value: 'stationary' }]
 // preset enemy types
 export const enemyTypes = [
     { label: 'Bulwark', value: 'bulwark' },
-    { label: 'Guard', value: 'guard' }
+    { label: 'Guard', value: 'guard' },
+    { label: 'Turret', value: 'turret' }
 ]

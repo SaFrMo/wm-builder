@@ -53,5 +53,9 @@ export default {
 
 <style lang="scss">
 .meta-predefined-choices {
+    .sequence-selection-wrap {
+        max-height: 55px;
+        overflow-y: auto;
+    }
 }
 </style>
