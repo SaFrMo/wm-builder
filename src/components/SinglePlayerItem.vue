@@ -3,7 +3,7 @@
         <select v-model="selectedItem">
             <option disabled value="">Select a unit...</option>
             <option v-for="(item, i) in playerItems" :value="item" :key="i">
-                {{ item.label }}
+                {{ item.key }}
             </option>
         </select>
 
