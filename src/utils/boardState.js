@@ -7,6 +7,7 @@ import {
 import entityActions from '@/utils/board/entity-actions'
 import sequenceActions from '@/utils/board/sequence-actions'
 import boardActions from '@/utils/board/board-actions'
+import playerUnitActions from '@/utils/board/player-unit-actions'
 import * as goalActions from '@/utils/board/goal-actions'
 
 // deconstruct board classes
@@ -19,6 +20,9 @@ const defaultState = {
     states: [new BoardState({ name: 'Default' })],
     sequences: [],
     goals: [],
+
+    // predefined player items
+    playerItems: [],
 
     // board meta info
     name: 'Board',
@@ -38,6 +42,8 @@ export default {
         states: [new BoardState({ name: 'Default' })],
         sequences: [],
         goals: [],
+
+        playerItems: [],
 
         // board meta info
         name: 'Board',
@@ -118,7 +124,10 @@ export default {
         ...boardActions,
 
         // Goals
-        ...goalActions.mutations
+        ...goalActions.mutations,
+
+        // Player unit actions
+        ...playerUnitActions
     },
     actions: {
         ...partitionActions

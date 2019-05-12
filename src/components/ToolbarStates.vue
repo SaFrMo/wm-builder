@@ -1,7 +1,5 @@
 <template>
-
     <aside class="toolbar-states">
-
         <h2 class="title">{{ toShow }}</h2>
 
         <!-- All states -->
@@ -13,17 +11,19 @@
                 @selected="selectState(i)"
                 @deleted="deleteState(i)"
                 :show-delete="i != 0"
-                :class="{ selected: $store.state.selectedBoardStateIndex == i }"/>
-            <button
-                @click="addState"
-                aria-label="Add board state">+</button>
+                :class="{ selected: $store.state.selectedBoardStateIndex == i }"
+            />
+            <button @click="addState" aria-label="Add board state">+</button>
         </ul>
 
         <!-- Sequences -->
-        <wrap-sequences v-else-if="toShow == 'Sequences'"/>
+        <wrap-sequences v-else-if="toShow == 'Sequences'" />
 
         <!-- Goals -->
-        <wrap-goals v-else-if="toShow == 'Goals'"/>
+        <wrap-goals v-else-if="toShow == 'Goals'" />
+
+        <!-- Player items -->
+        <wrap-player-items v-else-if="toShow == 'Player Items'" />
 
         <!-- Nav -->
         <nav class="display-types">
@@ -32,18 +32,17 @@
                 :class="['display-type', { selected: toShow == display }]"
                 :key="i"
                 v-html="display"
-                @click="toShow = display"/>
+                @click="toShow = display"
+            />
         </nav>
-
     </aside>
-
 </template>
 
 <script>
 export default {
     data() {
         return {
-            displays: ['States', 'Sequences', 'Goals'],
+            displays: ['States', 'Sequences', 'Goals', 'Player Items'],
             toShow: 'Goals'
         }
     },
@@ -112,7 +111,8 @@ export default {
 
     // Sequences & goals
     .wrap-sequences,
-    .wrap-goals {
+    .wrap-goals,
+    .wrap-player-items {
         overflow-y: auto;
         position: absolute;
         top: 10px;

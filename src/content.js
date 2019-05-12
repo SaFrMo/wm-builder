@@ -21,3 +21,9 @@ export const enemyTypes = [
     { label: 'Guard', value: 'guard' },
     { label: 'Turret', value: 'turret' }
 ]
+
+// preset player-usable unit types
+export const playerItems = [
+    { label: 'RAI', value: 'rai-1.0-prefab' },
+    { label: 'M-DOS', value: 'farmer-1.0' }
+]
