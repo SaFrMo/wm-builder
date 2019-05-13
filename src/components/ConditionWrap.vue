@@ -129,7 +129,12 @@ export default {
             triggerTypes: ['toggle', 'pressure'],
             onCompleteActions: ['continue', 'loop'],
             conditions: {
-                subjects: ['Sequence', 'Sequence step', 'Random number'],
+                subjects: [
+                    'Sequence',
+                    'Sequence step',
+                    'Random number',
+                    'Current turn'
+                ],
                 comparators: [
                     'equals',
                     'less than',
