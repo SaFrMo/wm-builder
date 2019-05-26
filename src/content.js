@@ -9,7 +9,10 @@ export const entityMetaPresetKeys = [
     },
     { name: 'Sequences', value: 'sequences' },
     { name: 'Behavior', value: 'behavior' },
-    { name: 'Enemy Selector', value: 'enemy-selector' }
+    { name: 'Enemy Selector', value: 'enemy-selector' },
+    { name: 'Spawn Type', value: 'spawn-type' },
+    { name: 'Spawn Frequency', value: 'spawn-frequency' },
+    { name: 'Spawn Location', value: 'spawn-location' }
 ]
 
 // preset item behaviors
@@ -19,11 +22,20 @@ export const entityBehaviors = [{ label: 'Stationary', value: 'stationary' }]
 export const enemyTypes = [
     { label: 'Bulwark', value: 'bulwark' },
     { label: 'Guard', value: 'guard' },
-    { label: 'Turret', value: 'turret' }
+    { label: 'Turret', value: 'turret' },
+    { label: 'Spawner', value: 'spawner' }
 ]
 
 // preset player-usable unit types
 export const playerItems = [
     { key: 'RAI', value: 'rai-1.0-prefab' },
     { key: 'M-DOS', value: 'farmer-1.0' }
+]
+
+// locations
+export const locations = [
+    { label: 'N', value: 'n' },
+    { label: 'S', value: 's' },
+    { label: 'E', value: 'e' },
+    { label: 'W', value: 'w' }
 ]

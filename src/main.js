@@ -26,6 +26,18 @@ components.keys().map(component => {
     Vue.component(componentName, components(component).default)
 })
 
+// UID for each el
+// https://stackoverflow.com/a/43692973/3856675
+Vue.use({
+    install: function(Vue, options) {
+        Object.defineProperty(Vue.prototype, 'uniqId', {
+            get: function uniqId() {
+                return this._uid
+            }
+        })
+    }
+})
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

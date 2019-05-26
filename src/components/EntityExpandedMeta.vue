@@ -6,7 +6,7 @@
             X
         </button>
 
-        <div class="entry" v-for="(entry, i) in entity.meta">
+        <div class="entry" v-for="(entry, i) in entity.meta" :key="i">
             <input aria-label="key" type="text" v-model="entity.meta[i].key" />
 
             <button
@@ -35,6 +35,7 @@
                 :getValue="val => val.id"
                 :getLabel="val => val.name"
                 :passed-values="entity.meta[i].value"
+                :key="i"
                 @value-change="vals => (entity.meta[i].value = vals)"
             />
             <!-- Behaviors -->
@@ -44,6 +45,7 @@
                 :passed-values="entity.meta[i].value"
                 :getValue="val => val.value"
                 :getLabel="val => val.label"
+                :key="i"
                 @value-change="vals => (entity.meta[i].value = vals)"
             />
             <!-- Enemies -->
@@ -53,6 +55,27 @@
                 :passed-values="entity.meta[i].value"
                 :getValue="val => val.value"
                 :getLabel="val => val.label"
+                :key="i"
+                @value-change="vals => (entity.meta[i].value = vals)"
+            />
+            <!-- Spawner -->
+            <meta-predefined-choices
+                v-else-if="entity.meta[i].key == 'spawn-type'"
+                :choices="enemyTypes"
+                :passed-values="entity.meta[i].value"
+                :getValue="val => val.value"
+                :getLabel="val => val.label"
+                :key="i"
+                @value-change="vals => (entity.meta[i].value = vals)"
+            />
+            <!-- Spawn location -->
+            <meta-predefined-choices
+                v-else-if="entity.meta[i].key == 'spawn-location'"
+                :choices="locations"
+                :passed-values="entity.meta[i].value"
+                :getValue="val => val.value"
+                :getLabel="val => val.label"
+                :key="i"
                 @value-change="vals => (entity.meta[i].value = vals)"
             />
             <!-- All other values -->
@@ -73,7 +96,12 @@
 </template>
 
 <script>
-import { entityMetaPresetKeys, entityBehaviors, enemyTypes } from '@/content'
+import {
+    entityMetaPresetKeys,
+    entityBehaviors,
+    enemyTypes,
+    locations
+} from '@/content'
 
 export default {
     props: {
@@ -93,7 +121,8 @@ export default {
             showPresetsOn: -1,
             presets: entityMetaPresetKeys,
             entityBehaviors,
-            enemyTypes
+            enemyTypes,
+            locations
         }
     },
     computed: {

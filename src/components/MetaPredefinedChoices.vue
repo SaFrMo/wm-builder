@@ -4,12 +4,12 @@
             <li v-for="(choice, i) in choices" :key="i">
                 <input
                     type="checkbox"
-                    :id="`seq${i}`"
+                    :id="`${uniqId}-seq${i}`"
                     :key="`seq${i}`"
                     :value="getValue(choice)"
                     v-model="values"
                 />
-                <label :for="`seq${i}`">{{ getLabel(choice) }}</label>
+                <label :for="`${uniqId}-seq${i}`">{{ getLabel(choice) }}</label>
             </li>
         </ul>
     </div>
