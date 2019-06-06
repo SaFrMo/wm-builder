@@ -12,7 +12,8 @@ export const entityMetaPresetKeys = [
     { name: 'Enemy Selector', value: 'enemy-selector' },
     { name: 'Spawn Type', value: 'spawn-type' },
     { name: 'Spawn Frequency', value: 'spawn-frequency' },
-    { name: 'Spawn Location', value: 'spawn-location' }
+    { name: 'Spawn Location', value: 'spawn-location' },
+    { name: 'Spawn Capacity', value: 'spawn-capacity' }
 ]
 
 // preset item behaviors
