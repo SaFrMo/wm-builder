@@ -110,6 +110,7 @@
 </template>
 
 <script>
+import { enemyTypes } from '../content'
 import _differenceWith from 'lodash/differenceWith'
 const entityStartingAtText = 'starting at'
 
@@ -181,8 +182,6 @@ export default {
         }
     },
     computed: {
-        // TODO: Start here - build out dynamic conditions
-
         cmpSubjects() {
             // get abbreviated version of all partitions
             const partitionNames = this.$store.state.boardState.partitions.map(
@@ -216,8 +215,19 @@ export default {
                 }] (${e.location.x}, ${e.location.y}) health`
             })
 
+            // all/certain units destroyed this turn
+            let unitsDestroyed = ['Units destroyed in single turn'].concat(
+                enemyTypes.map(
+                    enemy =>
+                        `Enemies of type [${
+                            enemy.value
+                        }] destroyed in single turn`
+                )
+            )
+
             const output = [].concat(
                 this.conditions.subjects,
+                unitsDestroyed,
                 partitionNames,
                 cells,
                 entities
