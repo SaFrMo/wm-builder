@@ -13,7 +13,8 @@ export const entityMetaPresetKeys = [
     { name: 'Spawn Type', value: 'spawn-type' },
     { name: 'Spawn Frequency', value: 'spawn-frequency' },
     { name: 'Spawn Location', value: 'spawn-location' },
-    { name: 'Spawn Capacity', value: 'spawn-capacity' }
+    { name: 'Spawn Capacity', value: 'spawn-capacity' },
+    { name: 'Lock ID', value: 'lock-id' }
 ]
 
 // preset item behaviors
@@ -24,7 +25,8 @@ export const enemyTypes = [
     { label: 'Bulwark', value: 'bulwark' },
     { label: 'Guard', value: 'guard' },
     { label: 'Turret', value: 'turret' },
-    { label: 'Spawner', value: 'spawner' }
+    { label: 'Spawner', value: 'spawner' },
+    { label: 'Lock', value: 'lock' }
 ]
 
 // preset player-usable unit types
