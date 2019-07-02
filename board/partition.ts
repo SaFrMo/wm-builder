@@ -1,4 +1,4 @@
-import { buildPick, getX, getY, createGuid } from './utils'
+import { buildPick, createGuid } from './utils'
 import Entity from './entity'
 
 export default class Partition {
@@ -10,7 +10,7 @@ export default class Partition {
     guid: string
     entities: Array<Entity>
     rotation: number
-    hps: Array<HP>
+    // hps: Array<HP>
     deployable: Array<Vector2>
 
     constructor(opts = {}) {
@@ -39,20 +39,20 @@ export default class Partition {
         this.rotation = 0
 
         // HP levels of Cells
-        this.hps = pick(
-            'hps',
-            Array.apply(null, new Array(this.width * this.height)).map(
-                (v, i) => {
-                    return {
-                        current: 10,
-                        max: 10,
-                        min: -10,
-                        x: getX(i, this.width),
-                        y: getY(i, this.width, this.width * this.height)
-                    }
-                }
-            )
-        )
+        // this.hps = pick(
+        //     'hps',
+        //     Array.apply(null, new Array(this.width * this.height)).map(
+        //         (v, i) => {
+        //             return {
+        //                 current: 10,
+        //                 max: 10,
+        //                 min: -10,
+        //                 x: getX(i, this.width),
+        //                 y: getY(i, this.width, this.width * this.height)
+        //             }
+        //         }
+        //     )
+        // )
 
         // Coordinates of deployable Cells
         this.deployable = pick('deployable', [])
@@ -64,35 +64,33 @@ export default class Partition {
 
     refreshHps() {
         // get a list of all viable coordinates
-        const allCellCoordinates = Array.apply(
-            null,
-            new Array(this.width * this.height)
-        ).map((v, i) => {
-            return {
-                x: getX(i, this.width),
-                y: getY(i, this.width, this.width * this.height)
-            }
-        })
-
+        // const allCellCoordinates = Array.apply(
+        //     null,
+        //     new Array(this.width * this.height)
+        // ).map((v, i) => {
+        //     return {
+        //         x: getX(i, this.width),
+        //         y: getY(i, this.width, this.width * this.height)
+        //     }
+        // })
         // filter out any unusued values from hps
-        this.hps = this.hps.filter(v => {
-            return allCellCoordinates.find(
-                coord => coord.x === v.x && coord.y === v.y
-            )
-        })
-
+        // this.hps = this.hps.filter(v => {
+        //     return allCellCoordinates.find(
+        //         coord => coord.x === v.x && coord.y === v.y
+        //     )
+        // })
         // add any new cell HPs
-        allCellCoordinates.forEach(coord => {
-            if (!this.hps.find(v => v.x === coord.x && v.y === coord.y)) {
-                this.hps.push({
-                    current: 10,
-                    max: 10,
-                    min: -10,
-                    x: coord.x,
-                    y: coord.y
-                })
-            }
-        })
+        // allCellCoordinates.forEach(coord => {
+        //     if (!this.hps.find(v => v.x === coord.x && v.y === coord.y)) {
+        //         this.hps.push({
+        //             current: 10,
+        //             max: 10,
+        //             min: -10,
+        //             x: coord.x,
+        //             y: coord.y
+        //         })
+        //     }
+        // })
     }
 
     setDeployable(x: number, y: number, canDeploy: boolean) {

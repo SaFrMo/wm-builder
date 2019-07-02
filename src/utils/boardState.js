@@ -9,6 +9,7 @@ import sequenceActions from '@/utils/board/sequence-actions'
 import boardActions from '@/utils/board/board-actions'
 import playerUnitActions from '@/utils/board/player-unit-actions'
 import * as goalActions from '@/utils/board/goal-actions'
+import _uniqBy from 'lodash/uniqBy'
 
 // deconstruct board classes
 const { Partition, BoardState } = board
@@ -109,6 +110,31 @@ export default {
                 )
                 return sequence
             })
+        },
+
+        // Remove extra items, etc from board
+        CLEANUP_BOARD(state) {
+            // get all partition GUIDs that exist on this board
+            const existingPartitionGuids = state.partitions.map(p => p.guid)
+
+            // filter out any items referencing nonexistent partition GUIDs
+            state.items = state.items.filter(item =>
+                existingPartitionGuids.includes(item.location.partitionGuid)
+            )
+
+            // filter out any owned items referencing nonexistent entity GUIDs
+            const existingItemGuids = state.entities.map(e => e.guid)
+            const filteredActors = state.actors.map(actor => {
+                const output = { ...actor }
+                output.ownedItemGuids = output.ownedItemGuids.filter(id =>
+                    existingItemGuids.includes(id)
+                )
+                return output
+            })
+            state.actors = filteredActors
+
+            // filter out old cellHps system
+            delete state.boardData.cellHps
         },
 
         // partitions

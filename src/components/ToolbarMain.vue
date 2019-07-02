@@ -1,30 +1,30 @@
 <template>
-
     <section class="toolbar-main">
-
-        <meta-info/>
+        <meta-info />
 
         <div class="controls-wrap">
-
-            <controls-section/>
+            <controls-section />
 
             <!-- Export/Import -->
-            <button
-                @click="startExport">
+            <button @click="startExport">
                 Export Level
             </button>
 
-            <button
-                @click="startImport">
+            <button @click="startImport">
                 Import Level
             </button>
+
+            <!-- <button @click="$store.commit('CLEANUP_BOARD')">
+                Cleanup Level
+            </button> -->
 
             <input
                 class="upload"
                 type="file"
                 ref="upload"
                 @change="uploadFile"
-                accept=".json"/>
+                accept=".json"
+            />
 
             <!-- Hidden element to export board -->
             <a
@@ -32,11 +32,10 @@
                 v-show="false"
                 ref="downloadLink"
                 :href="dataString"
-                :download="$store.state.boardState.name + '.json'"/>
+                :download="$store.state.boardState.name + '.json'"
+            />
         </div>
-
     </section>
-
 </template>
 
 <script>
@@ -55,6 +54,9 @@ export default {
     },
     methods: {
         async startExport() {
+            // clean up boardstate
+            this.$store.commit('CLEANUP_BOARD')
+
             // Build data from board state
             this.dataString = `data:text/json;charset=utf-8,`
             this.dataString += encodeURIComponent(
