@@ -1,6 +1,6 @@
 ## Concourse
 
-A Concourse is a prefab that contains level information for a single mural. It lives in `Resources/management/conconourses` and contains:
+A Concourse is a prefab that contains level information for a single mural. It lives in `Resources/management/concourses` and contains:
 
 -   A single location, optionally with different conditions (for example, different times of day or weather)
 -   One or more levels on zoomed-in sections of the mural
@@ -9,9 +9,11 @@ A Concourse is a prefab that contains level information for a single mural. It l
 
 ![An example Concourse in the alpha, with a mural on the wall and some locked and unlocked levels.](./concourse.png)
 
+### Creation
+
 To create a Concourse in Unity:
 
-1.  Clone the existing Tutorial Concourse.
+1.  Clone the existing Template Concourse.
 1.  Set the Concourse parameters on the Mural Concourse GameObject:
     ![Concourse parameters in Unity.](./params.png)
 
@@ -20,6 +22,8 @@ To create a Concourse in Unity:
     1.  The `Progression` of the Concourse (see below)
 
     Ignore any values below the `Automatically Set` header.
+
+### Levels and Progression
 
 1.  Head over to the `Concourse UI` GameObject:
     ![Concourse UI fields in Unity.](./concourse-ui.png)
@@ -42,5 +46,7 @@ To create a Concourse in Unity:
 
     1.  Duplicate one mesh per level in the Concourse and place the mesh as needed.
     1.  Drag each mesh to its corresponding `LevelInfo` `placement` field.
+
+### Other
 
 1.  _Optionally_, you can create a Camera and add the `MainCamera` tag to use any custom background colors, skyboxes, etc. If no `MainCamera`-tagged camera is created, the game will fall back to the default camera.
