@@ -29,6 +29,7 @@ Control the movement of the view of the board. The keyboard arrow keys can also 
 #### Zoom
 
 '+' Zooms in on the board
+
 '-' Zooms out from the board
 
 #### Recenter
@@ -65,7 +66,7 @@ The x and y axes and all multiples of five along them are highlighted red.
 
 ### Actions and Settings
 
-![Level builder actions and settings](./LevelBuilder-ActionsSettings.png "Level builder actions and settings)
+![Level builder actions and settings](./LevelBuilder-ActionsSettings.png 'Level builder actions and settings')
 
 Each of these menus are used to set up the movement of the board and various options to change game play, such as goals and player items. Each will be covered in depth in their respective sections.
 
