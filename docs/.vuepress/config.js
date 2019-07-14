@@ -12,7 +12,7 @@ module.exports = {
                     {
                         text: 'Management',
                         items: [
-                            { text: 'Home Base', link: '/home-base/' }
+                            { text: 'Concourse', link: '/concourse/' }
                             // { text: 'Inventory', link: '/inventory/' }
                         ]
                     },

@@ -14,6 +14,8 @@ export const entityMetaPresetKeys = [
     { name: 'Spawn Frequency', value: 'spawn-frequency' },
     { name: 'Spawn Location', value: 'spawn-location' },
     { name: 'Spawn Capacity', value: 'spawn-capacity' },
+    { name: 'Spawn HP', value: 'spawn-hp' },
+    { name: 'Spawn AP', value: 'spawn-ap' },
     { name: 'Lock ID', value: 'lock-id' }
 ]
 
