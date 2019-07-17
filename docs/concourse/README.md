@@ -13,7 +13,7 @@ A Concourse is a prefab that contains level information for a single mural. It l
 
 To create a Concourse in Unity:
 
-1.  Clone the existing Template Concourse.
+1.  Clone the existing Template Concourse ()`Assets/Resources/management/concourses/Template`).
 1.  Set the Concourse parameters on the Mural Concourse GameObject:
     ![Concourse parameters in Unity.](./params.png)
 
@@ -25,15 +25,15 @@ To create a Concourse in Unity:
 
 ### Levels and Progression
 
-1.  Head over to the `Concourse UI` GameObject:
-    ![Concourse UI fields in Unity.](./concourse-ui.png)
+1.  Head over to the `Concourse Wrapper` GameObject:
+    ![Concourse Wrap prefab in Unity.](./concourse-wrap.png)
 
-    1.  Duplicate the `Level` prefab as needed, once per level in the Concourse.
+    1.  Duplicate the `Single Level` prefab as needed, once per level in the Concourse.
 
 1.  Head over to the `Mural Progression` field:
     ![Mural Progression fields in Unity.](./progression.png)
 
-    Each level should exist as a `Node` with:
+    Each level from the previous step should exist as a `Node` with:
 
     1.  A human-readable `Label` (just for in-editor use)
     1.  A reference to the `LevelInfo` (see below) this `Node` contains information about
@@ -41,12 +41,12 @@ To create a Concourse in Unity:
 
     Ignore the `Completed` field.
 
-1.  Finally, head to the `Level Placement` GameObject.
-    ![Level Placement GameObjects in Unity.](./placement.png)
+1.  Finally, in each `Single Level`, head to the `Level Placement` GameObject.
+    ![Single Level GameObjects in Unity.](./single-level.png)
 
-    1.  Duplicate one mesh per level in the Concourse and place the mesh as needed.
-    1.  Drag each mesh to its corresponding `LevelInfo` `placement` field.
+    1.  Place each `Canvas` and `Camera Position` where you want the level to appear in the Concourse. (It's usually helpful to load the prefab into the 3D scene you have in mind for this step.)
+    1.  Place and size the Level Placement mesh using ProBuilder to correspond with the total level play area. (You can also load the level in-game and size/rotate/place this mesh to place it in real time - make sure to copy the mesh before quitting play mode!)
 
 ### Other
 
-1.  _Optionally_, you can create a Camera and add the `MainCamera` tag to use any custom background colors, skyboxes, etc. If no `MainCamera`-tagged camera is created, the game will fall back to the default camera.
+1.  _Optionally_, you can add the `MainCamera` tag to the included Camera to use any custom background colors, skyboxes, etc. If no `MainCamera`-tagged camera is created in the concourse, the game will fall back to the default camera.
