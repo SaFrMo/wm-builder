@@ -138,7 +138,9 @@ export default {
             state.actors = filteredActors
 
             // filter out old cellHps system
-            delete state.boardData.cellHps
+            if (state.boardData.hasOwnProperty('cellHps')) {
+                delete state.boardData.cellHps
+            }
         },
 
         // partitions
