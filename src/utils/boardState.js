@@ -138,7 +138,11 @@ export default {
             state.actors = filteredActors
 
             // filter out old cellHps system
-            if (state.boardData.hasOwnProperty('cellHps')) {
+            if (
+                state &&
+                state.boardData &&
+                state.boardData.hasOwnProperty('cellHps')
+            ) {
                 delete state.boardData.cellHps
             }
         },
