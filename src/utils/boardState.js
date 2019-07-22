@@ -117,6 +117,10 @@ export default {
             // get all partition GUIDs that exist on this board
             const existingPartitionGuids = state.partitions.map(p => p.guid)
 
+            state.items = state.items || []
+            state.entities = state.entities || []
+            state.actors = state.actors || []
+
             // filter out any items referencing nonexistent partition GUIDs
             state.items = state.items.filter(item =>
                 existingPartitionGuids.includes(item.location.partitionGuid)
