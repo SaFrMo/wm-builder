@@ -43,12 +43,12 @@ module.exports = {
                     },
                     {
                         text: 'Level Builder Tutorial',
-                        link: '/building-levels/'
+                        link: '/builder-docs/'
                     },
-                    {
-                        text: 'Item Builder',
-                        link: '/item-builder/'
-                    },
+                    // {
+                    //     text: 'Item Builder',
+                    //     link: '/item-builder/'
+                    // },
                     {
                         text: 'Common Tasks',
                         link: '/common-tasks/'
