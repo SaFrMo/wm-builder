@@ -135,7 +135,8 @@ export default {
                     'Sequence step',
                     'Random number',
                     'Current turn',
-                    'Max damage taken'
+                    'Max damage taken',
+                    'Living enemies'
                 ],
                 comparators: [
                     'equals',
