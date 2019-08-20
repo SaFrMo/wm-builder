@@ -13,7 +13,7 @@ A Concourse is a prefab that contains level information for a single mural. It l
 
 To create a Concourse in Unity:
 
-1.  Clone the existing Template Concourse ()`Assets/Resources/management/concourses/Template`).
+1.  Clone the existing Template Concourse (`Assets/Resources/management/concourses/Template`).
 1.  Set the Concourse parameters on the Mural Concourse GameObject:
     ![Concourse parameters in Unity.](./params.png)
 
@@ -46,6 +46,7 @@ To create a Concourse in Unity:
 
     1.  Place each `Canvas` and `Camera Position` where you want the level to appear in the Concourse. (It's usually helpful to load the prefab into the 3D scene you have in mind for this step.)
     1.  Place and size the Level Placement mesh using ProBuilder to correspond with the total level play area. (You can also load the level in-game and size/rotate/place this mesh to place it in real time - make sure to copy the mesh before quitting play mode!)
+    1.  Drag and drop the level JSON to the "Level" field.
 
 ### Other
 
