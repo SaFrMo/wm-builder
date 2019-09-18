@@ -28,7 +28,8 @@ export const enemyTypes = [
     { label: 'Guard', value: 'guard' },
     { label: 'Turret', value: 'turret' },
     { label: 'Spawner', value: 'spawner' },
-    { label: 'Lock', value: 'lock' }
+    { label: 'Lock', value: 'lock' },
+    { label: 'Alarm Raiser', value: 'alarm-raiser' }
 ]
 
 // preset player-usable unit types
