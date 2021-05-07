@@ -16,7 +16,7 @@
         "case": "^1.5.5",
         "fh-components": "^1.2.96",
         "file-saver": "^2.0.0-rc.4",
-        "lodash": "^4.17.11",
+        "lodash": "^4.17.21",
         "node-sass": "^4.9.2",
         "sass-loader": "^7.0.3",
         "to-capital-case": "^1.0.0",
